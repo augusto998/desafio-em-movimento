@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fbf5e7" />
+    <meta name="description" content="Desafio em Movimento: matemática e educação física em uma competição rápida e divertida." />
+    <title>Desafio em Movimento | Aprender no ritmo</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar" id="topbar">
+        <a class="brand" href="#inicio" data-view="inicio" aria-label="Desafio em Movimento, início">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          <span class="brand-copy"><strong>DESAFIO</strong><em>em movimento</em></span>
+        </a>
+        <nav class="main-nav" aria-label="Navegação principal">
+          <button class="nav-link is-active" type="button" data-view="inicio">Início</button>
+          <button class="nav-link" type="button" data-view="como-jogar">Como jogar</button>
+          <button class="nav-link" type="button" data-view="ranking">Ranking</button>
+        </nav>
+        <div class="topbar-side">
+          <span class="round-tag"><i aria-hidden="true"></i> 2º EM</span>
+          <button class="icon-button" type="button" id="sound-toggle" aria-pressed="true" aria-label="Desligar sons">
+            <span class="sound-on" aria-hidden="true">◖))</span><span class="sound-off" aria-hidden="true">×</span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="view view-start is-visible" id="view-inicio" aria-labelledby="start-title">
+          <div class="start-grid">
+            <div class="hero-copy">
+              <div class="eyebrow"><span class="eyebrow-line"></span> MATEMÁTICA + EDUCAÇÃO FÍSICA</div>
+              <h1 id="start-title">Pense.<br /><span>Mexa.</span><br />Supere.</h1>
+              <p class="hero-lede">Um quiz de alta energia para colocar seu raciocínio em movimento. Responda rápido, acumule pontos e deixe sua marca na pista.</p>
+              <div class="hero-actions">
+                <label class="field-label" for="player-name">Como podemos te chamar?</label>
+                <div class="name-row">
+                  <input id="player-name" type="text" maxlength="20" autocomplete="nickname" placeholder="Digite seu nome" />
+                  <button class="primary-button" id="start-game" type="button">Começar <span aria-hidden="true">→</span></button>
+                </div>
+                <p class="input-hint" id="name-hint">Seu nome aparece no ranking da turma.</p>
+              </div>
+              <div class="hero-proof" aria-label="Dados do desafio">
+                <div><strong>10</strong><span>perguntas</span></div>
+                <div><strong>10–15s</strong><span>por rodada</span></div>
+                <div><strong>+100</strong><span>super combo</span></div>
+              </div>
+            </div>
+            <div class="hero-art" aria-label="Ilustração abstrata de uma pista de movimento">
+              <div class="art-sun"></div>
+              <div class="art-stamp">JOGA<br />JUNTO</div>
+              <div class="orbit orbit-one"></div>
+              <div class="orbit orbit-two"></div>
+              <div class="track-shape"></div>
+              <div class="runner runner-one"><span></span></div>
+              <div class="runner runner-two"><span></span></div>
+              <div class="art-caption"><span class="caption-number">01</span><span>Raciocínio<br />em alta velocidade</span></div>
+            </div>
+          </div>
+          <div class="start-footer">
+            <button class="text-button" type="button" data-view="como-jogar">Entenda a dinâmica <span aria-hidden="true">↗</span></button>
+            <p><span class="status-dot"></span> Pronto para jogar em equipe ou solo</p>
+          </div>
+        </section>
+
+        <section class="view view-game" id="view-jogo" aria-labelledby="game-title" hidden>
+          <div class="game-header">
+            <div>
+              <div class="eyebrow"><span class="eyebrow-line"></span> <span id="phase-name">AQUECIMENTO</span> · PERGUNTA <span id="round-number">01</span> / 10</div>
+              <h2 id="game-title">Mantenha o ritmo, <span id="game-player">atleta</span>.</h2>
+            </div>
+            <div class="score-cluster">
+              <div class="score-pill"><span>PONTOS</span><strong id="score-value">000</strong></div>
+              <div class="streak-pill" id="streak-pill"><span aria-hidden="true">✦</span> <strong id="streak-value">0</strong> sequência</div>
+            </div>
+          </div>
+          <div class="progress-wrap" aria-label="Progresso do desafio">
+            <div class="progress-meta"><span>PROGRESSO</span><span id="progress-label">1 de 10</span></div>
+            <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+          </div>
+
+          <div class="game-layout">
+            <article class="question-card" aria-live="polite">
+              <div class="question-topline"><span class="question-category" id="question-category">MATEMÁTICA</span><div class="timer" id="timer" role="timer" aria-label="Tempo restante">20</div></div>
+              <p class="question-index" id="question-index">PERGUNTA 01</p>
+              <h3 id="question-text">Carregando desafio...</h3>
+              <div class="options" id="options" role="group" aria-label="Opções de resposta"></div>
+              <div class="answer-feedback" id="answer-feedback" aria-live="assertive"></div>
+              <div class="question-actions">
+                <button class="secondary-button physical-trigger" id="physical-toggle" type="button" disabled>Adicionar desafio físico <span aria-hidden="true">+</span></button>
+                <button class="primary-button next-button" id="next-question" type="button" disabled>Próxima <span aria-hidden="true">→</span></button>
+              </div>
+            </article>
+            <aside class="side-challenge" id="physical-panel" aria-label="Desafio físico opcional">
+              <div class="side-label"><span class="side-icon">↗</span> BÔNUS DE MOVIMENTO</div>
+              <h3>Seu corpo também responde.</h3>
+               <p>Complete o mini-desafio entre uma pergunta e outra e ganhe <strong>+25 pontos</strong>.</p>
+              <div class="movement-figure" aria-hidden="true"><span class="figure-head"></span><span class="figure-body"></span><span class="figure-limb one"></span><span class="figure-limb two"></span><span class="figure-limb three"></span><span class="figure-limb four"></span></div>
+              <p class="movement-copy" id="movement-copy">O desafio aparece depois da sua resposta.</p>
+              <button class="outline-button" id="complete-physical" type="button" disabled>Marcar como feito <span aria-hidden="true">✓</span></button>
+               <div class="bonus-earned" id="bonus-earned" hidden>+25 adicionados</div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view view-result" id="view-resultado" aria-labelledby="result-title" hidden>
+          <div class="result-layout">
+            <div class="result-message">
+              <div class="eyebrow"><span class="eyebrow-line"></span> FIM DE JOGO</div>
+               <p class="result-player">ATLETA <strong id="final-player">—</strong></p>
+              <h2 id="result-title">Você deixou<br /><span>sua marca.</span></h2>
+              <p id="result-subtitle">Boa leitura de jogo. Cada resposta foi um passo a mais.</p>
+              <div class="result-actions"><button class="primary-button" id="play-again" type="button">Jogar de novo <span aria-hidden="true">↻</span></button><button class="text-button" type="button" data-view="ranking">Ver ranking <span aria-hidden="true">↗</span></button></div>
+            </div>
+            <div class="result-score-card">
+              <span class="score-label">SUA PONTUAÇÃO</span>
+              <strong id="final-score">000</strong>
+              <span class="score-unit">pontos</span>
+              <div class="result-divider"></div>
+               <div class="result-stats"><div><strong id="final-correct">0/10</strong><span>acertos</span></div><div><strong id="final-errors">0</strong><span>erros</span></div><div><strong id="final-percentage">0%</strong><span>aproveitamento</span></div><div><strong id="final-streak">0</strong><span>maior combo</span></div><div><strong id="final-rank">#—</strong><span>posição</span></div></div>
+              <div class="result-medal" id="result-medal"><span aria-hidden="true">★</span><b>PARTICIPAÇÃO<br />ATIVA</b></div>
+            </div>
+          </div>
+          <div class="result-note"><span class="note-mark">✦</span><p><strong>O que vale é continuar em movimento.</strong> Compare sua estratégia com a turma e tente bater sua marca na próxima.</p></div>
+        </section>
+
+        <section class="view view-ranking" id="view-ranking" aria-labelledby="ranking-title" hidden>
+           <div class="section-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> PLACAR DA TURMA</div><h2 id="ranking-title">Quem está<br /><span>no ritmo?</span></h2></div><div class="ranking-filter"><span class="live-dot"></span> AO VIVO <small>melhores marcas</small><button class="text-button clear-ranking" id="clear-ranking" type="button">Limpar ranking</button></div></div>
+          <div class="ranking-layout">
+            <div class="leaderboard" id="leaderboard"></div>
+            <aside class="ranking-aside"><div class="aside-burst">MOVIMENTO<br /><strong>É</strong><br />CONHECIMENTO</div><p>A pontuação combina acertos, agilidade e participação no desafio físico.</p><button class="primary-button" type="button" data-view="inicio">Entrar na disputa <span aria-hidden="true">→</span></button></aside>
+          </div>
+        </section>
+
+        <section class="view view-how" id="view-como-jogar" aria-labelledby="how-title" hidden>
+          <div class="section-heading how-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> MANUAL DE BORDO</div><h2 id="how-title">Jogar é simples.<br /><span>Ficar parado, não.</span></h2></div><p>Uma mistura curta de pensamento rápido, corpo ativo e aquela vontade saudável de superar sua própria marca.</p></div>
+          <div class="how-steps">
+            <article class="step-card step-one"><span class="step-number">01</span><div class="step-icon">⌁</div><h3>Leia a jogada</h3><p>Cada rodada traz um problema de Matemática ou uma situação de Educação Física.</p></article>
+             <article class="step-card step-two"><span class="step-number">02</span><div class="step-icon">✦</div><h3>Responda no tempo</h3><p>São 10 segundos nas duas primeiras fases e 15 na final. Agilidade também conta.</p></article>
+            <article class="step-card step-three"><span class="step-number">03</span><div class="step-icon">↗</div><h3>Entre em movimento</h3><p>Ative o bônus opcional, conclua o mini-desafio e some pontos extras.</p></article>
+          </div>
+          <div class="how-footer"><div><strong>Pronto para a largada?</strong><span>Chame sua equipe e veja quem chega mais longe.</span></div><button class="primary-button" type="button" data-view="inicio">Vamos nessa <span aria-hidden="true">→</span></button></div>
+        </section>
+      </main>
+      <footer class="site-footer"><span>DESAFIO EM MOVIMENTO</span><span>2º ANO · INTEGRADO</span><span>APRENDER NO RITMO</span></footer>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

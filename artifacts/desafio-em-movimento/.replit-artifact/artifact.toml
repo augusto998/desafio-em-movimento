@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Desafio em Movimento"
+description = "Jogo educativo estático para estudantes, combinando desafios de Matemática e Educação Física com perguntas, fases, cronômetro, combos e ranking local."
+version = "1.0.0"
+id = "artifacts/desafio-em-movimento"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23538
+
+[services.development]
+run = "pnpm --filter @workspace/desafio-em-movimento run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/desafio-em-movimento", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/desafio-em-movimento/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23538"
+BASE_PATH = "/"

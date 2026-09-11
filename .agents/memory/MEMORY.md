@@ -1,0 +1,1 @@
+- [Static GitHub Pages artifacts](static-github-pages.md) — vanilla runtime files must be Vite inputs or public assets so production output stays self-contained.

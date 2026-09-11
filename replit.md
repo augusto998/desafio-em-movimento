@@ -1,44 +1,44 @@
-# [Project name]
+# Desafio em Movimento
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+Jogo educativo estático que combina Matemática e Educação Física em 10 perguntas com fases, tempo, pontuação, combos e ranking local.
 
 ## Run & Operate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+- `pnpm --filter @workspace/desafio-em-movimento run dev` — abrir a prévia do jogo
+- `pnpm --filter @workspace/desafio-em-movimento run typecheck` — verificar o scaffold do artefato
+- `PORT=23538 BASE_PATH=/ pnpm --filter @workspace/desafio-em-movimento run build` — gerar a versão estática
+- Para jogar sem ferramentas, abra `artifacts/desafio-em-movimento/index.html`
 
 ## Stack
 
-- pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
-- DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
-- API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
+- Arquivos de jogo: HTML, CSS e JavaScript puro.
+- O ranking e a melhor pontuação usam somente `localStorage`.
+- Vite existe apenas como ferramenta de prévia/build do workspace; o jogo não depende de backend, banco, APIs ou serviços externos.
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/desafio-em-movimento/index.html` — telas e estrutura semântica.
+- `artifacts/desafio-em-movimento/style.css` — identidade visual, responsividade e estados.
+- `artifacts/desafio-em-movimento/script.js` — perguntas, fases, cronômetro, pontuação, combos e ranking.
+- `artifacts/desafio-em-movimento/README.md` — documentação escolar, requisitos, fluxo e publicação.
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- A partida monta um baralho de 10 perguntas sorteando 3 fáceis, 4 médias e 3 difíceis para manter o equilíbrio das fases.
+- O ranking é local ao navegador e não representa uma conta ou placar compartilhado.
+- Os três desafios físicos são opcionais e não dependem de câmera, sensores, equipamentos ou permissões do navegador.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- Início com nome, instruções, jogo de 10 perguntas, cronômetro por fase, feedback imediato, combos, desafios físicos, tela de resultado e ranking local.
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- Manter o projeto simples e publicável como arquivos estáticos no GitHub Pages.
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- Se o HTML continuar usando arquivos estáticos fora de `public/`, entradas CSS/JavaScript precisam ser referenciadas de forma que o build do Vite as inclua; atualmente o script usa `type="module"`.
 
 ## Pointers
 
