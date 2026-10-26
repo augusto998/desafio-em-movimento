@@ -1,6 +1,6 @@
 # Desafio em Movimento
 
-Jogo educativo estático que combina Matemática e Educação Física em 10 perguntas com fases, tempo, pontuação, combos e ranking local.
+Jogo educativo estático bilíngue que combina Matemática e Educação Física em dez perguntas por partida, com seleção de matérias/dificuldade, tempo configurável, combos e ranking local.
 
 ## Run & Operate
 
@@ -12,7 +12,9 @@ Jogo educativo estático que combina Matemática e Educação Física em 10 perg
 ## Stack
 
 - Arquivos de jogo: HTML, CSS e JavaScript puro.
-- O ranking e a melhor pontuação usam somente `localStorage`.
+- Perfis com apelido, histórico de questões e ranking usam somente `localStorage`; não há senha, autenticação online, API ou sincronização entre dispositivos.
+- O modo convidado não registra resultado no ranking.
+- O banco oferece mais de 300 questões originais em português e espanhol, com histórico para reduzir repetições.
 - Vite existe apenas como ferramenta de prévia/build do workspace; o jogo não depende de backend, banco, APIs ou serviços externos.
 
 ## Where things live
@@ -24,13 +26,13 @@ Jogo educativo estático que combina Matemática e Educação Física em 10 perg
 
 ## Architecture decisions
 
-- A partida monta um baralho de 10 perguntas sorteando 3 fáceis, 4 médias e 3 difíceis para manter o equilíbrio das fases.
-- O ranking é local ao navegador e não representa uma conta ou placar compartilhado.
+- A partida monta um conjunto de dez questões conforme a dificuldade e as matérias escolhidas; a pontuação-base varia conforme a dificuldade.
+- O ranking é local, tem uma entrada por apelido e preserva o melhor resultado; não representa uma conta ou placar compartilhado.
 - Os três desafios físicos são opcionais e não dependem de câmera, sensores, equipamentos ou permissões do navegador.
 
 ## Product
 
-- Início com nome, instruções, jogo de 10 perguntas, cronômetro por fase, feedback imediato, combos, desafios físicos, tela de resultado e ranking local.
+- Início com perfil local ou convidado, instruções, seleção de matérias/dificuldade/tempo (10–25 s), jogo com dez perguntas, feedback, combos, movimentos opcionais, resultado e ranking local.
 
 ## User preferences
 

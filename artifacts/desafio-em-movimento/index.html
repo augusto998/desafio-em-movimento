@@ -47,11 +47,34 @@
                   <input id="player-name" type="text" maxlength="20" autocomplete="nickname" placeholder="Digite seu nome" />
                   <button class="primary-button" id="start-game" type="button">Começar <span aria-hidden="true">→</span></button>
                 </div>
-                <p class="input-hint" id="name-hint">Seu nome aparece no ranking da turma.</p>
+                <div class="player-mode" role="group" aria-label="Tipo de acesso">
+                  <button class="mode-button is-active" id="login-mode" type="button" aria-pressed="true">Entrar / criar perfil</button>
+                  <button class="mode-button" id="guest-mode" type="button" aria-pressed="false">Convidado</button>
+                </div>
+                <p class="input-hint" id="name-hint">Perfil salvo somente neste dispositivo. Use um apelido, sem dados pessoais.</p>
+                <p class="local-login-note" id="local-login-note">Perfil local de apresentação: não usa senha nem conta online e não sincroniza entre dispositivos.</p>
+                <div class="game-settings" aria-labelledby="settings-title">
+                  <h2 id="settings-title">Personalize a partida</h2>
+                  <label class="field-label" for="difficulty-select">Dificuldade</label>
+                  <select id="difficulty-select">
+                    <option value="mixed">Variada (todas)</option>
+                    <option value="facil">Fácil</option>
+                    <option value="medio">Média</option>
+                    <option value="dificil">Difícil</option>
+                  </select>
+                  <fieldset class="subject-picker">
+                    <legend class="field-label">Matérias (escolha uma ou mais)</legend>
+                    <label><input type="checkbox" name="subject" value="matematica" checked /> Matemática</label>
+                    <label><input type="checkbox" name="subject" value="educacao-fisica" checked /> Educação Física</label>
+                    <label><input type="checkbox" name="subject" value="interdisciplinar" checked /> Interdisciplinar</label>
+                  </fieldset>
+                  <label class="time-setting field-label" for="answer-time">Tempo por pergunta: <output id="answer-time-value" for="answer-time">20 s</output></label>
+                  <input id="answer-time" type="range" min="10" max="25" value="20" />
+                </div>
               </div>
               <div class="hero-proof" aria-label="Dados do desafio">
                 <div><strong>10</strong><span>perguntas</span></div>
-                <div><strong>10–15s</strong><span>por rodada</span></div>
+                <div><strong>10–25s</strong><span>por pergunta</span></div>
                 <div><strong>+100</strong><span>super combo</span></div>
               </div>
             </div>

@@ -1,189 +1,113 @@
-# 🏃 Desafio em Movimento
+# Desafio em Movimento
 
-Jogo educativo de perguntas e respostas que combina Matemática e Educação
-Física em uma partida rápida de 10 perguntas. O projeto foi pensado para uma
-apresentação do 2º ano do Ensino Médio Integrado e funciona diretamente no
-navegador.
+**Pense. Mexa. Supere.** Um jogo educativo que conecta Matemática e Educação Física por meio de perguntas, tempo, pontuação e desafios opcionais de movimento.
 
-## Estrutura do projeto
+- **Jogo publicado:** [augusto998.github.io/desafio-em-movimento](https://augusto998.github.io/desafio-em-movimento/)
+- **Repositório:** [github.com/augusto998/desafio-em-movimento](https://github.com/augusto998/desafio-em-movimento)
+- **Instituição:** Instituto Federal de Mato Grosso (IFMT) — Campus Barra do Garças
 
-```text
-desafio-em-movimento/
-├── index.html
-├── style.css
-├── script.js
-├── README.md
-└── .gitignore
-```
+## Sobre
 
-O jogo não usa banco de dados, backend, login, API externa ou informações
-sensíveis. O ranking fica salvo apenas no `localStorage` do navegador.
+O Desafio em Movimento é um quiz para estudantes do Ensino Médio Integrado. Cada partida reúne dez perguntas de Matemática, Educação Física e conteúdos interdisciplinares. A proposta é apoiar a revisão de conteúdos de um jeito dinâmico, incentivando o raciocínio, a participação e hábitos de movimento seguros.
 
-## Problema
+### Objetivos
 
-Conteúdos de Matemática e Educação Física podem parecer separados e abstratos
-quando são apresentados apenas em exercícios tradicionais. Também pode ser
-difícil manter a participação de toda a turma durante uma revisão.
+- Revisar operações, porcentagem, médias, distância, tempo, velocidade e unidades de medida.
+- Reforçar conhecimentos de esportes, saúde, alongamento, aquecimento e capacidades físicas.
+- Estimular a participação e a aprendizagem com feedback imediato.
+- Aplicar gamificação e conceitos de desenvolvimento web em um projeto interdisciplinar.
 
-## Objetivo geral
+## Como jogar
 
-Desenvolver um jogo educativo que utilize conhecimentos de Matemática e
-Educação Física de forma interativa, simples e divertida.
+1. Informe seu nome ou apelido e selecione **Começar**.
+2. Escolha uma ou mais matérias, a dificuldade e o tempo (de 10 a 25 segundos por pergunta).
+3. Responda dez perguntas sorteadas do banco de centenas de questões; o histórico local reduz repetições em partidas futuras.
+4. Veja o feedback e a explicação após cada resposta. Se o tempo acabar, a resposta conta como incorreta.
+5. Três acertos seguidos dão +50 pontos; cinco acertos seguidos dão +100 pontos. A dificuldade da questão define a pontuação-base.
+6. Em algumas perguntas, é possível realizar um desafio físico opcional e marcar como concluído para receber +25 pontos.
+7. No final, confira pontuação, acertos, erros, aproveitamento, maior combo e posição no ranking. Perfis têm uma única entrada, com o melhor resultado; convidados não são registrados.
 
-## Objetivos específicos
+> Os desafios físicos são opcionais. Respeite seus limites e siga as orientações do professor ou professora. Interrompa se sentir desconforto.
 
-1. Revisar operações, porcentagens, médias, velocidade, distância, tempo e
-   unidades de medida.
-2. Reforçar conhecimentos sobre esportes, saúde e capacidades físicas.
-3. Estimular a participação por meio de perguntas, tempo limitado e combos.
-4. Aplicar pontuação, porcentagem de acertos e estatísticas do jogador.
-5. Exercitar conceitos de Engenharia de Software, como requisitos, fluxo e
-   organização de funções.
-6. Criar uma experiência responsiva que funcione em computador, tablet e
-   celular.
+## Funcionalidades
 
-## Como o jogo funciona
+- Telas de início, instruções, partida, resultado e ranking.
+- Perguntas aleatórias com quatro alternativas, cronômetro e explicação.
+- Pontos por dificuldade, bônus de combo e desafio físico opcional.
+- Resultado com estatísticas e posição no ranking.
+- Ranking local com até dez resultados e ação para limpar os dados após confirmação.
+- Interface em português e espanhol, alternável a qualquer momento sem perder o andamento da partida.
+- Interface adaptável a celulares, tablets e computadores; atalho de navegação por teclado, foco visível e suporte à preferência por movimento reduzido.
+- Efeitos sonoros opcionais e desafios de movimento adaptáveis, que podem ser ignorados com segurança.
+- Configuração da dificuldade, seleção de uma ou mais matérias e tempo de 10 a 25 segundos por pergunta.
+- Mais de 300 questões originais em português e espanhol, com alternativas embaralhadas e histórico local para reduzir repetições.
+- Acesso por perfil local (apelido único e melhor resultado por perfil) ou convidado (sem gravação no ranking).
 
-- Cada partida tem exatamente 10 perguntas.
-- A Fase 1 — Aquecimento tem 3 perguntas fáceis, vale 100 pontos por acerto e
-  usa 10 segundos por pergunta.
-- A Fase 2 — Desafio tem 4 perguntas de dificuldade média, vale 150 pontos e
-  usa 10 segundos por pergunta.
-- A Fase 3 — Final tem 3 perguntas mais difíceis, vale 200 pontos e usa 15
-  segundos por pergunta.
-- As perguntas são escolhidas de forma aleatória sem repetir durante a
-  partida, mantendo a proporção das três categorias.
-- Três acertos consecutivos geram +50 pontos. Cinco acertos consecutivos geram
-  +100 pontos. Errar reinicia o combo.
-- Algumas perguntas oferecem um desafio físico opcional: polichinelos,
-  agachamentos ou equilíbrio. Ao marcar como concluído, o jogador ganha +25
-  pontos.
+## História de usuário
 
-> Realize os desafios respeitando seus limites e seguindo as orientações do
-> professor.
+> **Como estudante do Ensino Médio Integrado, quero responder a perguntas que conectam Matemática e Educação Física em rodadas curtas e com feedback, para revisar os conteúdos de forma participativa e acompanhar meu desempenho.**
 
-## Engenharia de Software
+### Critérios de aceitação
 
-### Requisitos funcionais
+- A partida só começa após informar um nome ou apelido.
+- Cada partida apresenta dez perguntas, organizadas nas três fases, com quatro opções e tempo limitado.
+- A aplicação informa se a resposta está correta e apresenta uma explicação, inclusive quando o tempo acaba.
+- A pontuação, os acertos, os erros e os combos são atualizados conforme as respostas.
+- Desafios físicos aparecem apenas em perguntas elegíveis e podem ser ignorados.
+- A tela final apresenta estatísticas e o ranking do navegador pode ser consultado.
+- O conteúdo permanece utilizável em telas pequenas.
 
-- **RF01** — O sistema deve permitir informar o nome do jogador.
-- **RF02** — O sistema deve iniciar uma partida.
-- **RF03** — O sistema deve apresentar perguntas aleatórias.
-- **RF04** — O sistema deve apresentar quatro alternativas.
-- **RF05** — O sistema deve controlar o tempo de cada pergunta.
-- **RF06** — O sistema deve verificar as respostas.
-- **RF07** — O sistema deve calcular a pontuação.
-- **RF08** — O sistema deve calcular a porcentagem de acertos.
-- **RF09** — O sistema deve apresentar o resultado final.
-- **RF10** — O sistema deve armazenar o ranking no `localStorage`.
-- **RF11** — O sistema deve apresentar os 10 melhores resultados.
-- **RF12** — O sistema deve permitir limpar o ranking após confirmação.
+Histórias complementares estão em [../../docs/HISTORIAS-DE-USUARIO.md](../../docs/HISTORIAS-DE-USUARIO.md).
 
-### Requisitos não funcionais
+## Equipe
 
-- **RNF01 — Usabilidade:** textos objetivos, botões grandes e feedback
-  imediato.
-- **RNF02 — Responsividade:** layout adaptável a celular, tablet e desktop.
-- **RNF03 — Desempenho:** arquivos locais e leves, sem chamadas externas.
-- **RNF04 — Compatibilidade:** funcionamento em navegadores modernos.
-- **RNF05 — Simplicidade:** HTML, CSS e JavaScript puro, com funções pequenas.
-- **RNF06 — Acessibilidade:** HTML semântico, foco visível, contraste e
-  feedback textual além das cores.
+Estudantes do **Instituto Federal de Mato Grosso (IFMT) — Campus Barra do Garças**:
 
-### Fluxograma
+1. Márcio Vitor
+2. Augusto Malaquias Carvalho
+3. Matheus José
+4. Eduardo Gomes
+5. Emanuele Oliveira Andrade
+6. Maria Eduarda Sastre
+7. João Pedro Pereira
+8. Ana Eduarda Sousa
+9. Maicon Goulart
+10. Heitor Pernet
+11. Byank Chrystinny
+12. Leonardo Ribeiro
 
-```text
-INÍCIO
-  ↓
-Informar nome
-  ↓
-Iniciar jogo
-  ↓
-Selecionar pergunta aleatória
-  ↓
-Iniciar cronômetro
-  ↓
-Jogador responde
-  ↓
-Resposta correta?
-  ├── SIM → adicionar pontos
-  └── NÃO → mostrar resposta correta
-  ↓
-Próxima pergunta
-  ↓
-10 perguntas concluídas?
-  ├── NÃO → continuar
-  └── SIM → calcular resultado
-  ↓
-Salvar resultado no localStorage
-  ↓
-Mostrar resultado
-  ↓
-FIM
-```
+## Tecnologias e implementação
 
-## Onde aparece a Matemática
+O jogo é uma aplicação estática feita com **HTML, CSS e JavaScript**, sem serviço de login, API ou banco de dados. O perfil é somente local: não usa senha nem sincroniza entre dispositivos. A lógica e as perguntas ficam em `script.js`; a estrutura das telas está em `index.html`; e o visual responsivo está em `style.css`.
 
-As perguntas trabalham porcentagem, regra de três, média, velocidade média,
-distância, tempo, operações, leitura simples de dados e conversão de unidades.
-Ela também aparece no próprio sistema:
-
-- **Pontuação:** soma dos valores de cada fase e dos bônus.
-- **Porcentagem de acerto:** `acertos ÷ 10 × 100`.
-- **Velocidade média:** `distância ÷ tempo`.
-- **Média:** soma dos valores dividida pela quantidade de valores.
-- **Estatísticas:** comparação entre acertos, erros, pontuação e melhor combo.
-
-## Onde aparece a Educação Física
-
-As perguntas tratam de esportes e regras, modalidades, benefícios da atividade
-física, alongamento, força, resistência, frequência cardíaca, hábitos
-saudáveis e capacidades físicas. Os desafios opcionais aproximam o conteúdo da
-prática com movimentos simples e sem equipamentos.
-
-## Privacidade e `localStorage`
-
-O jogo solicita somente um nome ou apelido. Não coleta senha, e-mail, endereço,
-localização ou outros dados pessoais. O ranking, a melhor pontuação e os
-resultados são salvos apenas no navegador/dispositivo utilizado. Limpar os
-dados do navegador ou usar outro dispositivo remove esse ranking.
+Este repositório também contém um workspace pnpm com um scaffold independente de React, TypeScript, Vite e Express. Esse scaffold não é necessário para o quiz estático e sua existência não indica que servidor ou banco de dados estejam publicados ou conectados ao jogo.
 
 ## Executar localmente
 
-Como o jogo é estático, não é necessário instalar banco, servidor ou
-dependência para jogar:
+**Para jogar sem instalar dependências:** abra `index.html` desta pasta em um navegador moderno.
 
-1. Baixe ou clone o repositório.
-2. Abra `index.html` no navegador.
-3. Informe um nome e clique em **Começar jogo**.
+**Para executar pelo Vite no workspace**, instale Node.js e pnpm e, a partir da raiz do repositório, rode:
 
-Durante o desenvolvimento, também é possível abrir a prévia do projeto pelo
-ambiente de desenvolvimento. A versão que vai para o GitHub Pages continua
-sendo composta apenas por HTML, CSS e JavaScript.
+```sh
+pnpm install
+PORT=5173 BASE_PATH=/ pnpm --filter @workspace/desafio-em-movimento dev
+```
 
-## Publicar no GitHub Pages
+A configuração do Vite exige as variáveis `PORT` e `BASE_PATH`. O servidor informará o endereço local no terminal.
 
-1. Crie um repositório no GitHub.
-2. Faça upload de `index.html`, `style.css`, `script.js`, `README.md` e
-   `.gitignore`.
-3. Faça um commit na branch `main`.
-4. Abra **Settings** no repositório.
-5. Acesse **Pages**.
-6. Em **Build and deployment**, selecione a branch `main`.
-7. Selecione a pasta **root**.
-8. Clique em **Save**.
-9. Acesse o endereço gerado pelo GitHub Pages.
+## Privacidade e armazenamento
 
-## Como apresentar aos professores
+O jogo solicita somente um nome ou apelido. A pontuação e os resultados são guardados no `localStorage` do navegador utilizado. Portanto, o ranking é local: não é sincronizado com outras pessoas, navegadores ou dispositivos. É possível apagá-lo pela opção **Limpar ranking** ou removendo os dados locais do navegador. Não use informações pessoais como nome de exibição.
 
-1. Explique o problema: transformar uma revisão interdisciplinar em uma
-   atividade participativa.
-2. Mostre o fluxo da partida: nome, perguntas, fases, tempo, feedback e
-   resultado.
-3. Jogue uma pergunta de Matemática e uma de Educação Física, destacando a
-   integração entre as disciplinas.
-4. Mostre um combo e o ranking salvo no navegador.
-5. Abra o código para explicar a lista de perguntas, as funções do jogo e o
-   uso do `localStorage`.
-6. Finalize mostrando que o projeto funciona sem internet depois de carregado
-   e pode ser publicado diretamente no GitHub Pages.
+## Publicação
+
+O jogo publicado está no link no início deste documento. A publicação do frontend no GitHub Pages não hospeda automaticamente o scaffold de servidor Express ou um banco de dados; o quiz atual usa o navegador e armazenamento local.
+
+## Ideias para melhorias futuras
+
+Estas são sugestões, não funcionalidades implementadas:
+
+- Expandir o banco de perguntas e permitir revisão de conteúdo por docentes.
+- Adicionar mais opções de acessibilidade e níveis de dificuldade.
+- Avaliar testes automatizados e documentação para contribuições.
+- Estudar ranking entre dispositivos somente com uma solução de backend apropriada e proteção de dados.
