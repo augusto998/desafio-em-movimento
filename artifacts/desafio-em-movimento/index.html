@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main-content" data-i18n="skip">Pular para o conteúdo</a>
     <div class="site-shell">
       <header class="topbar" id="topbar">
         <a class="brand" href="#inicio" data-view="inicio" aria-label="Desafio em Movimento, início">
@@ -22,6 +23,8 @@
           <button class="nav-link is-active" type="button" data-view="inicio">Início</button>
           <button class="nav-link" type="button" data-view="como-jogar">Como jogar</button>
           <button class="nav-link" type="button" data-view="ranking">Ranking</button>
+          <button class="nav-link game-nav-link" type="button" data-view="jogo" hidden>Partida</button>
+          <button class="nav-link language-toggle" id="language-toggle" type="button" aria-pressed="false" aria-label="Cambiar el idioma a español">Español</button>
         </nav>
         <div class="topbar-side">
           <span class="round-tag"><i aria-hidden="true"></i> 2º EM</span>
@@ -31,7 +34,7 @@
         </div>
       </header>
 
-      <main>
+      <main id="main-content">
         <section class="view view-start is-visible" id="view-inicio" aria-labelledby="start-title">
           <div class="start-grid">
             <div class="hero-copy">
@@ -72,7 +75,7 @@
         <section class="view view-game" id="view-jogo" aria-labelledby="game-title" hidden>
           <div class="game-header">
             <div>
-              <div class="eyebrow"><span class="eyebrow-line"></span> <span id="phase-name">AQUECIMENTO</span> · PERGUNTA <span id="round-number">01</span> / 10</div>
+              <div class="eyebrow"><span class="eyebrow-line"></span> <span id="phase-name">AQUECIMENTO</span> <span id="round-label">· PERGUNTA</span> <span id="round-number">01</span> / 10</div>
               <h2 id="game-title">Mantenha o ritmo, <span id="game-player">atleta</span>.</h2>
             </div>
             <div class="score-cluster">
@@ -82,7 +85,7 @@
           </div>
           <div class="progress-wrap" aria-label="Progresso do desafio">
             <div class="progress-meta"><span>PROGRESSO</span><span id="progress-label">1 de 10</span></div>
-            <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+            <div class="progress-track" id="progress-track" role="progressbar" aria-label="Progreso del desafío" aria-valuemin="0" aria-valuemax="10" aria-valuenow="1"><div class="progress-fill" id="progress-fill"></div></div>
           </div>
 
           <div class="game-layout">
@@ -100,7 +103,7 @@
             <aside class="side-challenge" id="physical-panel" aria-label="Desafio físico opcional">
               <div class="side-label"><span class="side-icon">↗</span> BÔNUS DE MOVIMENTO</div>
               <h3>Seu corpo também responde.</h3>
-               <p>Complete o mini-desafio entre uma pergunta e outra e ganhe <strong>+25 pontos</strong>.</p>
+              <p data-i18n="movement_intro">O desafio é opcional: faça apenas se for confortável e seguro para você. Também vale descansar ou adaptar o movimento.</p>
               <div class="movement-figure" aria-hidden="true"><span class="figure-head"></span><span class="figure-body"></span><span class="figure-limb one"></span><span class="figure-limb two"></span><span class="figure-limb three"></span><span class="figure-limb four"></span></div>
               <p class="movement-copy" id="movement-copy">O desafio aparece depois da sua resposta.</p>
               <button class="outline-button" id="complete-physical" type="button" disabled>Marcar como feito <span aria-hidden="true">✓</span></button>
@@ -127,7 +130,7 @@
               <div class="result-medal" id="result-medal"><span aria-hidden="true">★</span><b>PARTICIPAÇÃO<br />ATIVA</b></div>
             </div>
           </div>
-          <div class="result-note"><span class="note-mark">✦</span><p><strong>O que vale é continuar em movimento.</strong> Compare sua estratégia com a turma e tente bater sua marca na próxima.</p></div>
+          <div class="result-note"><span class="note-mark" aria-hidden="true">✦</span><p><strong>O que vale é aprender no seu ritmo.</strong> Compare sua estratégia com a turma e tente bater sua própria marca na próxima.</p></div>
         </section>
 
         <section class="view view-ranking" id="view-ranking" aria-labelledby="ranking-title" hidden>

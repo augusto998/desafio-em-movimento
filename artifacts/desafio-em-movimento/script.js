@@ -36,10 +36,90 @@
     { category: "MISTA", difficulty: "dificil", text: "Em um grupo de 25 alunos, 20 praticam algum esporte. Qual porcentagem pratica esporte?", options: ["60%", "70%", "80%", "90%"], correct: 2, explanation: "20 dividido por 25, vezes 100, resulta em 80%." }
   ];
 
+  // Mantém a mesma ordem da lista original para que o sorteio e o gabarito coincidam.
+  const questionsEs = [
+    ["MATEMÁTICAS", "¿Cuánto es el 20% de 200?", ["20", "40", "60", "80"], "El 20% de 200 es 40."],
+    ["MATEMÁTICAS", "Un equipo anotó 18 puntos en 3 rondas iguales. ¿Cuál fue el promedio por ronda?", ["5 puntos", "6 puntos", "7 puntos", "9 puntos"], "18 dividido entre 3 es igual a 6 puntos por ronda."],
+    ["MATEMÁTICAS", "Una pista mide 400 m. ¿Cuántas vueltas completan 2,4 km?", ["4 vueltas", "5 vueltas", "6 vueltas", "8 vueltas"], "2.400 dividido entre 400 es igual a 6 vueltas."],
+    ["MATEMÁTICAS", "Una camiseta deportiva cuesta R$ 80 y tiene un 25% de descuento. ¿Cuál es el precio final?", ["R$ 20", "R$ 55", "R$ 60", "R$ 75"], "El 25% de R$ 80 es R$ 20; entonces, R$ 80 menos R$ 20 es R$ 60."],
+    ["MATEMÁTICAS", "Si 3 atletas recorren 12 km en total, ¿cuántos kilómetros recorre cada uno en promedio?", ["3 km", "4 km", "6 km", "9 km"], "12 dividido entre 3 es igual a 4 km por atleta, en promedio."],
+    ["MATEMÁTICAS", "Un grupo acertó 16 de 20 preguntas. ¿Cuál fue el porcentaje de aciertos?", ["60%", "70%", "80%", "90%"], "16 dividido entre 20 y multiplicado por 100 da como resultado 80%."],
+    ["MATEMÁTICAS", "Un cronómetro marca 2 minutos y 30 segundos. ¿Cuántos segundos son en total?", ["130 s", "140 s", "150 s", "230 s"], "2 minutos son 120 segundos; 120 más 30 es igual a 150."],
+    ["MATEMÁTICAS", "Una pista ovalada mide 250 m. ¿Qué distancia se recorre en 12 vueltas?", ["2 km", "2,5 km", "3 km", "3,5 km"], "250 por 12 es igual a 3.000 m, o 3 km."],
+    ["MATEMÁTICAS", "Las calificaciones de un atleta fueron 7, 8, 9 y 10. ¿Cuál es el promedio?", ["7,5", "8", "8,5", "9"], "La suma es 34; 34 dividido entre 4 es igual a 8,5."],
+    ["MATEMÁTICAS", "Una persona aumentó su tiempo de entrenamiento de 40 a 50 minutos. ¿Cuál fue el aumento porcentual?", ["10%", "20%", "25%", "30%"], "El aumento fue de 10 minutos; 10 dividido entre 40 es 25%."],
+    ["EDUCACIÓN FÍSICA", "¿Cuál es un beneficio habitual de la actividad física regular?", ["Disminuir la energía", "Mejorar la salud", "Impedir el descanso", "Sustituir la alimentación"], "La actividad física regular contribuye a la salud física y mental."],
+    ["EDUCACIÓN FÍSICA", "¿Qué actitud es más segura al estirar?", ["Hacer movimientos bruscos", "Contener la respiración", "Respetar los límites del cuerpo", "Estirar solo un lado"], "Respetar los límites del cuerpo hace que el movimiento sea más seguro."],
+    ["EDUCACIÓN FÍSICA", "¿Qué capacidad física permite mantener un esfuerzo durante más tiempo?", ["Resistencia", "Flexibilidad", "Velocidad", "Agilidad"], "La resistencia es la capacidad de mantener un esfuerzo durante cierto tiempo."],
+    ["EDUCACIÓN FÍSICA", "¿Qué sistema transporta oxígeno a los músculos durante el ejercicio?", ["Digestivo", "Cardiovascular", "Óseo", "Tegumentario"], "El sistema cardiovascular lleva sangre y oxígeno a los músculos."],
+    ["EDUCACIÓN FÍSICA", "En voleibol, ¿cuántos toques puede dar un equipo antes de enviar el balón al otro lado?", ["1", "2", "3", "4"], "La regla permite hasta 3 toques por equipo."],
+    ["EDUCACIÓN FÍSICA", "¿Qué actividad desarrolla principalmente la flexibilidad?", ["Estiramiento", "Carrera de velocidad", "Lanzamiento", "Salto vertical"], "El estiramiento trabaja la amplitud de movimiento y la flexibilidad."],
+    ["EDUCACIÓN FÍSICA", "¿Qué es importante hacer antes de una actividad más intensa?", ["Calentar", "Quedarse inmóvil", "Saltarse comidas", "Evitar beber agua"], "El calentamiento prepara el cuerpo gradualmente para el esfuerzo."],
+    ["EDUCACIÓN FÍSICA", "Al correr, ¿qué combinación ayuda a controlar la intensidad del esfuerzo?", ["La respiración y la percepción del esfuerzo", "Solo el público", "Únicamente la velocidad final", "Contener la respiración"], "La respiración y la percepción del esfuerzo ayudan a ajustar el ritmo con seguridad."],
+    ["EDUCACIÓN FÍSICA", "¿Qué deporte utiliza una raqueta y un volante?", ["Balonmano", "Bádminton", "Baloncesto", "Atletismo"], "En bádminton, el volante se golpea con una raqueta."],
+    ["EDUCACIÓN FÍSICA", "Fuerza, velocidad, resistencia y flexibilidad son ejemplos de ¿qué?", ["Reglas", "Capacidades físicas", "Equipamiento", "Posiciones"], "Son capacidades físicas que se desarrollan en distintas actividades."],
+    ["MIXTA", "Una persona caminó 2 km por la mañana y 3 km por la tarde. ¿Qué distancia recorrió?", ["1 km", "4 km", "5 km", "6 km"], "2 más 3 es igual a 5 km."],
+    ["MIXTA", "Un equipo ganó 3 de 5 partidos. ¿Cuál fue su porcentaje de victorias?", ["30%", "40%", "60%", "80%"], "3 victorias en 5 partidos corresponden al 60%."],
+    ["MIXTA", "Para empezar a correr, ¿qué actitud combina planificación y cuidado?", ["Ignorar el recorrido", "Conocer la distancia y calentar", "Correr sin beber agua", "Acelerar sin parar"], "Conocer la distancia ayuda a planificar, y calentar prepara el cuerpo."],
+    ["MIXTA", "Un atleta recorrió 2 km en 10 minutos. ¿Cuál fue su velocidad media en km/h?", ["6 km/h", "10 km/h", "12 km/h", "20 km/h"], "10 minutos son 1/6 de hora; 2 dividido entre 1/6 es igual a 12 km/h."],
+    ["MIXTA", "La frecuencia cardíaca de una persona fue de 70 lpm en reposo y 110 lpm después de hacer ejercicio. ¿Cuánto aumentó?", ["30 lpm", "40 lpm", "50 lpm", "180 lpm"], "110 menos 70 es igual a 40 latidos por minuto."],
+    ["MIXTA", "Una clase dura 50 minutos. Si 10 minutos son para calentar, ¿qué porcentaje queda para la actividad principal?", ["20%", "40%", "70%", "80%"], "Quedan 40 minutos; 40 dividido entre 50 es 80%."],
+    ["MIXTA", "Cuatro amigos hicieron 15 sentadillas cada uno. ¿Cuántas hicieron en total?", ["19", "45", "60", "75"], "4 por 15 es igual a 60 sentadillas."],
+    ["MIXTA", "Una corredora recorre 400 m en 2 minutos. Si mantiene el ritmo, ¿cuánto recorre en 15 minutos?", ["2 km", "2,5 km", "3 km", "3,5 km"], "15 minutos contienen 7,5 períodos de 2 minutos; 7,5 por 400 m son 3.000 m."],
+    ["MIXTA", "Un entrenamiento tiene 5 bloques de 4 minutos de esfuerzo y 2 minutos de descanso. ¿Cuánto dura en total?", ["20 min", "25 min", "30 min", "35 min"], "Cada bloque dura 6 minutos; 5 por 6 son 30 minutos."],
+    ["MIXTA", "En un grupo de 25 estudiantes, 20 practican algún deporte. ¿Qué porcentaje practica deporte?", ["60%", "70%", "80%", "90%"], "20 dividido entre 25 y multiplicado por 100 da como resultado 80%." ]
+  ].map(([category, text, options, explanation], index) => ({
+    category, text, options, explanation, difficulty: questions[index].difficulty, correct: questions[index].correct
+  }));
+
+  const translations = {
+    pt: {
+      skip: "Pular para o conteúdo", start: "Início", how: "Como jogar", ranking: "Ranking",
+      game: "Partida",
+      mainNav: "Navegação principal", artLabel: "Ilustração abstrata de uma pista de movimento", roundLabel: "· PERGUNTA", progressLabel: "Progresso do desafio",
+      timerStopped: "Resposta registrada",
+      spanish: "Español", switchSpanish: "Cambiar el idioma a español", switchPortuguese: "Cambiar el idioma a portugués",
+      nameLabel: "Como podemos te chamar?", namePlaceholder: "Digite seu nome ou apelido", nameHint: "Use um apelido; seu nome aparece apenas no ranking deste navegador.",
+      startButton: "Começar", intro: "Um quiz de alta energia para colocar seu raciocínio em movimento. Responda no seu ritmo, acumule pontos e aprenda enquanto joga.",
+      howLink: "Entenda a dinâmica", ready: "Pronto para jogar em equipe ou solo", questions: "perguntas", perRound: "por rodada", superCombo: "super combo",
+      phase: ["AQUECIMENTO", "DESAFIO", "FINAL"], points: "PONTOS", progress: "PROGRESSO", question: "PERGUNTA", options: "Opções de resposta", next: "Próxima", result: "Ver resultado",
+      physical: "Desafio físico opcional", physicalOpen: "Desafio aberto", addPhysical: "Ver desafio opcional", complete: "Marcar como feito", completed: "Desafio concluído", movementPrompt: "O desafio aparece depois da sua resposta.", movementIntro: "O desafio é opcional: faça apenas se for confortável e seguro para você. Também vale descansar ou adaptar o movimento.",
+      end: "FIM DE JOGO", player: "ATLETA", youLeftMark: "Você deixou<br /><span>sua marca.</span>", resultSub: "Boa leitura de jogo. Cada resposta foi um passo a mais.", playAgain: "Jogar de novo", seeRanking: "Ver ranking", yourScore: "SUA PONTUAÇÃO", pointsUnit: "pontos", correct: "acertos", errors: "erros", accuracy: "aproveitamento", bestCombo: "maior combo", position: "posição", participation: "PARTICIPAÇÃO<br />ATIVA", resultNoteTitle: "O que vale é continuar em movimento.", resultNote: "Compare sua estratégia com a turma e tente bater sua marca na próxima.",
+      board: "PLACAR DA TURMA", leaderboardTitle: "Quem está<br /><span>no ritmo?</span>", live: "AO VIVO", bestMarks: "melhores marcas", clear: "Limpar ranking", emptyTitle: "A pista ainda está livre.", emptyText: "Jogue uma partida para registrar a primeira marca neste navegador.", rankingInfo: "A pontuação combina acertos, agilidade e participação no desafio opcional.", enter: "Entrar na disputa", you: "você", first: "1º LUGAR", second: "2º LUGAR", third: "3º LUGAR", pts: "pts",
+      manual: "MANUAL DE BORDO", howTitle: "Jogar é simples.<br /><span>Ficar parado, não.</span>", howDescription: "Uma mistura curta de pensamento, movimento opcional e vontade saudável de superar sua própria marca.", read: "Leia a jogada", readText: "Cada rodada traz um problema de Matemática ou uma situação de Educação Física.", answerInTime: "Responda no tempo", answerText: "São 10 segundos nas duas primeiras fases e 15 na final. Você também pode jogar sentado ou apenas responder.", move: "Entre em movimento", moveText: "O bônus é opcional. Adapte ou ignore qualquer movimento e respeite seus limites.", readyTitle: "Pronto para a largada?", readyText: "Chame sua equipe e veja quem chega mais longe.", letsGo: "Vamos nessa", footer: "APRENDER NO RITMO",
+      noName: "Digite um nome ou apelido para começar.", expired: "TEMPO ESGOTADO! A resposta correta era", incorrect: "INCORRETO! A resposta correta era", correctAnswer: "CORRETO!", combo: "🔥 COMBO! +50 pontos.", super: "🔥🔥 SUPER COMBO! +100 pontos.",
+      newRecord: "Você é um campeão!", excellent: "Excelente desempenho!", good: "Bom trabalho!", keepGoing: "Continue aprendendo!",
+      emptyRanking: "O ranking já está vazio.", clearConfirm: "Tem certeza de que deseja limpar o ranking salvo neste navegador?", cleared: "Ranking limpo.", clearFailed: "Não foi possível limpar os dados deste navegador.", saveFailed: "Não foi possível salvar neste navegador. O resultado será exibido sem ser registrado no ranking.", bonusToast: "Bônus opcional: +25 pontos!", rankSuffix: "º lugar", errorsStorage: "O armazenamento local não está disponível neste navegador. O jogo continua, mas o ranking não poderá ser salvo."
+    },
+    es: {
+      skip: "Saltar al contenido", start: "Inicio", how: "Cómo jugar", ranking: "Clasificación",
+      game: "Partida",
+      mainNav: "Navegación principal", artLabel: "Ilustración abstracta de una pista de movimiento", roundLabel: "· PREGUNTA", progressLabel: "Progreso del desafío",
+      timerStopped: "Respuesta registrada",
+      spanish: "Português", switchSpanish: "Cambiar el idioma a español", switchPortuguese: "Cambiar el idioma a portugués",
+      nameLabel: "¿Cómo te llamas?", namePlaceholder: "Escribe tu nombre o apodo", nameHint: "Usa un apodo; solo aparecerá en la clasificación de este navegador.",
+      startButton: "Empezar", intro: "Un cuestionario dinámico para poner tu razonamiento en movimiento. Responde a tu ritmo, suma puntos y aprende mientras juegas.",
+      howLink: "Conoce la dinámica", ready: "Listo para jugar en equipo o en solitario", questions: "preguntas", perRound: "por ronda", superCombo: "súper combo",
+      phase: ["CALENTAMIENTO", "DESAFÍO", "FINAL"], points: "PUNTOS", progress: "PROGRESO", question: "PREGUNTA", options: "Opciones de respuesta", next: "Siguiente", result: "Ver resultado",
+      physical: "Desafío físico opcional", physicalOpen: "Desafío abierto", addPhysical: "Ver desafío opcional", complete: "Marcar como realizado", completed: "Desafío completado", movementPrompt: "El desafío aparece después de tu respuesta.", movementIntro: "El desafío es opcional: hazlo solo si te resulta cómodo y seguro. También puedes descansar o adaptar el movimiento.",
+      end: "FIN DEL JUEGO", player: "JUGADOR/A", youLeftMark: "Dejaste<br /><span>tu marca.</span>", resultSub: "Buena estrategia. Cada respuesta fue un paso más.", playAgain: "Jugar de nuevo", seeRanking: "Ver clasificación", yourScore: "TU PUNTUACIÓN", pointsUnit: "puntos", correct: "aciertos", errors: "errores", accuracy: "precisión", bestCombo: "mejor racha", position: "posición", participation: "PARTICIPACIÓN<br />ACTIVA", resultNoteTitle: "Lo importante es seguir en movimiento.", resultNote: "Compara tu estrategia con el grupo e intenta superar tu marca la próxima vez.",
+      board: "CLASIFICACIÓN DEL GRUPO", leaderboardTitle: "¿Quién lleva<br /><span>el ritmo?</span>", live: "ACTUALIZADO", bestMarks: "mejores marcas", clear: "Borrar clasificación", emptyTitle: "La pista aún está libre.", emptyText: "Juega una partida para registrar la primera marca en este navegador.", rankingInfo: "La puntuación combina aciertos, rapidez y participación en el desafío opcional.", enter: "Participar", you: "tú", first: "1.º LUGAR", second: "2.º LUGAR", third: "3.º LUGAR", pts: "pts",
+      manual: "GUÍA DEL JUEGO", howTitle: "Jugar es sencillo.<br /><span>¡Y puedes moverte!</span>", howDescription: "Una combinación breve de pensamiento, movimiento opcional y ganas de superar tu propia marca.", read: "Lee la jugada", readText: "Cada ronda presenta un problema de Matemáticas o una situación de Educación Física.", answerInTime: "Responde a tiempo", answerText: "Hay 10 segundos en las dos primeras fases y 15 en la final. También puedes jugar sentado o simplemente responder.", move: "Ponte en movimiento", moveText: "El bono es opcional. Adapta o ignora cualquier movimiento y respeta tus límites.", readyTitle: "¿Listo para empezar?", readyText: "Invita a tu equipo y descubre quién llega más lejos.", letsGo: "¡Vamos!", footer: "APRENDER EN MOVIMIENTO",
+      noName: "Escribe un nombre o apodo para empezar.", expired: "¡SE ACABÓ EL TIEMPO! La respuesta correcta era", incorrect: "¡INCORRECTO! La respuesta correcta era", correctAnswer: "¡CORRECTO!", combo: "🔥 ¡RACHA! +50 puntos.", super: "🔥🔥 ¡SÚPER RACHA! +100 puntos.",
+      newRecord: "¡Eres un/a campeón/a!", excellent: "¡Excelente resultado!", good: "¡Buen trabajo!", keepGoing: "¡Sigue aprendiendo!",
+      emptyRanking: "La clasificación ya está vacía.", clearConfirm: "¿Seguro que quieres borrar la clasificación guardada en este navegador?", cleared: "Clasificación borrada.", clearFailed: "No se pudieron borrar los datos de este navegador.", saveFailed: "No se pudo guardar en este navegador. El resultado se mostrará sin registrarse en la clasificación.", bonusToast: "Bono opcional: ¡+25 puntos!", rankSuffix: ".º lugar", errorsStorage: "El almacenamiento local no está disponible en este navegador. Puedes jugar, pero no se guardará la clasificación."
+    }
+  };
+
   const physicalChallenges = [
     "Faça 10 polichinelos, respeitando seu ritmo.",
     "Faça 10 agachamentos com atenção à postura.",
     "Mantenha o equilíbrio em uma perna por 15 segundos."
+  ];
+  const physicalChallengesEs = [
+    "Haz 10 saltos de tijera, respetando tu ritmo.",
+    "Haz 10 sentadillas prestando atención a la postura.",
+    "Mantén el equilibrio sobre una pierna durante 15 segundos."
   ];
 
   const phases = [
@@ -50,6 +130,7 @@
 
   const state = {
     view: "inicio",
+    language: "pt",
     player: "",
     question: 0,
     score: 0,
@@ -58,16 +139,135 @@
     correct: 0,
     seconds: 0,
     timer: null,
+    timerPaused: false,
     answered: false,
     physicalOpen: false,
     bonus: false,
     sound: true,
     answerTimes: [],
-    gameQuestions: []
+    gameQuestions: [],
+    selectedAnswer: null
   };
+
+  try {
+    if (localStorage.getItem("desafio-idioma") === "es") state.language = "es";
+  } catch {
+    // A preferência de idioma não é necessária para iniciar o jogo.
+  }
 
   const $ = (selector) => document.querySelector(selector);
   const $$ = (selector) => [...document.querySelectorAll(selector)];
+
+  function t(key) {
+    return translations[state.language][key];
+  }
+
+  function setText(selector, value) {
+    const element = $(selector);
+    if (element && value !== undefined) element.innerHTML = value;
+  }
+
+  function applyLanguage() {
+    const es = state.language === "es";
+    document.documentElement.lang = es ? "es" : "pt-BR";
+    document.title = es ? "Desafío en Movimiento | Aprender en movimiento" : "Desafio em Movimento | Aprender no ritmo";
+    $("meta[name='description']").content = es
+      ? "Desafío en Movimiento: matemáticas y educación física en un juego breve y divertido."
+      : "Desafio em Movimento: matemática e educação física em uma competição rápida e divertida.";
+    const labels = [
+      [".nav-link[data-view='inicio']", t("start")], [".nav-link[data-view='como-jogar']", t("how")],
+      [".nav-link[data-view='ranking']", t("ranking")], [".game-nav-link", t("game")], ["#language-toggle", t("spanish")]
+    ];
+    labels.forEach(([selector, value]) => setText(selector, value));
+    $("#language-toggle").setAttribute("aria-pressed", String(es));
+    $("#language-toggle").setAttribute("aria-label", es ? t("switchPortuguese") : t("switchSpanish"));
+    $("#sound-toggle").setAttribute("aria-label", state.sound ? (es ? "Desactivar sonidos" : "Desligar sons") : (es ? "Activar sonidos" : "Ligar sons"));
+    $(".brand").setAttribute("aria-label", es ? "Desafío en Movimiento, inicio" : "Desafio em Movimento, início");
+    $(".skip-link").textContent = t("skip");
+    $(".main-nav").setAttribute("aria-label", t("mainNav"));
+    $(".hero-art").setAttribute("aria-label", t("artLabel"));
+    $("#start-title").innerHTML = es ? "Piensa.<br /><span>Muévete.</span><br />Supérate." : "Pense.<br /><span>Mexa.</span><br />Supere.";
+    $(".hero-lede").textContent = t("intro");
+    $(".hero-copy > .eyebrow").innerHTML = `<span class="eyebrow-line"></span> ${es ? "MATEMÁTICAS + EDUCACIÓN FÍSICA" : "MATEMÁTICA + EDUCAÇÃO FÍSICA"}`;
+    $(".field-label").textContent = t("nameLabel");
+    $("#player-name").placeholder = t("namePlaceholder");
+    $("#name-hint").textContent = t("nameHint");
+    $("#start-game").innerHTML = `${t("startButton")} <span aria-hidden="true">→</span>`;
+    $(".start-footer .text-button").innerHTML = `${t("howLink")} <span aria-hidden="true">↗</span>`;
+    $(".start-footer p").innerHTML = `<span class="status-dot"></span> ${t("ready")}`;
+    $(".hero-proof").setAttribute("aria-label", es ? "Datos del desafío" : "Dados do desafio");
+    $(".hero-proof div:nth-child(1) span").textContent = t("questions");
+    $(".hero-proof div:nth-child(2) span").textContent = t("perRound");
+    $(".hero-proof div:nth-child(3) span").textContent = t("superCombo");
+    $(".art-stamp").innerHTML = es ? "JUEGA<br />EN EQUIPO" : "JOGA<br />JUNTO";
+    $(".art-caption span:last-child").innerHTML = es ? "Razonamiento<br />a toda velocidad" : "Raciocínio<br />em alta velocidade";
+    $("#game-title").innerHTML = es ? "Mantén el ritmo, <span id=\"game-player\"></span>." : "Mantenha o ritmo, <span id=\"game-player\"></span>.";
+    $("#game-player").textContent = state.player || (es ? "atleta" : "atleta");
+    $(".score-pill span").textContent = t("points");
+    $(".streak-pill").innerHTML = `<span aria-hidden="true">✦</span> <strong id="streak-value">${state.streak}</strong> ${es ? "racha" : "sequência"}`;
+    $(".progress-meta span:first-child").textContent = t("progress");
+    $("#progress-track").setAttribute("aria-label", es ? "Progreso del desafío" : "Progresso do desafio");
+    $(".progress-wrap").setAttribute("aria-label", t("progressLabel"));
+    $("#options").setAttribute("aria-label", t("options"));
+    $(".question-card").setAttribute("aria-label", es ? "Pregunta del juego" : "Pergunta do jogo");
+    $(".progress-meta span:first-child").textContent = t("progress");
+    $("#physical-panel").setAttribute("aria-label", t("physical"));
+    $(".side-label").innerHTML = `<span class="side-icon">↗</span> ${es ? "BONO DE MOVIMIENTO" : "BÔNUS DE MOVIMENTO"}`;
+    $(".side-challenge h3").textContent = es ? "Tu cuerpo también responde." : "Seu corpo também responde.";
+    $(".side-challenge > p").textContent = t("movementIntro");
+    $("#physical-toggle").innerHTML = `${t("addPhysical")} <span aria-hidden="true">+</span>`;
+    $("#complete-physical").innerHTML = `${t(state.bonus ? "completed" : "complete")} <span aria-hidden="true">✓</span>`;
+    $(".result-message .eyebrow").innerHTML = `<span class="eyebrow-line"></span> ${t("end")}`;
+    $(".result-player").innerHTML = `${t("player")} <strong id="final-player">${escapeHTML(state.player || "—")}</strong>`;
+    $("#result-title").innerHTML = t("youLeftMark");
+    $(".result-message > .eyebrow").innerHTML = `<span class="eyebrow-line"></span> ${t("end")}`;
+    $("#result-subtitle").textContent = state.view === "resultado" ? resultMessage()[0] : t("resultSub");
+    $("#play-again").innerHTML = `${t("playAgain")} <span aria-hidden="true">↻</span>`;
+    $(".result-actions .text-button").innerHTML = `${t("seeRanking")} <span aria-hidden="true">↗</span>`;
+    $(".score-label").textContent = t("yourScore");
+    $(".score-unit").textContent = t("pointsUnit");
+    ["correct", "errors", "accuracy", "bestCombo", "position"].forEach((key, index) => {
+      $(`.result-stats div:nth-child(${index + 1}) span`).textContent = t(key);
+    });
+    $("#result-medal b").innerHTML = t("participation");
+    if (state.view === "resultado") $("#result-medal b").innerHTML = resultMessage()[1];
+    $(".result-note strong").textContent = t("resultNoteTitle");
+    $(".result-note p").innerHTML = `<strong>${t("resultNoteTitle")}</strong> ${t("resultNote")}`;
+    $(".ranking-filter").childNodes[1].textContent = ` ${t("live")} `;
+    $(".section-heading:not(.how-heading) .eyebrow").innerHTML = `<span class="eyebrow-line"></span> ${t("board")}`;
+    $("#ranking-title").innerHTML = t("leaderboardTitle");
+    $(".ranking-filter .live-dot").setAttribute("aria-hidden", "true");
+    $(".ranking-filter small").textContent = t("bestMarks");
+    $("#clear-ranking").textContent = t("clear");
+    $(".ranking-aside p").textContent = t("rankingInfo");
+    $(".aside-burst").innerHTML = es ? `MOVIMIENTO<br /><strong>ES</strong><br />CONOCIMIENTO` : `MOVIMENTO<br /><strong>É</strong><br />CONHECIMENTO`;
+    $(".ranking-aside .primary-button").innerHTML = `${t("enter")} <span aria-hidden="true">→</span>`;
+    $(".how-heading .eyebrow").innerHTML = `<span class="eyebrow-line"></span> ${t("manual")}`;
+    $("#how-title").innerHTML = t("howTitle");
+    $(".how-heading > p").textContent = t("howDescription");
+    const cards = $$(".step-card");
+    const stepTitles = [t("read"), t("answerInTime"), t("move")];
+    const stepTexts = [t("readText"), t("answerText"), t("moveText")];
+    cards.forEach((card, index) => {
+      card.querySelector("h3").textContent = stepTitles[index];
+      card.querySelector("p").textContent = stepTexts[index];
+    });
+    $(".how-footer strong").textContent = t("readyTitle");
+    $(".how-footer div span").textContent = t("readyText");
+    $(".how-footer button").innerHTML = `${t("letsGo")} <span aria-hidden="true">→</span>`;
+    $(".site-footer span:last-child").textContent = t("footer");
+    $(".site-footer span:first-child").textContent = es ? "DESAFÍO EN MOVIMIENTO" : "DESAFIO EM MOVIMENTO";
+    $(".site-footer span:nth-child(2)").textContent = es ? "2.º AÑO · INTEGRADO" : "2º ANO · INTEGRADO";
+    $(".round-tag").innerHTML = `<i aria-hidden="true"></i> ${es ? "2.º AÑO" : "2º EM"}`;
+    if (state.gameQuestions.length && state.view === "jogo") refreshCurrentQuestionLanguage();
+    if (state.view === "ranking") renderRanking();
+  }
+
+  function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, (character) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
+    })[character]);
+  }
 
   function shuffle(items) {
     const copy = [...items];
@@ -79,10 +279,13 @@
   }
 
   function buildGameQuestions() {
-    const deck = phases.flatMap((phase) => shuffle(questions.filter((item) => item.difficulty === phase.difficulty)).slice(0, phase.count));
-    return deck.map((question, index) => {
+    const source = state.language === "es" ? questionsEs : questions;
+    const deck = phases.flatMap((phase) => shuffle(questions.map((item, index) => ({ item, index })).filter(({ item }) => item.difficulty === phase.difficulty)).slice(0, phase.count));
+    return deck.map(({ index: sourceIndex }, index) => {
+      const question = { ...source[sourceIndex], sourceIndex };
       if (index === 1 || index === 5 || index === 8) {
-        return { ...question, challenge: physicalChallenges[index === 1 ? 0 : index === 5 ? 1 : 2] };
+        const challenges = state.language === "es" ? physicalChallengesEs : physicalChallenges;
+        return { ...question, challenge: challenges[index === 1 ? 0 : index === 5 ? 1 : 2] };
       }
       return question;
     });
@@ -94,8 +297,59 @@
     return phases[2];
   }
 
+  function refreshCurrentQuestionLanguage() {
+    const oldQuestion = state.gameQuestions[state.question];
+    const source = state.language === "es" ? questionsEs : questions;
+    const localized = { ...source[oldQuestion.sourceIndex], sourceIndex: oldQuestion.sourceIndex };
+    const challengeIndex = state.question === 1 ? 0 : state.question === 5 ? 1 : state.question === 8 ? 2 : -1;
+    if (challengeIndex >= 0) {
+      localized.challenge = (state.language === "es" ? physicalChallengesEs : physicalChallenges)[challengeIndex];
+    }
+    state.gameQuestions[state.question] = localized;
+    $("#question-category").textContent = localized.category;
+    $("#question-text").textContent = localized.text;
+    const options = $("#options");
+    options.replaceChildren();
+    localized.options.forEach((option, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "option";
+      button.dataset.index = String(index);
+      button.innerHTML = `<span class="option-letter">${String.fromCharCode(65 + index)}</span><span class="option-copy"></span>`;
+      button.querySelector(".option-copy").textContent = option;
+      button.addEventListener("click", () => answerQuestion(index));
+      options.appendChild(button);
+      if (state.answered) {
+        button.disabled = true;
+        if (index === localized.correct) button.classList.add("is-correct");
+        if (index === state.selectedAnswer && state.selectedAnswer !== localized.correct) button.classList.add("is-wrong");
+      }
+    });
+    if (state.physicalOpen && localized.challenge) $("#movement-copy").textContent = localized.challenge;
+    if (state.answered) {
+      const correct = state.selectedAnswer === localized.correct;
+      const combo = correct && state.streak === 3 ? ` ${t("combo")}` : correct && state.streak === 5 ? ` ${t("super")}` : "";
+      $("#answer-feedback").textContent = correct
+        ? `✅ ${t("correctAnswer")} +${currentPhase().points} ${t("pointsUnit")}.${combo} ${localized.explanation}`
+        : state.selectedAnswer === -1
+          ? `⏰ ${t("expired")} ${localized.options[localized.correct]}. ${localized.explanation}`
+          : `❌ ${t("incorrect")} ${localized.options[localized.correct]}. ${localized.explanation}`;
+    }
+            $("#phase-name").textContent = translations[state.language].phase[state.question < 3 ? 0 : state.question < 7 ? 1 : 2];
+            $("#question-index").textContent = `${t("question")} ${String(state.question + 1).padStart(2, "0")} · ${currentPhase().points} ${t("points")}`;
+            $("#next-question").innerHTML = state.question === 9 ? `${t("result")} <span aria-hidden="true">↗</span>` : `${t("next")} <span aria-hidden="true">→</span>`;
+            $("#physical-toggle").innerHTML = state.physicalOpen ? `${t("physicalOpen")} −` : `${t("addPhysical")} <span aria-hidden="true">+</span>`;
+            $("#complete-physical").innerHTML = `${t(state.bonus ? "completed" : "complete")} <span aria-hidden="true">✓</span>`;
+  }
+
   function showView(view) {
+    if (state.view === "jogo" && view !== "jogo" && !state.answered && state.timer) {
+      clearInterval(state.timer);
+      state.timer = null;
+      state.timerPaused = true;
+    }
     state.view = view;
+    $(".game-nav-link").hidden = !state.gameQuestions.length || view === "jogo";
     $$(".view").forEach((section) => {
       const active = section.id === `view-${view}`;
       section.hidden = !active;
@@ -103,6 +357,7 @@
     });
     $$(".nav-link").forEach((button) => button.classList.toggle("is-active", button.dataset.view === view));
     if (view === "ranking") renderRanking();
+    if (view === "jogo" && state.timerPaused && !state.answered) startTimer();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -118,9 +373,11 @@
     const name = input.value.trim();
     if (!name) {
       input.focus();
-      $("#name-hint").textContent = "Digite um nome para entrar na pista.";
+      $("#name-hint").textContent = t("noName");
       $("#name-hint").style.color = "var(--coral-dark)";
-      input.animate([{ transform: "translateX(-4px)" }, { transform: "translateX(4px)" }, { transform: "translateX(0)" }], { duration: 220 });
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        input.animate([{ transform: "translateX(-4px)" }, { transform: "translateX(4px)" }, { transform: "translateX(0)" }], { duration: 220 });
+      }
       return;
     }
     state.player = name.slice(0, 20);
@@ -144,25 +401,30 @@
     const question = state.gameQuestions[state.question];
     const phase = currentPhase();
     $("#round-number").textContent = String(state.question + 1).padStart(2, "0");
-    $("#phase-name").textContent = phase.name;
+    $("#phase-name").textContent = translations[state.language].phase[state.question < 3 ? 0 : state.question < 7 ? 1 : 2];
+    $("#round-label").textContent = t("roundLabel");
+    $("#round-label").textContent = t("roundLabel");
     $("#progress-label").textContent = `${state.question + 1} de 10`;
     $("#progress-fill").style.width = `${((state.question + 1) / 10) * 100}%`;
+    $("#progress-track").setAttribute("aria-valuenow", String(state.question + 1));
+    $("#progress-label").textContent = state.language === "es" ? `${state.question + 1} de 10` : `${state.question + 1} de 10`;
     $("#question-category").textContent = question.category;
-    $("#question-index").textContent = `PERGUNTA ${String(state.question + 1).padStart(2, "0")} · ${phase.points} PONTOS`;
+    $("#question-index").textContent = `${t("question")} ${String(state.question + 1).padStart(2, "0")} · ${phase.points} ${t("points")}`;
     $("#question-text").textContent = question.text;
     $("#score-value").textContent = String(state.score).padStart(3, "0");
     $("#streak-value").textContent = state.streak;
     $("#answer-feedback").textContent = "";
     $("#answer-feedback").className = "answer-feedback";
     $("#next-question").disabled = true;
-    $("#next-question").innerHTML = state.question === 9 ? "Ver resultado <span aria-hidden=\"true\">↗</span>" : "Próxima <span aria-hidden=\"true\">→</span>";
+    $("#next-question").innerHTML = state.question === 9 ? `${t("result")} <span aria-hidden=\"true\">↗</span>` : `${t("next")} <span aria-hidden=\"true\">→</span>`;
     $("#physical-toggle").disabled = true;
-    $("#physical-toggle").innerHTML = "Adicionar desafio físico <span aria-hidden=\"true\">+</span>";
+    $("#physical-toggle").innerHTML = `${t("addPhysical")} <span aria-hidden=\"true\">+</span>`;
     $("#complete-physical").disabled = true;
-    $("#complete-physical").textContent = "Marcar como feito ✓";
+    $("#complete-physical").innerHTML = `${t("complete")} <span aria-hidden="true">✓</span>`;
     $("#bonus-earned").hidden = true;
     $("#physical-panel").classList.remove("is-open");
-    $("#movement-copy").textContent = "O desafio aparece depois da sua resposta.";
+    $("#movement-copy").textContent = t("movementPrompt");
+    state.selectedAnswer = null;
 
     const options = $("#options");
     options.innerHTML = "";
@@ -171,7 +433,8 @@
       button.type = "button";
       button.className = "option";
       button.dataset.index = index;
-      button.innerHTML = `<span class="option-letter">${String.fromCharCode(65 + index)}</span><span class="option-copy">${option}</span>`;
+      button.innerHTML = `<span class="option-letter">${String.fromCharCode(65 + index)}</span><span class="option-copy"></span>`;
+      button.querySelector(".option-copy").textContent = option;
       button.addEventListener("click", () => answerQuestion(index));
       options.appendChild(button);
     });
@@ -179,11 +442,19 @@
     state.seconds = phase.time;
     state.currentLimit = phase.time;
     updateTimer();
+    state.timerPaused = false;
+    startTimer();
+  }
+
+  function startTimer() {
+    clearInterval(state.timer);
+    state.timerPaused = false;
     state.timer = window.setInterval(() => {
       state.seconds -= 1;
       updateTimer();
       if (state.seconds <= 0) {
         clearInterval(state.timer);
+        state.timer = null;
         answerQuestion(-1);
       }
     }, 1000);
@@ -193,13 +464,15 @@
     const timer = $("#timer");
     timer.textContent = String(state.seconds).padStart(2, "0");
     timer.classList.toggle("is-danger", state.seconds <= 3);
-    timer.setAttribute("aria-label", `${state.seconds} segundos restantes`);
+    timer.setAttribute("aria-label", state.answered ? t("timerStopped") : `${state.seconds} segundos restantes`);
   }
 
   function answerQuestion(selected) {
     if (state.answered) return;
     state.answered = true;
+    state.selectedAnswer = selected;
     clearInterval(state.timer);
+    updateTimer();
     const question = state.gameQuestions[state.question];
     const phase = currentPhase();
     const isCorrect = selected === question.correct;
@@ -220,26 +493,29 @@
       let comboMessage = "";
       if (state.streak === 3) {
         state.score += 50;
-        comboMessage = " 🔥 COMBO! +50 pontos.";
+        comboMessage = ` ${t("combo")}`;
       } else if (state.streak === 5) {
         state.score += 100;
-        comboMessage = " 🔥🔥 SUPER COMBO! +100 pontos.";
+        comboMessage = ` ${t("super")}`;
       }
-      feedback.textContent = `✅ CORRETO! +${phase.points} pontos.${comboMessage} ${question.explanation}`;
+      feedback.textContent = `✅ ${t("correctAnswer")} +${phase.points} ${t("pointsUnit")}.${comboMessage} ${question.explanation}`;
       feedback.className = "answer-feedback correct";
+        playTone(660, 0.11);
       $("#streak-pill").animate([{ transform: "scale(1.06)" }, { transform: "scale(1)" }], { duration: 280 });
     } else {
       state.streak = 0;
       const correctAnswer = question.options[question.correct];
       feedback.textContent = selected === -1
-        ? `⏰ TEMPO ESGOTADO! A resposta correta era ${correctAnswer}. ${question.explanation}`
-        : `❌ INCORRETO! A resposta correta era ${correctAnswer}. ${question.explanation}`;
+        ? `⏰ ${t("expired")} ${correctAnswer}. ${question.explanation}`
+        : `❌ ${t("incorrect")} ${correctAnswer}. ${question.explanation}`;
       feedback.className = "answer-feedback wrong";
+      playTone(220, 0.16);
     }
 
     $("#score-value").textContent = String(state.score).padStart(3, "0");
     $("#streak-value").textContent = state.streak;
     $("#physical-toggle").disabled = !question.challenge;
+    if (question.challenge) $("#physical-toggle").setAttribute("aria-label", t("physical"));
     $("#next-question").disabled = false;
   }
 
@@ -262,11 +538,11 @@
     if (state.physicalOpen) {
       $("#movement-copy").textContent = question.challenge;
       $("#complete-physical").disabled = state.bonus;
-      $("#physical-toggle").textContent = "Desafio aberto −";
+      $("#physical-toggle").textContent = `${t("physicalOpen")} −`;
     } else {
-      $("#movement-copy").textContent = "O desafio aparece depois da sua resposta.";
+      $("#movement-copy").textContent = t("movementPrompt");
       $("#complete-physical").disabled = true;
-      $("#physical-toggle").innerHTML = "Adicionar desafio físico <span aria-hidden=\"true\">+</span>";
+      $("#physical-toggle").innerHTML = `${t("addPhysical")} <span aria-hidden="true">+</span>`;
     }
   }
 
@@ -276,23 +552,48 @@
     state.score += 25;
     $("#score-value").textContent = String(state.score).padStart(3, "0");
     $("#complete-physical").disabled = true;
-    $("#complete-physical").textContent = "Desafio concluído ✓";
+    $("#complete-physical").innerHTML = `${t("completed")} <span aria-hidden="true">✓</span>`;
     $("#bonus-earned").hidden = false;
-    showToast("Bônus de movimento: +25 pontos!");
+    playTone(880, 0.1);
+    showToast(t("bonusToast"));
+  }
+
+  let audioContext;
+  function playTone(frequency, duration) {
+    if (!state.sound) return;
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+      audioContext ||= new AudioContextClass();
+      if (audioContext.state === "suspended") audioContext.resume();
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      oscillator.type = "sine";
+      oscillator.frequency.value = frequency;
+      gain.gain.setValueAtTime(0.08, audioContext.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration);
+      oscillator.connect(gain);
+      gain.connect(audioContext.destination);
+      oscillator.start();
+      oscillator.stop(audioContext.currentTime + duration);
+    } catch {
+      // Áudio é um recurso opcional; falhas do navegador não devem interromper a partida.
+    }
   }
 
   function resultMessage() {
-    if (state.score >= 1500) return ["🏆 Você é um campeão!", "RITMO<br />DE CAMPEÃO"];
-    if (state.score >= 1000) return ["🔥 Excelente desempenho!", "DESEMPENHO<br />EXCELENTE"];
-    if (state.score >= 500) return ["👏 Bom trabalho!", "BOM<br />TRABALHO"];
-    return ["💪 Continue treinando!", "CONTINUE<br />EM MOVIMENTO"];
+    if (state.score >= 1500) return [t("newRecord"), state.language === "es" ? "RITMO<br />CAMPEÓN" : "RITMO<br />DE CAMPEÃO"];
+    if (state.score >= 1000) return [t("excellent"), state.language === "es" ? "GRAN<br />RESULTADO" : "DESEMPENHO<br />EXCELENTE"];
+    if (state.score >= 500) return [t("good"), state.language === "es" ? "BUEN<br />TRABAJO" : "BOM<br />TRABALHO"];
+    return [t("keepGoing"), state.language === "es" ? "SIGUE<br />APRENDIENDO" : "CONTINUE<br />EM MOVIMENTO"];
   }
 
   function finishGame() {
     const percentage = Math.round((state.correct / 10) * 100);
     const record = saveScore();
     const ranking = getRanking();
-    const rank = Math.max(1, ranking.findIndex((item) => item.id === record.id) + 1);
+    const rankIndex = ranking.findIndex((item) => item.id === record.id);
+    const rank = record.persisted && rankIndex >= 0 ? rankIndex + 1 : null;
     const [message, medal] = resultMessage();
     $("#final-player").textContent = state.player;
     $("#final-score").textContent = String(state.score).padStart(3, "0");
@@ -300,16 +601,21 @@
     $("#final-errors").textContent = 10 - state.correct;
     $("#final-percentage").textContent = `${percentage}%`;
     $("#final-streak").textContent = state.maxStreak;
-    $("#final-rank").textContent = `#${rank}`;
+    $("#final-rank").textContent = rank ? `#${rank}` : "—";
     $("#result-subtitle").textContent = message;
     $("#result-medal b").innerHTML = medal;
     showView("resultado");
+    if (!record.persisted) showToast(t("saveFailed"));
   }
 
   function readStoredRanking() {
     try {
       const stored = JSON.parse(localStorage.getItem("desafio-ranking") || "[]");
-      return Array.isArray(stored) ? stored : [];
+      if (!Array.isArray(stored)) return [];
+      return stored.filter((item) => item && typeof item.id === "string" && typeof item.name === "string" &&
+        Number.isFinite(item.points) && Number.isFinite(item.correct) && Number.isFinite(item.percentage) &&
+        Number.isFinite(item.maxStreak) && Number.isFinite(item.timestamp))
+        .map((item) => ({ ...item, name: item.name.slice(0, 20) }));
     } catch {
       return [];
     }
@@ -320,7 +626,6 @@
   }
 
   function saveScore() {
-    const stored = readStoredRanking();
     const timestamp = Date.now();
     const record = {
       id: `${timestamp}-${Math.random().toString(36).slice(2)}`,
@@ -329,14 +634,27 @@
       correct: state.correct,
       percentage: Math.round((state.correct / 10) * 100),
       maxStreak: state.maxStreak,
-      date: new Date(timestamp).toLocaleDateString("pt-BR"),
-      timestamp
+      date: new Date(timestamp).toLocaleDateString(state.language === "es" ? "es" : "pt-BR"),
+      timestamp,
+      persisted: false
     };
-    stored.push(record);
-    const sorted = stored.sort((a, b) => b.points - a.points || b.timestamp - a.timestamp).slice(0, 10);
-    localStorage.setItem("desafio-ranking", JSON.stringify(sorted));
-    const best = Number(localStorage.getItem("desafio-melhor-pontuacao") || 0);
-    if (state.score > best) localStorage.setItem("desafio-melhor-pontuacao", String(state.score));
+    try {
+      const stored = readStoredRanking().map(({ persisted, ...savedRecord }) => savedRecord);
+      const savedRecord = { ...record };
+      delete savedRecord.persisted;
+      stored.push(savedRecord);
+      const sorted = stored.sort((a, b) => b.points - a.points || b.timestamp - a.timestamp).slice(0, 10);
+      localStorage.setItem("desafio-ranking", JSON.stringify(sorted));
+      record.persisted = true;
+      try {
+        const best = Number(localStorage.getItem("desafio-melhor-pontuacao") || 0);
+        if (state.score > best) localStorage.setItem("desafio-melhor-pontuacao", String(state.score));
+      } catch {
+        // A melhor pontuação é complementar; não invalida a gravação do ranking.
+      }
+    } catch {
+      record.persisted = false;
+    }
     return record;
   }
 
@@ -345,15 +663,44 @@
     leaderboard.innerHTML = "";
     const ranking = getRanking();
     if (!ranking.length) {
-      leaderboard.innerHTML = '<div class="ranking-empty"><strong>A pista ainda está livre.</strong><span>Jogue uma partida para registrar a primeira marca neste navegador.</span></div>';
+      leaderboard.replaceChildren();
+      const empty = document.createElement("div");
+      empty.className = "ranking-empty";
+      const title = document.createElement("strong");
+      title.textContent = t("emptyTitle");
+      const description = document.createElement("span");
+      description.textContent = t("emptyText");
+      empty.append(title, description);
+      leaderboard.appendChild(empty);
       return;
     }
     ranking.forEach((item, index) => {
       const row = document.createElement("div");
       row.className = `rank-row${item.name === state.player ? " is-you" : ""}`;
       const initials = item.name.split(" ").map((part) => part[0]).slice(0, 2).join("").toUpperCase();
-      const badge = index === 0 ? "1º LUGAR" : index === 1 ? "2º LUGAR" : index === 2 ? "3º LUGAR" : "";
-      row.innerHTML = `<span class="rank-number">${String(index + 1).padStart(2, "0")}</span><span class="rank-name"><span class="avatar">${initials}</span>${item.name}${item.name === state.player ? " · você" : ""}</span><span class="rank-detail">${item.correct}/10 · ${item.percentage}%</span><strong class="rank-points">${item.points}<small> pts</small></strong><span class="rank-badge">${badge}</span>`;
+      const badge = index === 0 ? t("first") : index === 1 ? t("second") : index === 2 ? t("third") : "";
+      const number = document.createElement("span");
+      number.className = "rank-number";
+      number.textContent = String(index + 1).padStart(2, "0");
+      const name = document.createElement("span");
+      name.className = "rank-name";
+      const avatar = document.createElement("span");
+      avatar.className = "avatar";
+      avatar.textContent = initials;
+      name.append(avatar, document.createTextNode(`${item.name}${item.name === state.player ? ` · ${t("you")}` : ""}`));
+      const detail = document.createElement("span");
+      detail.className = "rank-detail";
+      detail.textContent = `${item.correct}/10 · ${item.percentage}%`;
+      const points = document.createElement("strong");
+      points.className = "rank-points";
+      points.append(document.createTextNode(String(item.points)));
+      const unit = document.createElement("small");
+      unit.textContent = ` ${t("pts")}`;
+      points.appendChild(unit);
+      const badgeElement = document.createElement("span");
+      badgeElement.className = "rank-badge";
+      badgeElement.textContent = badge;
+      row.append(number, name, detail, points, badgeElement);
       leaderboard.appendChild(row);
     });
   }
@@ -365,22 +712,35 @@
       showView(view);
     }
   }));
+  $("#language-toggle").addEventListener("click", () => {
+    state.language = state.language === "pt" ? "es" : "pt";
+    try { localStorage.setItem("desafio-idioma", state.language); } catch { /* Preferência opcional. */ }
+    applyLanguage();
+  });
   $("#start-game").addEventListener("click", startGame);
   $("#player-name").addEventListener("keydown", (event) => { if (event.key === "Enter") startGame(); });
+  $("#player-name").addEventListener("input", () => {
+    $("#name-hint").textContent = t("nameHint");
+    $("#name-hint").style.color = "";
+  });
   $("#next-question").addEventListener("click", nextQuestion);
   $("#physical-toggle").addEventListener("click", togglePhysical);
   $("#complete-physical").addEventListener("click", completePhysical);
   $("#play-again").addEventListener("click", () => { $("#player-name").value = state.player; showView("inicio"); startGame(); });
   $("#clear-ranking").addEventListener("click", () => {
     if (!getRanking().length) {
-      showToast("O ranking já está vazio.");
+      showToast(t("emptyRanking"));
       return;
     }
-    if (window.confirm("Tem certeza que deseja limpar o ranking salvo neste navegador?")) {
-      localStorage.removeItem("desafio-ranking");
-      localStorage.removeItem("desafio-melhor-pontuacao");
-      renderRanking();
-      showToast("Ranking limpo.");
+    if (window.confirm(t("clearConfirm"))) {
+      try {
+        localStorage.removeItem("desafio-ranking");
+        localStorage.removeItem("desafio-melhor-pontuacao");
+        renderRanking();
+        showToast(t("cleared"));
+      } catch {
+        showToast(t("clearFailed"));
+      }
     }
   });
   $("#sound-toggle").addEventListener("click", (event) => {
@@ -390,5 +750,9 @@
     event.currentTarget.setAttribute("aria-label", state.sound ? "Desligar sons" : "Ligar sons");
   });
   window.addEventListener("beforeunload", () => clearInterval(state.timer));
+  window.addEventListener("storage", (event) => {
+    if (event.key === "desafio-ranking") renderRanking();
+  });
+  applyLanguage();
   renderRanking();
 })();
