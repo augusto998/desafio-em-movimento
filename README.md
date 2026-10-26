@@ -1,4 +1,4 @@
-**Site oficial:** https://augusto998.github.io/desafio-em-movimento/
+**Site oficial (português e espanhol):** https://augusto998.github.io/desafio-em-movimento/
 
 **Repositório GitHub:** https://github.com/augusto998/desafio-em-movimento
 
