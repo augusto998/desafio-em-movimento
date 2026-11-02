@@ -1,4 +1,4 @@
-name: Deploy Desafio em Movimento to Render
+name: Validate Desafio em Movimento for Render
 
 on:
   push:
