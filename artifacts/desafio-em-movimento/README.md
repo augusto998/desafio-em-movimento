@@ -8,7 +8,7 @@
 
 ## Sobre
 
-O Desafio em Movimento é um quiz para estudantes do Ensino Médio Integrado. Cada partida reúne dez perguntas de Matemática, Educação Física e conteúdos interdisciplinares. A proposta é apoiar a revisão de conteúdos de um jeito dinâmico, incentivando o raciocínio, a participação e hábitos de movimento seguros.
+O Desafio em Movimento é um quiz para estudantes do Ensino Médio Integrado. Cada partida reúne até dez perguntas autorais das matérias selecionadas. A proposta é apoiar a revisão de conteúdos de um jeito dinâmico, incentivando o raciocínio, a participação e hábitos de movimento seguros.
 
 ### Objetivos
 
@@ -20,8 +20,8 @@ O Desafio em Movimento é um quiz para estudantes do Ensino Médio Integrado. Ca
 ## Como jogar
 
 1. Informe seu nome ou apelido e selecione **Começar**.
-2. Escolha uma ou mais matérias, a dificuldade e o tempo (de 10 a 25 segundos por pergunta).
-3. Responda dez perguntas sorteadas do banco de centenas de questões; o histórico local reduz repetições em partidas futuras.
+2. Escolha uma ou mais matérias, a dificuldade e o tempo (de 10 a 35 segundos por pergunta).
+3. Responda até dez questões autorais sorteadas por matéria e dificuldade; o histórico local reduz repetições em partidas futuras.
 4. Veja o feedback e a explicação após cada resposta. Se o tempo acabar, a resposta conta como incorreta.
 5. Três acertos seguidos dão +50 pontos; cinco acertos seguidos dão +100 pontos. A dificuldade da questão define a pontuação-base.
 6. Em algumas perguntas, é possível realizar um desafio físico opcional e marcar como concluído para receber +25 pontos.
@@ -39,8 +39,10 @@ O Desafio em Movimento é um quiz para estudantes do Ensino Médio Integrado. Ca
 - Interface em português e espanhol, alternável a qualquer momento sem perder o andamento da partida.
 - Interface adaptável a celulares, tablets e computadores; atalho de navegação por teclado, foco visível e suporte à preferência por movimento reduzido.
 - Efeitos sonoros opcionais e desafios de movimento adaptáveis, que podem ser ignorados com segurança.
-- Configuração da dificuldade, seleção de uma ou mais matérias e tempo de 10 a 25 segundos por pergunta.
-- Mais de 300 questões originais em português e espanhol, com alternativas embaralhadas e histórico local para reduzir repetições.
+- Configuração da dificuldade, seleção de uma ou mais matérias e tempo de 10 a 35 segundos por pergunta.
+- Biblioteca com cadernos e gabaritos oficiais do ENEM de 2023, 2024 e 2025, filtrável por ano e matéria/área geral.
+- A biblioteca aponta para os PDFs do INEP; não atribui número, gabarito ou dificuldade a cada questão sem conferência do caderno correspondente.
+- Banco manual de 54 questões autorais (seis por matéria) separado por dificuldade, com gabarito e explicação; questões sem comprovação de aplicação oficial não recebem ano do ENEM.
 - Acesso por perfil local (apelido único e melhor resultado por perfil) ou convidado (sem gravação no ranking).
 
 ## História de usuário
@@ -50,7 +52,7 @@ O Desafio em Movimento é um quiz para estudantes do Ensino Médio Integrado. Ca
 ### Critérios de aceitação
 
 - A partida só começa após informar um nome ou apelido.
-- Cada partida apresenta dez perguntas, organizadas nas três fases, com quatro opções e tempo limitado.
+- Cada partida apresenta até dez perguntas conforme a matéria e a dificuldade selecionadas, com quatro opções e tempo limitado.
 - A aplicação informa se a resposta está correta e apresenta uma explicação, inclusive quando o tempo acaba.
 - A pontuação, os acertos, os erros e os combos são atualizados conforme as respostas.
 - Desafios físicos aparecem apenas em perguntas elegíveis e podem ser ignorados.

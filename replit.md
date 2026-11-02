@@ -1,6 +1,6 @@
 # Desafio em Movimento
 
-Jogo educativo estático bilíngue que combina Matemática e Educação Física em dez perguntas por partida, com seleção de matérias/dificuldade, tempo configurável, combos e ranking local.
+Jogo educativo estático com banco autoral organizado por matéria e dificuldade, até dez perguntas por partida, tempo configurável, combos e ranking local.
 
 ## Run & Operate
 
@@ -14,7 +14,7 @@ Jogo educativo estático bilíngue que combina Matemática e Educação Física 
 - Arquivos de jogo: HTML, CSS e JavaScript puro.
 - Perfis com apelido, histórico de questões e ranking usam somente `localStorage`; não há senha, autenticação online, API ou sincronização entre dispositivos.
 - O modo convidado não registra resultado no ranking.
-- O banco oferece mais de 300 questões originais em português e espanhol, com histórico para reduzir repetições.
+- O banco de 54 perguntas está em `artifacts/desafio-em-movimento/question-bank.js`, seis por matéria; todas são autorais e não recebem ano de aplicação ENEM sem fonte confirmada.
 - Vite existe apenas como ferramenta de prévia/build do workspace; o jogo não depende de backend, banco, APIs ou serviços externos.
 
 ## Where things live
@@ -32,7 +32,7 @@ Jogo educativo estático bilíngue que combina Matemática e Educação Física 
 
 ## Product
 
-- Início com perfil local ou convidado, instruções, seleção de matérias/dificuldade/tempo (10–25 s), jogo com dez perguntas, feedback, combos, movimentos opcionais, resultado e ranking local.
+- Início com perfil local ou convidado, seleção de matérias/dificuldade/tempo (10–35 s), partidas de até dez perguntas, feedback, combos, movimentos opcionais, resultado e ranking local.
 
 ## User preferences
 

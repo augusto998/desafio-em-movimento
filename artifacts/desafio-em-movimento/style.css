@@ -106,6 +106,16 @@ input:focus { border-color: var(--aqua); background: #fffaf0; }
 .subject-picker label { display: inline-flex; align-items: center; gap: 6px; color: var(--ink-soft); font-size: 11px; }
 .time-setting { display: flex; justify-content: space-between; align-items: center; margin-top: 3px !important; }
 .time-setting output { color: var(--coral-dark); font-size: 14px; }
+.enem-library { display: grid; gap: 9px; margin-top: 12px; padding-top: 14px; border-top: 1px solid var(--line); }
+.enem-library h3 { margin: 0; font: 800 16px/1.1 var(--display); }
+.enem-library > p { margin: 0; color: var(--ink-soft); font-size: 11px; line-height: 1.45; }
+.enem-library .field-label { margin-top: 3px; }
+.enem-note { padding: 9px; background: rgba(244,185,66,.15); border-left: 3px solid var(--sun); }
+.enem-source-list { display: grid; gap: 7px; max-height: 260px; overflow-y: auto; }
+.enem-source { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 7px; padding: 9px; border: 1px solid var(--line); background: rgba(255,255,255,.35); }
+.enem-source strong { font-size: 10px; }
+.enem-source-links { display: flex; flex-wrap: wrap; gap: 10px; }
+.enem-source-links a { color: var(--aqua-dark); font-size: 10px; font-weight: 700; }
 .primary-button, .secondary-button, .outline-button {
   min-height: 51px; border: 0; border-radius: 5px; padding: 0 19px; display: inline-flex; align-items: center; justify-content: center; gap: 13px; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease;
 }
@@ -167,6 +177,7 @@ h2 { font-size: clamp(42px, 6vw, 76px); line-height: .92; margin: 18px 0 0; }
 .timer.is-danger { color: var(--coral); border-color: var(--coral); animation: pulse 1s infinite; }
 @keyframes pulse { 50% { transform: scale(1.08); } }
 .question-index { margin: 47px 0 12px; color: var(--coral); font-size: 11px; letter-spacing: .14em; font-weight: 800; }
+.question-source { margin: -4px 0 14px; color: var(--ink-soft); font-size: 10px; font-weight: 700; letter-spacing: .04em; }
 .question-card h3 { font: 800 clamp(25px, 3vw, 39px)/1.08 var(--display); letter-spacing: -.05em; max-width: 720px; margin-bottom: 31px; }
 .options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; max-width: 780px; }
 .option { display: flex; align-items: center; text-align: left; gap: 13px; min-height: 59px; border: 1px solid var(--line-strong); border-radius: 4px; background: transparent; padding: 10px 13px; color: var(--ink); transition: border-color .2s, background-color .2s, transform .2s; }

@@ -65,16 +65,48 @@
                   <fieldset class="subject-picker">
                     <legend class="field-label">Matérias (escolha uma ou mais)</legend>
                     <label><input type="checkbox" name="subject" value="matematica" checked /> Matemática</label>
+                    <label><input type="checkbox" name="subject" value="fisica" checked /> Física</label>
+                    <label><input type="checkbox" name="subject" value="quimica" checked /> Química</label>
+                    <label><input type="checkbox" name="subject" value="biologia" checked /> Biologia</label>
+                    <label><input type="checkbox" name="subject" value="filosofia" checked /> Filosofia</label>
+                    <label><input type="checkbox" name="subject" value="historia" checked /> História</label>
+                    <label><input type="checkbox" name="subject" value="geografia" checked /> Geografia</label>
                     <label><input type="checkbox" name="subject" value="educacao-fisica" checked /> Educação Física</label>
                     <label><input type="checkbox" name="subject" value="interdisciplinar" checked /> Interdisciplinar</label>
                   </fieldset>
                   <label class="time-setting field-label" for="answer-time">Tempo por pergunta: <output id="answer-time-value" for="answer-time">20 s</output></label>
-                  <input id="answer-time" type="range" min="10" max="25" value="20" />
+                  <input id="answer-time" type="range" min="10" max="35" value="20" />
+                  <section class="enem-library" aria-labelledby="enem-library-title">
+                    <h3 id="enem-library-title">Fontes oficiais do ENEM</h3>
+                    <p>Consulte os cadernos e gabaritos oficiais enviados, organizados por ano e área geral da prova.</p>
+                    <label class="field-label" for="enem-year">Ano</label>
+                    <select id="enem-year">
+                      <option value="todos">Todos os anos</option>
+                      <option value="2025">2025</option>
+                      <option value="2024">2024</option>
+                      <option value="2023">2023</option>
+                    </select>
+                    <label class="field-label" for="enem-subject">Matéria para consultar</label>
+                    <select id="enem-subject">
+                      <option value="todas">Todas as matérias</option>
+                      <option value="filosofia">Filosofia · cadernos do 1º dia</option>
+                      <option value="historia">História · cadernos do 1º dia</option>
+                      <option value="geografia">Geografia · cadernos do 1º dia</option>
+                      <option value="educacao-fisica">Educação Física · cadernos do 1º dia</option>
+                      <option value="matematica">Matemática · cadernos do 2º dia</option>
+                      <option value="fisica">Física · cadernos do 2º dia</option>
+                      <option value="quimica">Química · cadernos do 2º dia</option>
+                      <option value="biologia">Biologia · cadernos do 2º dia</option>
+                      <option value="interdisciplinar">Interdisciplinar · todos os dias</option>
+                    </select>
+                    <p class="enem-note">O ENEM não publica esses cadernos separados por matéria nem por dificuldade. Os links abaixo são fontes oficiais; número, gabarito e nível de cada questão precisam ser conferidos no caderno correspondente.</p>
+                    <div class="enem-source-list" id="enem-source-list" aria-live="polite"></div>
+                  </section>
                 </div>
               </div>
               <div class="hero-proof" aria-label="Dados do desafio">
-                <div><strong>10</strong><span>perguntas</span></div>
-                <div><strong>10–25s</strong><span>por pergunta</span></div>
+                <div><strong>Até 10</strong><span>perguntas por partida</span></div>
+                <div><strong>10–35s</strong><span>por pergunta</span></div>
                 <div><strong>+100</strong><span>super combo</span></div>
               </div>
             </div>
@@ -115,6 +147,7 @@
             <article class="question-card" aria-live="polite">
               <div class="question-topline"><span class="question-category" id="question-category">MATEMÁTICA</span><div class="timer" id="timer" role="timer" aria-label="Tempo restante">20</div></div>
               <p class="question-index" id="question-index">PERGUNTA 01</p>
+              <p class="question-source" id="question-source"></p>
               <h3 id="question-text">Carregando desafio...</h3>
               <div class="options" id="options" role="group" aria-label="Opções de resposta"></div>
               <div class="answer-feedback" id="answer-feedback" aria-live="assertive"></div>

@@ -23,9 +23,9 @@ O projeto foi desenvolvido por estudantes do **Instituto Federal de Mato Grosso 
 ## Como funciona
 
 1. Informe um nome ou apelido e inicie uma partida.
-2. Responda a dez perguntas de múltipla escolha, escolhidas aleatoriamente sem repetição na partida.
-3. Antes da partida, escolha uma ou mais matérias, a dificuldade e o tempo por pergunta (de 10 a 25 segundos).
-4. Responda dez questões sorteadas de um banco com centenas de perguntas; o histórico do navegador reduz repetições entre partidas. Ao terminar o tempo, a questão é marcada como incorreta.
+2. Responda até dez questões autorais de múltipla escolha, escolhidas sem repetição na partida.
+3. Antes da partida, escolha uma ou mais matérias, a dificuldade e o tempo por pergunta (de 10 a 35 segundos).
+4. Responda questões sorteadas por matéria e dificuldade; o histórico do navegador reduz repetições entre partidas. Ao terminar o tempo, a questão é marcada como incorreta.
 5. Faça três acertos consecutivos para receber +50 pontos ou cinco consecutivos para receber +100 pontos. Uma resposta incorreta reinicia a sequência.
 6. Em algumas questões, abra o desafio físico opcional. Ao marcá-lo como concluído, são adicionados 25 pontos.
 7. Confira acertos, erros, aproveitamento, maior sequência e posição no ranking.
@@ -42,8 +42,9 @@ O projeto foi desenvolvido por estudantes do **Instituto Federal de Mato Grosso 
 - Interface em português e espanhol, com alternância durante a partida.
 - Layout responsivo, opção de áudio, atalho para pular ao conteúdo, feedback acessível e suporte à preferência por movimento reduzido.
 - Desafios físicos opcionais, com orientação para adaptar o movimento ou descansar sem pressão.
-- Configuração da dificuldade, seleção de uma ou mais matérias e tempo entre 10 e 25 segundos por pergunta.
-- Mais de 300 questões originais em português e espanhol, com alternativas embaralhadas e histórico local para reduzir repetições.
+- Configuração da dificuldade, seleção de uma ou mais matérias e tempo entre 10 e 35 segundos por pergunta.
+- Links para cadernos e gabaritos oficiais do ENEM de 2023, 2024 e 2025, filtráveis por ano e matéria/área geral.
+- Banco autoral com 54 questões (seis por matéria), organizado por dificuldade e com gabarito e explicação; os itens não são identificados como questões aplicadas no ENEM.
 - Acesso por perfil local (apelido único e melhor resultado por perfil) ou como convidado, sem registrar convidados no ranking.
 
 ## Perfis, ranking e privacidade
@@ -59,10 +60,10 @@ Cada partida pode filtrar perguntas por dificuldade e por uma ou mais matérias.
 ### Critérios de aceitação
 
 - A pessoa pode entrar/criar perfil local com apelido único ou jogar como convidada; o modo convidado não registra resultado.
-- A pessoa pode escolher a dificuldade, uma ou mais matérias e de 10 a 25 segundos por pergunta; cada partida tem dez questões com quatro alternativas.
+- A pessoa pode escolher a dificuldade, uma ou mais matérias e de 10 a 35 segundos por pergunta; cada partida tem até dez questões autorais com quatro alternativas.
 - Após responder ou deixar o tempo acabar, a aplicação informa se a resposta foi correta e apresenta a explicação.
 - O sistema atualiza pontos, acertos, erros e combos de acordo com as respostas; questões elegíveis permitem um bônus físico opcional.
-- O banco oferece centenas de perguntas em português e espanhol, com histórico local para reduzir repetições.
+- O banco autoral é organizado por matéria e dificuldade; ano e número do ENEM só devem ser preenchidos após comprovação documental.
 - Ao final, são exibidos os indicadores da partida; o ranking mantém apenas o melhor resultado de cada perfil local.
 - O jogo pode ser usado em telas de computador e celular.
 
