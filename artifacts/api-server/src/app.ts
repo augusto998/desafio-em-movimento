@@ -54,9 +54,24 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", router);
 
-const frontendDist = path.resolve(process.env.FRONTEND_DIST_DIR ?? "../desafio-em-movimento/dist/public");
-if (existsSync(path.join(frontendDist, "index.html"))) {
+const frontendDistCandidates = [
+  process.env.FRONTEND_DIST_DIR,
+  path.resolve(process.cwd(), "artifacts/desafio-em-movimento/dist/public"),
+  path.resolve(process.cwd(), "dist/public"),
+  path.resolve(process.cwd(), "artifacts/desafio-em-movimento", "dist", "public"),
+  "/opt/render/project/src/artifacts/desafio-em-movimento/dist/public",
+  "/workspace/artifacts/desafio-em-movimento/dist/public",
+].filter((candidate): candidate is string => Boolean(candidate));
+
+const frontendDist = frontendDistCandidates.find((candidate) => existsSync(path.join(candidate, "index.html"))) ?? frontendDistCandidates[0];
+
+if (frontendDist) {
   app.use(express.static(frontendDist, { index: false }));
+  app.get("/", (_request, response, next) => {
+    response.sendFile(path.join(frontendDist, "index.html"), (error) => {
+      if (error) next(error);
+    });
+  });
   app.get(/.*/, (_request, response, next) => {
     response.sendFile(path.join(frontendDist, "index.html"), (error) => {
       if (error) next(error);
