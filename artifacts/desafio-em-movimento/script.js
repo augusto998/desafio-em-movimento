@@ -678,8 +678,8 @@ import { questionBank } from "./question-bank.js";
       options.appendChild(button);
     });
 
-    state.seconds = phase.time;
-    state.currentLimit = phase.time;
+    state.seconds = scoringPhase.time;
+    state.currentLimit = scoringPhase.time;
     updateTimer();
     state.timerPaused = false;
     startTimer();
