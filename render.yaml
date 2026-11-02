@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: desafio-em-movimento-app
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: pnpm install --frozen-lockfile && PORT=10000 BASE_PATH=/ pnpm --filter @workspace/desafio-em-movimento build && pnpm --filter @workspace/api-server build
+    startCommand: pnpm --filter @workspace/db push && pnpm --filter @workspace/api-server start
+    healthCheckPath: /api/healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "10000"
+      - key: TRUST_PROXY
+        value: "1"
+      - key: COOKIE_SAME_SITE
+        value: lax
+      - key: DATABASE_URL
+        fromDatabase:
+          name: desafio-em-movimento-db
+          property: connectionString
+
+databases:
+  - name: desafio-em-movimento-db
+    plan: free
+    region: oregon
+    databaseName: desafio_em_movimento
+    user: desafio_em_movimento
+    postgresMajorVersion: "16"

@@ -1,6 +1,6 @@
 # Desafio em Movimento
 
-Jogo educativo estático com banco autoral organizado por matéria e dificuldade, até dez perguntas por partida, tempo configurável, combos e ranking local.
+Jogo educativo com banco autoral organizado por matéria em três fases: 20 questões fáceis, 15 médias e 10 difíceis; tempo configurável, combos e ranking.
 
 ## Run & Operate
 
@@ -12,10 +12,10 @@ Jogo educativo estático com banco autoral organizado por matéria e dificuldade
 ## Stack
 
 - Arquivos de jogo: HTML, CSS e JavaScript puro.
-- Perfis com apelido, histórico de questões e ranking usam somente `localStorage`; não há senha, autenticação online, API ou sincronização entre dispositivos.
+- Cadastro/login e ranking entre dispositivos usam API Express e PostgreSQL, quando implantados e configurados. Sem URL da API e banco ativos, acesso remoto fica indisponível.
 - O modo convidado não registra resultado no ranking.
-- O banco de 54 perguntas está em `artifacts/desafio-em-movimento/question-bank.js`, seis por matéria; todas são autorais e não recebem ano de aplicação ENEM sem fonte confirmada.
-- Vite existe apenas como ferramenta de prévia/build do workspace; o jogo não depende de backend, banco, APIs ou serviços externos.
+- O banco de perguntas está em `artifacts/desafio-em-movimento/question-bank.js`; todas são autorais e não recebem ano de aplicação ENEM sem fonte confirmada.
+- GitHub Pages serve apenas o frontend; a API requer implantação independente com secrets e HTTPS.
 
 ## Where things live
 
@@ -26,13 +26,13 @@ Jogo educativo estático com banco autoral organizado por matéria e dificuldade
 
 ## Architecture decisions
 
-- A partida monta um conjunto de dez questões conforme a dificuldade e as matérias escolhidas; a pontuação-base varia conforme a dificuldade.
-- O ranking é local, tem uma entrada por apelido e preserva o melhor resultado; não representa uma conta ou placar compartilhado.
+- A partida monta três fases fixas: 20 fáceis, 15 médias e 10 difíceis; matérias selecionadas precisam ter volume suficiente para cada fase.
+- O ranking global preserva apenas o melhor resultado por conta; convidados não são registrados.
 - Os três desafios físicos são opcionais e não dependem de câmera, sensores, equipamentos ou permissões do navegador.
 
 ## Product
 
-- Início com perfil local ou convidado, seleção de matérias/dificuldade/tempo (10–35 s), partidas de até dez perguntas, feedback, combos, movimentos opcionais, resultado e ranking local.
+- Início com login remoto ou convidado, seleção de matérias/tempo (10–35 s), fases de 20/15/10 perguntas, feedback, combos, movimentos opcionais, resultado e ranking compartilhado.
 
 ## User preferences
 

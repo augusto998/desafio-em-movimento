@@ -8,17 +8,17 @@ Este documento descreve o objetivo do ponto de vista de quem usa o quiz e regist
 
 ### Critérios de aceitação
 
-1. Deve ser possível informar um nome ou apelido antes de começar; sem esse dado, a partida não inicia.
-2. A pessoa deve poder selecionar uma ou mais matérias e uma dificuldade antes de começar; a partida contém dez perguntas de múltipla escolha compatíveis com essas escolhas.
-3. Cada questão deve apresentar quatro alternativas e um cronômetro configurável entre dez e vinte e cinco segundos.
+1. Deve ser possível entrar/criar conta por e-mail quando a API estiver disponível ou escolher o modo convidado.
+2. A pessoa deve poder selecionar uma ou mais matérias; cada partida tem 20 questões fáceis, 15 médias e 10 difíceis.
+3. Cada questão deve apresentar quatro alternativas e um cronômetro configurável entre dez e trinta e cinco segundos.
 4. Depois de uma resposta ou do fim do tempo, a aplicação deve indicar a alternativa correta e exibir uma explicação.
 5. Respostas corretas devem somar os pontos da fase. Três acertos consecutivos concedem 50 pontos extras; cinco consecutivos, 100 pontos extras. Uma resposta incorreta reinicia o combo.
 6. Questões selecionadas podem oferecer um desafio físico opcional; ao marcá-lo como concluído, a pessoa recebe 25 pontos extras.
-7. Ao finalizar, devem ser apresentados pontuação, acertos, erros, percentual de aproveitamento, maior combo e posição no ranking.
-8. Os dez melhores resultados de perfis devem ser guardados no navegador atual, sem nomes repetidos, mantendo a melhor pontuação de cada apelido; deve ser possível limpar o ranking após confirmação.
-9. A interface deve se adaptar a telas menores, sem exigir instalação para jogar a versão estática.
-10. O banco deve oferecer centenas de perguntas em português e espanhol, reduzir repetições entre partidas e permitir alternar o idioma durante o jogo.
-11. Deve haver um modo de perfil local e um modo convidado sem registro no ranking; a interface informa que não existe autenticação nem sincronização online.
+7. Ao finalizar as 45 questões, devem ser somados os pontos e apresentados acertos, erros, percentual, maior combo e posição no ranking.
+8. O ranking global deve manter até dez contas, guardar o melhor resultado de cada conta e permitir excluir o próprio resultado.
+9. A interface deve se adaptar a telas menores e o modo convidado deve continuar disponível quando o serviço remoto não estiver implantado.
+10. O banco autoral deve reduzir repetições entre partidas e permitir alternar o idioma durante o jogo.
+11. O login deve sincronizar conta e ranking entre dispositivos quando a API e o PostgreSQL estiverem publicados; convidado não salva pontuação.
 
 ## Histórias complementares
 
@@ -32,7 +32,7 @@ Este documento descreve o objetivo do ponto de vista de quem usa o quiz e regist
 
 > **Como participante, quero consultar o ranking salvo neste navegador, para comparar minha pontuação com as partidas registradas no mesmo dispositivo.**
 
-**Critérios de aceitação:** o ranking deve ordenar até dez perfis por pontuação, guardar somente o melhor resultado de cada apelido e indicar um estado vazio quando não houver partidas salvas. A tela deve deixar claro que esses dados são locais, não compartilhados entre dispositivos; partidas de convidado não são registradas.
+**Critérios de aceitação:** o ranking global deve ordenar até dez contas por pontuação, guardar somente o melhor resultado de cada conta e indicar um estado vazio quando não houver partidas salvas. O serviço depende da API e do banco PostgreSQL implantados; convidado não é registrado.
 
 ### Participar com segurança
 

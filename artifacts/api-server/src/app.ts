@@ -1,10 +1,18 @@
 import express, { type Express } from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
+import path from "node:path";
+import { existsSync } from "node:fs";
 import pinoHttp from "pino-http";
 import router from "./routes";
 import { logger } from "./lib/logger";
 
 const app: Express = express();
+const trustedProxyHops = Number(process.env.TRUST_PROXY ?? 0);
+if (!Number.isInteger(trustedProxyHops) || trustedProxyHops < 0) {
+  throw new Error("TRUST_PROXY must be a non-negative integer number of trusted proxy hops.");
+}
+app.set("trust proxy", trustedProxyHops);
 
 app.use(
   pinoHttp({
@@ -25,10 +33,35 @@ app.use(
     },
   }),
 );
-app.use(cors());
+const allowedOrigins = (process.env.FRONTEND_ORIGINS ?? "http://localhost:5173,http://localhost:4173")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+if (process.env.RENDER_EXTERNAL_HOSTNAME) {
+  allowedOrigins.push(`https://${process.env.RENDER_EXTERNAL_HOSTNAME}`);
+}
+
+app.use(cors({
+  credentials: true,
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) callback(null, origin ?? false);
+    else callback(new Error("Origin is not allowed by CORS"));
+  },
+}));
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", router);
+
+const frontendDist = path.resolve(process.env.FRONTEND_DIST_DIR ?? "artifacts/desafio-em-movimento/dist/public");
+if (existsSync(path.join(frontendDist, "index.html"))) {
+  app.use(express.static(frontendDist, { index: false }));
+  app.get(/.*/, (_request, response, next) => {
+    response.sendFile(path.join(frontendDist, "index.html"), (error) => {
+      if (error) next(error);
+    });
+  });
+}
 
 export default app;

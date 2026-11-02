@@ -1,6 +1,6 @@
 # Desafio em Movimento
 
-**Pense. Mexa. Supere.** Um jogo educativo que conecta Matemática e Educação Física por meio de perguntas, tempo, pontuação e desafios opcionais de movimento.
+**Pense. Mexa. Supere.** Um jogo educativo com três fases progressivas de questões autorais, áreas de conhecimento, pontuação e desafios opcionais de movimento.
 
 - **Jogo publicado:** [augusto998.github.io/desafio-em-movimento](https://augusto998.github.io/desafio-em-movimento/)
 - **Repositório:** [github.com/augusto998/desafio-em-movimento](https://github.com/augusto998/desafio-em-movimento)
@@ -8,7 +8,7 @@
 
 ## Sobre
 
-O Desafio em Movimento é um quiz para estudantes do Ensino Médio Integrado. Cada partida reúne até dez perguntas autorais das matérias selecionadas. A proposta é apoiar a revisão de conteúdos de um jeito dinâmico, incentivando o raciocínio, a participação e hábitos de movimento seguros.
+O Desafio em Movimento é um quiz para estudantes do Ensino Médio Integrado. Cada partida reúne 20 questões fáceis, 15 médias e 10 difíceis das matérias selecionadas. A proposta é apoiar a revisão de conteúdos de um jeito dinâmico, incentivando o raciocínio, a participação e hábitos de movimento seguros.
 
 ### Objetivos
 
@@ -19,9 +19,9 @@ O Desafio em Movimento é um quiz para estudantes do Ensino Médio Integrado. Ca
 
 ## Como jogar
 
-1. Informe seu nome ou apelido e selecione **Começar**.
-2. Escolha uma ou mais matérias, a dificuldade e o tempo (de 10 a 35 segundos por pergunta).
-3. Responda até dez questões autorais sorteadas por matéria e dificuldade; o histórico local reduz repetições em partidas futuras.
+1. Entre/crie uma conta (quando a API estiver publicada) ou selecione o modo convidado.
+2. Escolha uma ou mais matérias e o tempo (de 10 a 35 segundos por pergunta).
+3. Responda 20 questões fáceis, 15 médias e 10 difíceis, sorteadas sem repetição dentro da partida.
 4. Veja o feedback e a explicação após cada resposta. Se o tempo acabar, a resposta conta como incorreta.
 5. Três acertos seguidos dão +50 pontos; cinco acertos seguidos dão +100 pontos. A dificuldade da questão define a pontuação-base.
 6. Em algumas perguntas, é possível realizar um desafio físico opcional e marcar como concluído para receber +25 pontos.
@@ -35,15 +35,15 @@ O Desafio em Movimento é um quiz para estudantes do Ensino Médio Integrado. Ca
 - Perguntas aleatórias com quatro alternativas, cronômetro e explicação.
 - Pontos por dificuldade, bônus de combo e desafio físico opcional.
 - Resultado com estatísticas e posição no ranking.
-- Ranking local com até dez resultados e ação para limpar os dados após confirmação.
+- Ranking global com até dez melhores contas, quando a API e o banco estiverem implantados; convidados não são registrados.
 - Interface em português e espanhol, alternável a qualquer momento sem perder o andamento da partida.
 - Interface adaptável a celulares, tablets e computadores; atalho de navegação por teclado, foco visível e suporte à preferência por movimento reduzido.
 - Efeitos sonoros opcionais e desafios de movimento adaptáveis, que podem ser ignorados com segurança.
-- Configuração da dificuldade, seleção de uma ou mais matérias e tempo de 10 a 35 segundos por pergunta.
+- Três fases fixas (20 fáceis, 15 médias e 10 difíceis), seleção de matérias e tempo de 10 a 35 segundos por pergunta.
 - Biblioteca com cadernos e gabaritos oficiais do ENEM de 2023, 2024 e 2025, filtrável por ano e matéria/área geral.
 - A biblioteca aponta para os PDFs do INEP; não atribui número, gabarito ou dificuldade a cada questão sem conferência do caderno correspondente.
-- Banco manual de 54 questões autorais (seis por matéria) separado por dificuldade, com gabarito e explicação; questões sem comprovação de aplicação oficial não recebem ano do ENEM.
-- Acesso por perfil local (apelido único e melhor resultado por perfil) ou convidado (sem gravação no ranking).
+- Banco autoral separado por matéria e dificuldade, com gabarito e explicação; nenhuma dessas questões é rotulada como aplicada no ENEM.
+- Acesso por conta de servidor (melhor resultado sincronizado entre dispositivos, quando implantada) ou convidado sem gravação.
 
 ## História de usuário
 
@@ -51,12 +51,12 @@ O Desafio em Movimento é um quiz para estudantes do Ensino Médio Integrado. Ca
 
 ### Critérios de aceitação
 
-- A partida só começa após informar um nome ou apelido.
-- Cada partida apresenta até dez perguntas conforme a matéria e a dificuldade selecionadas, com quatro opções e tempo limitado.
+- A partida começa após autenticação de conta ou seleção de convidado.
+- Cada partida apresenta 20 questões fáceis, 15 médias e 10 difíceis, distribuídas entre as matérias selecionadas, com quatro opções e tempo limitado.
 - A aplicação informa se a resposta está correta e apresenta uma explicação, inclusive quando o tempo acaba.
 - A pontuação, os acertos, os erros e os combos são atualizados conforme as respostas.
 - Desafios físicos aparecem apenas em perguntas elegíveis e podem ser ignorados.
-- A tela final apresenta estatísticas e o ranking do navegador pode ser consultado.
+- A tela final apresenta estatísticas e a soma dos pontos; o ranking global exige API e banco implantados.
 - O conteúdo permanece utilizável em telas pequenas.
 
 Histórias complementares estão em [../../docs/HISTORIAS-DE-USUARIO.md](../../docs/HISTORIAS-DE-USUARIO.md).
@@ -80,7 +80,7 @@ Estudantes do **Instituto Federal de Mato Grosso (IFMT) — Campus Barra do Gar�
 
 ## Tecnologias e implementação
 
-O jogo é uma aplicação estática feita com **HTML, CSS e JavaScript**, sem serviço de login, API ou banco de dados. O perfil é somente local: não usa senha nem sincroniza entre dispositivos. A lógica e as perguntas ficam em `script.js`; a estrutura das telas está em `index.html`; e o visual responsivo está em `style.css`.
+O frontend usa **HTML, CSS e JavaScript**. As questões estão em `question-bank.js`; autenticação e ranking global usam a API Express e o PostgreSQL, que precisam ser implantados separadamente. Consulte [a documentação da API](../api-server/README.md).
 
 Este repositório também contém um workspace pnpm com um scaffold independente de React, TypeScript, Vite e Express. Esse scaffold não é necessário para o quiz estático e sua existência não indica que servidor ou banco de dados estejam publicados ou conectados ao jogo.
 
@@ -99,11 +99,11 @@ A configuração do Vite exige as variáveis `PORT` e `BASE_PATH`. O servidor in
 
 ## Privacidade e armazenamento
 
-O jogo solicita somente um nome ou apelido. A pontuação e os resultados são guardados no `localStorage` do navegador utilizado. Portanto, o ranking é local: não é sincronizado com outras pessoas, navegadores ou dispositivos. É possível apagá-lo pela opção **Limpar ranking** ou removendo os dados locais do navegador. Não use informações pessoais como nome de exibição.
+Com a API em produção, e-mail e senha permitem entrar em diferentes dispositivos, e o melhor resultado por conta fica no ranking global. A senha é derivada com `scrypt`; sessões usam cookies HttpOnly. A API ainda exige implantação, PostgreSQL, HTTPS e configuração de origens; verificação de e-mail e recuperação de senha não estão implementadas. Convidados não salvam pontuação.
 
 ## Publicação
 
-O jogo publicado está no link no início deste documento. A publicação do frontend no GitHub Pages não hospeda automaticamente o scaffold de servidor Express ou um banco de dados; o quiz atual usa o navegador e armazenamento local.
+O jogo publicado está no link no início deste documento. O GitHub Pages não hospeda a API nem o PostgreSQL; sem esses serviços publicados, o login e o ranking compartilhado não ficam disponíveis.
 
 ## Ideias para melhorias futuras
 

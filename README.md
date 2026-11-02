@@ -9,7 +9,7 @@
 
 ## Sobre o projeto
 
-O **Desafio em Movimento** é um quiz interdisciplinar desenvolvido para estudantes do Ensino Médio Integrado. A cada partida, a pessoa jogadora responde a dez questões de Matemática, Educação Física e temas que relacionam as duas áreas. Tempo, pontuação, combos e desafios opcionais de movimento ajudam a transformar a revisão dos conteúdos em uma atividade participativa.
+O **Desafio em Movimento** é um quiz interdisciplinar desenvolvido para estudantes do Ensino Médio Integrado. Cada partida tem três fases: 20 questões fáceis, 15 médias e 10 difíceis, nas matérias selecionadas. Tempo, pontuação, combos e desafios opcionais de movimento apoiam a revisão dos conteúdos.
 
 O projeto foi desenvolvido por estudantes do **Instituto Federal de Mato Grosso (IFMT) — Campus Barra do Garças**.
 
@@ -22,10 +22,10 @@ O projeto foi desenvolvido por estudantes do **Instituto Federal de Mato Grosso 
 
 ## Como funciona
 
-1. Informe um nome ou apelido e inicie uma partida.
-2. Responda até dez questões autorais de múltipla escolha, escolhidas sem repetição na partida.
-3. Antes da partida, escolha uma ou mais matérias, a dificuldade e o tempo por pergunta (de 10 a 35 segundos).
-4. Responda questões sorteadas por matéria e dificuldade; o histórico do navegador reduz repetições entre partidas. Ao terminar o tempo, a questão é marcada como incorreta.
+1. Entre/crie uma conta (quando a API remota estiver implantada) ou escolha o modo convidado.
+2. Selecione uma ou mais matérias e o tempo por pergunta (de 10 a 35 segundos).
+3. Responda 20 questões fáceis, 15 médias e 10 difíceis, sorteadas sem repetição dentro da partida.
+4. Ao terminar o tempo, a questão é marcada como incorreta; o resultado soma os pontos conquistados nas 45 respostas e bônus opcionais.
 5. Faça três acertos consecutivos para receber +50 pontos ou cinco consecutivos para receber +100 pontos. Uma resposta incorreta reinicia a sequência.
 6. Em algumas questões, abra o desafio físico opcional. Ao marcá-lo como concluído, são adicionados 25 pontos.
 7. Confira acertos, erros, aproveitamento, maior sequência e posição no ranking.
@@ -38,20 +38,18 @@ O projeto foi desenvolvido por estudantes do **Instituto Federal de Mato Grosso 
 - Perguntas aleatórias com alternativas, cronômetro e explicação da resposta.
 - Pontuação por fase, bônus por combos e bônus de movimento.
 - Resumo de desempenho ao fim da partida.
-- Ranking local com até dez resultados e opção de limpeza mediante confirmação.
+- Ranking global com até dez melhores contas, quando a API e o banco estiverem publicados; convidado não salva resultado.
 - Interface em português e espanhol, com alternância durante a partida.
 - Layout responsivo, opção de áudio, atalho para pular ao conteúdo, feedback acessível e suporte à preferência por movimento reduzido.
 - Desafios físicos opcionais, com orientação para adaptar o movimento ou descansar sem pressão.
-- Configuração da dificuldade, seleção de uma ou mais matérias e tempo entre 10 e 35 segundos por pergunta.
+- Três fases fixas (20 fáceis, 15 médias e 10 difíceis), seleção de matérias e tempo de 10 a 35 segundos por pergunta.
 - Links para cadernos e gabaritos oficiais do ENEM de 2023, 2024 e 2025, filtráveis por ano e matéria/área geral.
-- Banco autoral com 54 questões (seis por matéria), organizado por dificuldade e com gabarito e explicação; os itens não são identificados como questões aplicadas no ENEM.
-- Acesso por perfil local (apelido único e melhor resultado por perfil) ou como convidado, sem registrar convidados no ranking.
+- Banco autoral com 56 questões distribuídas por matéria e dificuldade, com gabarito e explicação; os itens não são identificados como questões aplicadas no ENEM.
+- Acesso por conta de servidor (melhor resultado sincronizado entre dispositivos, quando implantada) ou convidado sem registro.
 
-## Perfis, ranking e privacidade
+## Contas, ranking e privacidade
 
-O modo **Entrar / criar perfil** usa um apelido único neste navegador e mantém apenas o melhor resultado desse apelido no ranking local. O modo **Convidado** serve para demonstrações e não salva pontuação. Esses perfis não são contas online: não há senha, servidor ou sincronização entre dispositivos. Não use dados pessoais.
-
-Cada partida pode filtrar perguntas por dificuldade e por uma ou mais matérias. O banco contém mais de 300 perguntas originais com versões em português e espanhol; as questões são sorteadas e o navegador guarda o histórico local para evitar repetições até o banco selecionado ser percorrido.
+O modo de conta usa e-mail e senha pela API e guarda senhas derivadas com `scrypt`; o ranking global persiste no PostgreSQL e mantém o melhor resultado da conta. O modo **Convidado** não salva pontuação. A API precisa ser implantada separadamente com HTTPS, PostgreSQL, origem do frontend e variáveis de ambiente configuradas; o GitHub Pages não hospeda o servidor. Verificação de e-mail e recuperação de senha ainda não estão implementadas. Consulte [a documentação da API](artifacts/api-server/README.md) antes de publicar.
 
 ## História de usuário
 
@@ -59,25 +57,25 @@ Cada partida pode filtrar perguntas por dificuldade e por uma ou mais matérias.
 
 ### Critérios de aceitação
 
-- A pessoa pode entrar/criar perfil local com apelido único ou jogar como convidada; o modo convidado não registra resultado.
-- A pessoa pode escolher a dificuldade, uma ou mais matérias e de 10 a 35 segundos por pergunta; cada partida tem até dez questões autorais com quatro alternativas.
+- A pessoa pode entrar/criar conta pelo servidor (quando implantado) ou jogar como convidada; convidadas não registram resultado.
+- Cada partida contém 20 questões fáceis, 15 médias e 10 difíceis, distribuídas entre as matérias selecionadas, com quatro alternativas e tempo de 10 a 35 segundos.
 - Após responder ou deixar o tempo acabar, a aplicação informa se a resposta foi correta e apresenta a explicação.
 - O sistema atualiza pontos, acertos, erros e combos de acordo com as respostas; questões elegíveis permitem um bônus físico opcional.
 - O banco autoral é organizado por matéria e dificuldade; ano e número do ENEM só devem ser preenchidos após comprovação documental.
-- Ao final, são exibidos os indicadores da partida; o ranking mantém apenas o melhor resultado de cada perfil local.
+- Ao final, são exibidos os indicadores e a soma de pontos; o ranking global mantém o melhor resultado por conta quando API e banco estão publicados.
 - O jogo pode ser usado em telas de computador e celular.
 
 Mais detalhes e histórias complementares estão em [docs/HISTORIAS-DE-USUARIO.md](docs/HISTORIAS-DE-USUARIO.md).
 
 ## Tecnologias e organização
 
-A versão interativa publicada é uma aplicação web estática: **HTML, CSS e JavaScript**, sem necessidade de conta, API ou banco de dados para jogar. O projeto também está organizado como um workspace **pnpm** e contém um scaffold separado com **React, TypeScript, Vite e Express**. Esse servidor e as bibliotecas compartilhadas não são necessários para o fluxo atual do quiz; a presença deles no repositório não significa que estejam publicados ou conectados ao jogo.
+A interface publicada é estática (**HTML, CSS e JavaScript**). Contas e ranking entre dispositivos dependem de implantar o servidor Express e PostgreSQL incluídos no workspace. Até a implantação e configuração do endpoint, o login remoto fica indisponível; visitantes ainda podem testar como convidados.
 
 ```text
 .
 ├── artifacts/
 │   ├── desafio-em-movimento/  # Site, quiz e arquivos do workspace Vite
-│   └── api-server/            # Scaffold de servidor Express
+│   └── api-server/            # API Express de autenticação e ranking
 ├── lib/                       # Pacotes compartilhados do workspace
 ├── docs/                      # Documentação e histórias de usuário
 ├── screenshots/               # Diretório destinado a capturas de tela
@@ -106,7 +104,7 @@ O servidor local informa o endereço no terminal. `PORT` e `BASE_PATH` são exig
 
 ## Dados e privacidade
 
-O jogo pede somente um nome ou apelido. Os resultados do ranking e a melhor pontuação são armazenados no `localStorage` do navegador em uso; não são enviados para um servidor pelo fluxo atual. O ranking não é compartilhado entre dispositivos ou navegadores e pode ser removido pela opção **Limpar ranking** ou pela limpeza dos dados locais do navegador. Evite usar informações pessoais como nome de exibição.
+O login remoto usa cookie de sessão `HttpOnly` e PostgreSQL quando o serviço está configurado. A pontuação enviada pelo navegador ainda não é prova resistente a adulteração. O cadastro não verifica o e-mail e ainda não possui recuperação de senha; antes de uso público, implante os serviços documentados, configure HTTPS e planeje verificação e recuperação seguras. Evite dados pessoais no nome público.
 
 ## Equipe
 

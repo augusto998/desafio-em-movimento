@@ -95,11 +95,20 @@ input::placeholder { color: #758082; }
 input:focus { border-color: var(--aqua); background: #fffaf0; }
 .input-hint { color: #748085; font-size: 11px; margin: 8px 0 0; }
 .player-mode { display: flex; gap: 8px; margin-top: 12px; }
+.account-panel { display: grid; gap: 9px; max-width: 515px; }
+.account-panel .field-label { margin: 3px 0 0; }
+.account-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 4px; }
+.account-actions .primary-button { min-height: 42px; }
+.account-status { min-height: 18px; margin: 0; color: var(--ink-soft); font-size: 11px; line-height: 1.4; }
+.account-status.is-error { color: var(--coral-dark); }
+.guest-name-row { display: grid; gap: 8px; }
+.guest-name-row[hidden], .account-panel[hidden], #start-game[hidden] { display: none; }
 .mode-button { min-height: 39px; padding: 0 12px; border: 1px solid var(--line-strong); border-radius: 5px; color: var(--ink-soft); background: transparent; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
 .mode-button.is-active { color: white; background: var(--aqua-dark); border-color: var(--aqua-dark); }
 .local-login-note { color: var(--ink-soft); font-size: 11px; line-height: 1.4; margin: 7px 0 0; }
 .game-settings { display: grid; gap: 9px; margin-top: 25px; padding: 18px; border: 1px solid var(--line); background: rgba(255,255,255,.3); }
 .game-settings h2 { margin: 0 0 3px; font: 800 17px/1.1 var(--display); letter-spacing: -.03em; }
+.phase-plan { margin: 0; color: var(--ink-soft); font-size: 11px; line-height: 1.4; }
 .game-settings .field-label { margin: 0; }
 .subject-picker { display: flex; flex-wrap: wrap; gap: 8px 14px; margin: 3px 0; padding: 12px 0 0; border: 0; border-top: 1px solid var(--line); }
 .subject-picker legend { padding: 0 0 5px; }

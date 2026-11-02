@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#fbf5e7" />
     <meta name="description" content="Desafio em Movimento: matemática e educação física em uma competição rápida e divertida." />
+    <meta name="api-base" content="" />
     <title>Desafio em Movimento | Aprender no ritmo</title>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="stylesheet" href="./style.css" />
@@ -42,26 +43,36 @@
               <h1 id="start-title">Pense.<br /><span>Mexa.</span><br />Supere.</h1>
               <p class="hero-lede">Um quiz de alta energia para colocar seu raciocínio em movimento. Responda rápido, acumule pontos e deixe sua marca na pista.</p>
               <div class="hero-actions">
-                <label class="field-label" for="player-name">Como podemos te chamar?</label>
-                <div class="name-row">
+                <div class="account-panel" id="account-panel">
+                  <label class="field-label" for="account-email">E-mail da conta</label>
+                  <input id="account-email" type="email" maxlength="254" autocomplete="email" placeholder="voce@exemplo.com" />
+                  <label class="field-label" for="account-password">Senha (mínimo 10 caracteres)</label>
+                  <input id="account-password" type="password" minlength="10" maxlength="128" autocomplete="current-password" placeholder="Digite sua senha" />
+                  <div id="account-register-fields" hidden>
+                    <label class="field-label" for="account-display-name">Nome para aparecer no ranking</label>
+                    <input id="account-display-name" type="text" minlength="2" maxlength="40" autocomplete="nickname" placeholder="Escolha um apelido" />
+                  </div>
+                  <div class="account-actions">
+                    <button class="primary-button" id="auth-submit" type="button">Entrar</button>
+                    <button class="text-button" id="auth-switch" type="button">Criar conta</button>
+                    <button class="text-button" id="auth-logout" type="button" hidden>Sair da conta</button>
+                  </div>
+                  <p class="account-status" id="account-status" role="status">Entre ou crie uma conta para manter seu perfil e sua pontuação entre dispositivos.</p>
+                </div>
+                <div class="name-row guest-name-row" id="guest-name-row" hidden>
+                  <label class="field-label" for="player-name">Nome para esta partida</label>
                   <input id="player-name" type="text" maxlength="20" autocomplete="nickname" placeholder="Digite seu nome" />
-                  <button class="primary-button" id="start-game" type="button">Começar <span aria-hidden="true">→</span></button>
                 </div>
                 <div class="player-mode" role="group" aria-label="Tipo de acesso">
-                  <button class="mode-button is-active" id="login-mode" type="button" aria-pressed="true">Entrar / criar perfil</button>
+                  <button class="mode-button is-active" id="login-mode" type="button" aria-pressed="true">Usar conta</button>
                   <button class="mode-button" id="guest-mode" type="button" aria-pressed="false">Convidado</button>
                 </div>
                 <p class="input-hint" id="name-hint">Perfil salvo somente neste dispositivo. Use um apelido, sem dados pessoais.</p>
-                <p class="local-login-note" id="local-login-note">Perfil local de apresentação: não usa senha nem conta online e não sincroniza entre dispositivos.</p>
+                <p class="local-login-note" id="local-login-note">A conta remota precisa estar publicada com banco de dados para sincronizar entre dispositivos.</p>
+                <button class="primary-button" id="start-game" type="button" hidden disabled>Começar <span aria-hidden="true">→</span></button>
                 <div class="game-settings" aria-labelledby="settings-title">
                   <h2 id="settings-title">Personalize a partida</h2>
-                  <label class="field-label" for="difficulty-select">Dificuldade</label>
-                  <select id="difficulty-select">
-                    <option value="mixed">Variada (todas)</option>
-                    <option value="facil">Fácil</option>
-                    <option value="medio">Média</option>
-                    <option value="dificil">Difícil</option>
-                  </select>
+                  <p class="phase-plan">A partida tem 3 fases: 20 questões fáceis, 15 médias e 10 difíceis.</p>
                   <fieldset class="subject-picker">
                     <legend class="field-label">Matérias (escolha uma ou mais)</legend>
                     <label><input type="checkbox" name="subject" value="matematica" checked /> Matemática</label>
@@ -105,7 +116,7 @@
                 </div>
               </div>
               <div class="hero-proof" aria-label="Dados do desafio">
-                <div><strong>Até 10</strong><span>perguntas por partida</span></div>
+                <div><strong>45</strong><span>perguntas por partida</span></div>
                 <div><strong>10–35s</strong><span>por pergunta</span></div>
                 <div><strong>+100</strong><span>super combo</span></div>
               </div>
@@ -130,7 +141,7 @@
         <section class="view view-game" id="view-jogo" aria-labelledby="game-title" hidden>
           <div class="game-header">
             <div>
-              <div class="eyebrow"><span class="eyebrow-line"></span> <span id="phase-name">AQUECIMENTO</span> <span id="round-label">· PERGUNTA</span> <span id="round-number">01</span> / 10</div>
+              <div class="eyebrow"><span class="eyebrow-line"></span> <span id="phase-name">FASE 1 · FÁCIL</span> <span id="round-label">· PERGUNTA</span> <span id="round-number">01</span> / <span id="round-total">20</span></div>
               <h2 id="game-title">Mantenha o ritmo, <span id="game-player">atleta</span>.</h2>
             </div>
             <div class="score-cluster">
@@ -139,8 +150,8 @@
             </div>
           </div>
           <div class="progress-wrap" aria-label="Progresso do desafio">
-            <div class="progress-meta"><span>PROGRESSO</span><span id="progress-label">1 de 10</span></div>
-            <div class="progress-track" id="progress-track" role="progressbar" aria-label="Progreso del desafío" aria-valuemin="0" aria-valuemax="10" aria-valuenow="1"><div class="progress-fill" id="progress-fill"></div></div>
+              <div class="progress-meta"><span>PROGRESSO DA FASE</span><span id="progress-label">1 de 20</span></div>
+            <div class="progress-track" id="progress-track" role="progressbar" aria-label="Progresso da fase" aria-valuemin="0" aria-valuemax="20" aria-valuenow="1"><div class="progress-fill" id="progress-fill"></div></div>
           </div>
 
           <div class="game-layout">

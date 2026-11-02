@@ -57,14 +57,24 @@ import { questionBank } from "./question-bank.js";
   }
 
   const questionPairs = questionBank.map((question) => [question, question]);
+  const phasePlan = [
+    { difficulty: "facil", count: 20, label: "phaseEasy" },
+    { difficulty: "medio", count: 15, label: "phaseMedium" },
+    { difficulty: "dificil", count: 10, label: "phaseHard" }
+  ];
 
   const translations = {
     pt: {
       skip: "Pular para o conteúdo", start: "Início", how: "Como jogar", ranking: "Ranking",
-      of: "de",
-      game: "Partida", difficulty_facil: "FÁCIL", difficulty_medio: "MÉDIA", difficulty_dificil: "DIFÍCIL",
-      login: "Entrar / criar perfil", guest: "Convidado", settings: "Personalize a partida", difficultyLabel: "Dificuldade", mixed: "Variada (todas)", easy: "Fácil", medium: "Média", hard: "Difícil", subjectsLabel: "Matérias (escolha uma ou mais)", math: "Matemática", physics: "Física", chemistry: "Química", biology: "Biologia", philosophy: "Filosofia", history: "História", geography: "Geografia", pe: "Educação Física", interdisciplinary: "Interdisciplinar", timeSetting: "Tempo por pergunta:", seconds: "s", localOnly: "Perfil salvo somente neste dispositivo. Use um apelido, sem dados pessoais.", localNote: "Perfil local de apresentação: não usa senha nem conta online e não sincroniza entre dispositivos.", guestName: "Convidado", chooseSubject: "Selecione pelo menos uma matéria.", tooFewQuestions: "Não há questões para esta combinação. Selecione outra matéria ou dificuldade.",
+      of: "de", phaseProgress: "PROGRESSO DA FASE",
+      game: "Partida", difficulty_facil: "FÁCIL", difficulty_medio: "MÉDIA", difficulty_dificil: "DIFÍCIL", phaseEasy: "FASE 1 · FÁCIL", phaseMedium: "FASE 2 · MÉDIA", phaseHard: "FASE 3 · DIFÍCIL", nextPhase: "Concluir fase e avançar", phaseComplete: "Fase {number} concluída! Próxima: {label}.",
+      login: "Entrar / criar perfil", guest: "Convidado", settings: "Personalize a partida", subjectsLabel: "Matérias (escolha uma ou mais)", math: "Matemática", physics: "Física", chemistry: "Química", biology: "Biologia", philosophy: "Filosofia", history: "História", geography: "Geografia", pe: "Educação Física", interdisciplinary: "Interdisciplinar", timeSetting: "Tempo por pergunta:", seconds: "s", localOnly: "Perfil salvo somente neste dispositivo. Use um apelido, sem dados pessoais.", localNote: "A conta remota precisa estar publicada com banco de dados para sincronizar entre dispositivos.", guestName: "Convidado", chooseSubject: "Selecione pelo menos uma matéria.", tooFewQuestions: "As matérias selecionadas precisam ter ao menos 20 questões fáceis, 15 médias e 10 difíceis. Selecione mais matérias.",
       questionSourceAuthor: "Questão autoral · não aplicada no ENEM", questionSourceYear: "Questão autoral · referência de {year}",
+      emailLabel: "E-mail da conta", passwordLabel: "Senha (mínimo 10 caracteres)", displayNameLabel: "Nome para aparecer no ranking", authLogin: "Entrar", authRegister: "Criar conta", switchToRegister: "Ainda não tem conta? Criar", switchToLogin: "Já tem conta? Entrar", logout: "Sair da conta", accountReady: "Conta conectada. Seus resultados são sincronizados pelo servidor.", apiUnavailable: "Login remoto ainda não configurado. Publique a API e configure a URL antes de criar conta.", authFailed: "Não foi possível concluir o acesso.",
+      loginRequired: "Entre em uma conta ou escolha Convidado para iniciar.",
+      loginPrompt: "Entre com seu e-mail e senha ou crie uma conta para sincronizar o ranking.",
+      phasePoolError: "A seleção tem {available} questões {difficulty}; são necessárias {required}. Marque mais matérias.",
+      scoreSaveFailed: "Não foi possível salvar sua pontuação no servidor. Verifique a conexão e tente novamente.", rankingLoadFailed: "Não foi possível carregar o ranking remoto.", clearOwnScore: "Excluir apenas seu próprio resultado do ranking?",
       accessHelp: "No modo perfil, cada apelido pode ter um único resultado no ranking deste navegador. O modo convidado não salva pontuação.",
       guestResult: "Partida de convidado: resultado não salvo no ranking.",
       mainNav: "Navegação principal", artLabel: "Ilustração abstrata de uma pista de movimento", roundLabel: "· PERGUNTA", progressLabel: "Progresso do desafio",
@@ -77,17 +87,22 @@ import { questionBank } from "./question-bank.js";
       physical: "Desafio físico opcional", physicalOpen: "Desafio aberto", addPhysical: "Ver desafio opcional", complete: "Marcar como feito", completed: "Desafio concluído", movementPrompt: "O desafio aparece depois da sua resposta.", movementIntro: "O desafio é opcional: faça apenas se for confortável e seguro para você. Também vale descansar ou adaptar o movimento.",
       end: "FIM DE JOGO", player: "ATLETA", youLeftMark: "Você deixou<br /><span>sua marca.</span>", resultSub: "Boa leitura de jogo. Cada resposta foi um passo a mais.", playAgain: "Jogar de novo", seeRanking: "Ver ranking", yourScore: "SUA PONTUAÇÃO", pointsUnit: "pontos", correct: "acertos", errors: "erros", accuracy: "aproveitamento", bestCombo: "maior combo", position: "posição", participation: "PARTICIPAÇÃO<br />ATIVA", resultNoteTitle: "O que vale é continuar em movimento.", resultNote: "Compare sua estratégia com a turma e tente bater sua marca na próxima.",
       board: "PLACAR DA TURMA", leaderboardTitle: "Quem está<br /><span>no ritmo?</span>", live: "AO VIVO", bestMarks: "melhores marcas", clear: "Limpar ranking", emptyTitle: "A pista ainda está livre.", emptyText: "Jogue uma partida para registrar a primeira marca neste navegador.", rankingInfo: "A pontuação combina acertos, agilidade e participação no desafio opcional.", enter: "Entrar na disputa", you: "você", first: "1º LUGAR", second: "2º LUGAR", third: "3º LUGAR", pts: "pts",
-      manual: "MANUAL DE BORDO", howTitle: "Jogar é simples.<br /><span>Ficar parado, não.</span>", howDescription: "Uma mistura curta de pensamento, movimento opcional e vontade saudável de superar sua própria marca.", read: "Leia a jogada", readText: "Cada rodada traz um problema de Matemática ou uma situação de Educação Física.", answerInTime: "Responda no tempo", answerText: "Escolha entre 10 e 35 segundos por pergunta. Você também pode jogar sentado ou apenas responder.", move: "Entre em movimento", moveText: "O bônus é opcional. Adapte ou ignore qualquer movimento e respeite seus limites.", readyTitle: "Pronto para a largada?", readyText: "Chame sua equipe e veja quem chega mais longe.", letsGo: "Vamos nessa", footer: "APRENDER NO RITMO",
+      manual: "MANUAL DE BORDO", howTitle: "Jogar é simples.<br /><span>Ficar parado, não.</span>", howDescription: "Três fases progressivas: 20 questões fáceis, 15 médias e 10 difíceis, com movimento opcional.", read: "Leia a jogada", readText: "As perguntas são organizadas por matéria e avançam por três níveis de dificuldade.", answerInTime: "Responda no tempo", answerText: "A partida tem 20 questões fáceis, 15 médias e 10 difíceis. O tempo por questão é configurável.", move: "Entre em movimento", moveText: "O bônus é opcional. Adapte ou ignore qualquer movimento e respeite seus limites.", readyTitle: "Pronto para a largada?", readyText: "Chame sua equipe e veja quem chega mais longe.", letsGo: "Vamos nessa", footer: "APRENDER NO RITMO",
       noName: "Digite um nome ou apelido para começar.", expired: "TEMPO ESGOTADO! A resposta correta era", incorrect: "INCORRETO! A resposta correta era", correctAnswer: "CORRETO!", combo: "🔥 COMBO! +50 pontos.", super: "🔥🔥 SUPER COMBO! +100 pontos.",
       newRecord: "Você é um campeão!", excellent: "Excelente desempenho!", good: "Bom trabalho!", keepGoing: "Continue aprendendo!",
       emptyRanking: "O ranking já está vazio.", clearConfirm: "Tem certeza de que deseja limpar o ranking salvo neste navegador?", cleared: "Ranking limpo.", clearFailed: "Não foi possível limpar os dados deste navegador.", saveFailed: "Não foi possível salvar neste navegador. O resultado será exibido sem ser registrado no ranking.", bonusToast: "Bônus opcional: +25 pontos!", rankSuffix: "º lugar", errorsStorage: "O armazenamento local não está disponível neste navegador. O jogo continua, mas o ranking não poderá ser salvo."
     },
     es: {
       skip: "Saltar al contenido", start: "Inicio", how: "Cómo jugar", ranking: "Clasificación",
-      of: "de",
-      game: "Partida", difficulty_facil: "FÁCIL", difficulty_medio: "MEDIA", difficulty_dificil: "DIFÍCIL",
-      login: "Acceder / crear perfil", guest: "Invitado/a", settings: "Personaliza la partida", difficultyLabel: "Dificultad", mixed: "Variada (todas)", easy: "Fácil", medium: "Media", hard: "Difícil", subjectsLabel: "Materias (elige una o más)", math: "Matemáticas", physics: "Física", chemistry: "Química", biology: "Biología", philosophy: "Filosofía", history: "Historia", geography: "Geografía", pe: "Educación Física", interdisciplinary: "Interdisciplinar", timeSetting: "Tiempo por pregunta:", seconds: "s", localOnly: "Perfil guardado solo en este dispositivo. Usa un apodo, sin datos personales.", localNote: "Perfil local de presentación: no usa contraseña ni cuenta en línea y no se sincroniza entre dispositivos.", guestName: "Invitado/a", chooseSubject: "Selecciona al menos una materia.", tooFewQuestions: "No hay preguntas para esta combinación. Selecciona otra materia o dificultad.",
+      of: "de", phaseProgress: "PROGRESO DE LA FASE",
+      game: "Partida", difficulty_facil: "FÁCIL", difficulty_medio: "MEDIA", difficulty_dificil: "DIFÍCIL", phaseEasy: "FASE 1 · FÁCIL", phaseMedium: "FASE 2 · MEDIA", phaseHard: "FASE 3 · DIFÍCIL", nextPhase: "Terminar fase y avanzar", phaseComplete: "¡Fase {number} terminada! Siguiente: {label}.",
+      login: "Acceder / crear perfil", guest: "Invitado/a", settings: "Personaliza la partida", subjectsLabel: "Materias (elige una o más)", math: "Matemáticas", physics: "Física", chemistry: "Química", biology: "Biología", philosophy: "Filosofía", history: "Historia", geography: "Geografía", pe: "Educación Física", interdisciplinary: "Interdisciplinar", timeSetting: "Tiempo por pregunta:", seconds: "s", localOnly: "Perfil guardado solo en este dispositivo. Usa un apodo, sin datos personales.", localNote: "La cuenta remota necesita una API y una base de datos publicadas para sincronizar entre dispositivos.", guestName: "Invitado/a", chooseSubject: "Selecciona al menos una materia.", tooFewQuestions: "Las materias seleccionadas necesitan al menos 20 preguntas fáciles, 15 medias y 10 difíciles. Selecciona más materias.",
       questionSourceAuthor: "Pregunta original · no aplicada en el ENEM", questionSourceYear: "Pregunta original · referencia de {year}",
+      emailLabel: "Correo electrónico", passwordLabel: "Contraseña (mínimo 10 caracteres)", displayNameLabel: "Nombre visible en la clasificación", authLogin: "Entrar", authRegister: "Crear cuenta", switchToRegister: "¿No tienes cuenta? Crear", switchToLogin: "¿Ya tienes cuenta? Entrar", logout: "Salir de la cuenta", accountReady: "Cuenta conectada. Tus resultados se sincronizan en el servidor.", apiUnavailable: "El acceso remoto aún no está configurado. Publica la API y configura su URL antes de crear una cuenta.", authFailed: "No se pudo completar el acceso.",
+      loginRequired: "Inicia sesión o elige Invitado para comenzar.",
+      loginPrompt: "Inicia sesión con tu correo y contraseña o crea una cuenta para sincronizar la clasificación.",
+      phasePoolError: "La selección tiene {available} preguntas {difficulty}; se necesitan {required}. Selecciona más materias.",
+      scoreSaveFailed: "No se pudo guardar tu puntuación en el servidor. Comprueba la conexión e inténtalo de nuevo.", rankingLoadFailed: "No se pudo cargar la clasificación remota.", clearOwnScore: "¿Eliminar solo tu propio resultado de la clasificación?",
       accessHelp: "En modo perfil, cada apodo tiene un único resultado en la clasificación de este navegador. El modo invitado no guarda puntuaciones.",
       guestResult: "Partida como invitado/a: el resultado no se guarda en la clasificación.",
       mainNav: "Navegación principal", artLabel: "Ilustración abstracta de una pista de movimiento", roundLabel: "· PREGUNTA", progressLabel: "Progreso del desafío",
@@ -100,7 +115,7 @@ import { questionBank } from "./question-bank.js";
       physical: "Desafío físico opcional", physicalOpen: "Desafío abierto", addPhysical: "Ver desafío opcional", complete: "Marcar como realizado", completed: "Desafío completado", movementPrompt: "El desafío aparece después de tu respuesta.", movementIntro: "El desafío es opcional: hazlo solo si te resulta cómodo y seguro. También puedes descansar o adaptar el movimiento.",
       end: "FIN DEL JUEGO", player: "JUGADOR/A", youLeftMark: "Dejaste<br /><span>tu marca.</span>", resultSub: "Buena estrategia. Cada respuesta fue un paso más.", playAgain: "Jugar de nuevo", seeRanking: "Ver clasificación", yourScore: "TU PUNTUACIÓN", pointsUnit: "pontos", correct: "aciertos", errors: "errores", accuracy: "precisión", bestCombo: "mejor racha", position: "posición", participation: "PARTICIPACIÓN<br />ACTIVA", resultNoteTitle: "Lo importante es seguir en movimiento.", resultNote: "Compara tu estrategia con el grupo e intenta superar tu marca la próxima vez.",
       board: "CLASIFICACIÓN DEL GRUPO", leaderboardTitle: "¿Quién lleva<br /><span>el ritmo?</span>", live: "ACTUALIZADO", bestMarks: "mejores marcas", clear: "Borrar clasificación", emptyTitle: "La pista aún está libre.", emptyText: "Juega una partida para registrar la primera marca en este navegador.", rankingInfo: "La puntuación combina aciertos, rapidez y participación en el desafío opcional.", enter: "Participar", you: "tú", first: "1.º LUGAR", second: "2.º LUGAR", third: "3.º LUGAR", pts: "pts",
-      manual: "GUÍA DEL JUEGO", howTitle: "Jugar es sencillo.<br /><span>¡Y puedes moverte!</span>", howDescription: "Una combinación breve de pensamiento, movimiento opcional y ganas de superar tu propia marca.", read: "Lee la jugada", readText: "Cada ronda presenta un problema de Matemáticas o una situación de Educação Física.", answerInTime: "Responde a tiempo", answerText: "Elige entre 10 y 35 segundos por pregunta. También puedes jugar sentado ou simplemente responder.", move: "Ponte en movimiento", moveText: "El bono es opcional. Adapta ou ignora qualquer movimento e respeta tus limites.", readyTitle: "¿Listo para empezar?", readyText: "Invita a tu equipo y descubre quién llega más lejos.", letsGo: "¡Vamos!", footer: "APRENDER EN MOVIMIENTO",
+      manual: "GUÍA DEL JUEGO", howTitle: "Jugar es sencillo.<br /><span>¡Y puedes moverte!</span>", howDescription: "Tres fases progresivas: 20 preguntas fáciles, 15 medias y 10 difíciles, con movimiento opcional.", read: "Lee la jugada", readText: "Las preguntas se organizan por materia y avanzan en tres niveles de dificultad.", answerInTime: "Responde a tiempo", answerText: "La partida tiene 20 preguntas fáciles, 15 medias y 10 difíciles. El tiempo por pregunta es configurable.", move: "Ponte en movimiento", moveText: "El bono es opcional. Adapta o ignora cualquier movimiento y respeta tus límites.", readyTitle: "¿Listo para empezar?", readyText: "Invita a tu equipo y descubre quién llega más lejos.", letsGo: "¡Vamos!", footer: "APRENDER EN MOVIMIENTO",
       noName: "Escribe un nombre o apodo para empezar.", expired: "¡SE ACABÓ EL TIEMPO! La respuesta correcta era", incorrect: "¡INCORRECTO! La respuesta correcta era", correctAnswer: "¡CORRECTO!", combo: "🔥 ¡RACHA! +50 puntos.", super: "🔥🔥 ¡SÚPER RACHA! +100 puntos.",
       newRecord: "¡Eres un/a campeón/a!", excellent: "¡Excelente resultado!", good: "¡Buen trabajo!", keepGoing: "¡Sigue aprendiendo!",
       emptyRanking: "La clasificación ya está vacía.", clearConfirm: "¿Seguro que quieres borrar la clasificación guardada en este navegador?", cleared: "Clasificación borrada.", clearFailed: "No se pudieron borrar los datos de este navegador.", saveFailed: "No se pudo guardar en este navegador. El resultado se mostrará sin registrarse en la clasificación.", bonusToast: "Bono opcional: ¡+25 puntos!", rankSuffix: ".º lugar", errorsStorage: "El almacenamiento local no está disponible en este navegador. Puedes jugar, pero no se guardará la clasificación."
@@ -124,6 +139,8 @@ import { questionBank } from "./question-bank.js";
     player: "",
     playerId: null,
     playerMode: "profile",
+    accountAction: "login",
+    authUser: null,
     guestSeen: [],
     gameFinished: false,
     question: 0,
@@ -151,6 +168,26 @@ import { questionBank } from "./question-bank.js";
 
   const $ = (selector) => document.querySelector(selector);
   const $$ = (selector) => [...document.querySelectorAll(selector)];
+  const apiBase = (window.DESAFIO_API_BASE || document.querySelector("meta[name='api-base']")?.content || "").replace(/\/+$/, "");
+
+  async function apiRequest(path, options = {}) {
+    if (!apiBase) throw new Error(t("apiUnavailable"));
+    const response = await fetch(`${apiBase}/api${path}`, {
+      ...options,
+      credentials: "include",
+      headers: { ...(options.body ? { "Content-Type": "application/json" } : {}), ...options.headers }
+    });
+    if (response.status === 204) return null;
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(payload.error || t("authFailed"));
+    return payload;
+  }
+
+  function setAccountStatus(message, isError = false) {
+    const status = $("#account-status");
+    status.textContent = message;
+    status.classList.toggle("is-error", isError);
+  }
 
   function t(key) {
     return translations[state.language][key];
@@ -158,6 +195,23 @@ import { questionBank } from "./question-bank.js";
 
   function gameLength() {
     return state.gameQuestions.length;
+  }
+
+  function phaseForQuestion(questionIndex) {
+    let start = 0;
+    for (let index = 0; index < phasePlan.length; index += 1) {
+      const phase = phasePlan[index];
+      if (questionIndex < start + phase.count) return { ...phase, index, start };
+      start += phase.count;
+    }
+    const last = phasePlan.at(-1);
+    return { ...last, index: phasePlan.length - 1, start: gameLength() - last.count };
+  }
+
+  function nextQuestionLabel() {
+    if (state.question === gameLength() - 1) return t("result");
+    const phase = phaseForQuestion(state.question);
+    return state.question === phase.start + phase.count - 1 ? t("nextPhase") : t("next");
   }
 
   function setQuestionSource(question) {
@@ -194,22 +248,25 @@ import { questionBank } from "./question-bank.js";
     $("#start-title").innerHTML = es ? "Piensa.<br /><span>Muévete.</span><br />Supérate." : "Pense.<br /><span>Mexa.</span><br />Supere.";
     $(".hero-lede").textContent = t("intro");
     $(".hero-copy > .eyebrow").innerHTML = `<span class="eyebrow-line"></span> ${es ? "MATEMÁTICAS + EDUCACIÓN FÍSICA" : "MATEMÁTICA + EDUCAÇÃO FÍSICA"}`;
-    $(".field-label").textContent = t("nameLabel");
+    $("label[for='account-email']").textContent = t("emailLabel");
+    $("label[for='account-password']").textContent = t("passwordLabel");
+    $("label[for='account-display-name']").textContent = t("displayNameLabel");
+    $("label[for='player-name']").textContent = t("nameLabel");
     $("#player-name").placeholder = t("namePlaceholder");
     $("#name-hint").textContent = t("nameHint");
-    $("#login-mode").textContent = t("login");
+    $("#login-mode").textContent = es ? "Usar cuenta" : "Usar conta";
     $("#guest-mode").textContent = t("guest");
     $("#local-login-note").textContent = t("localNote");
+    $("#auth-submit").textContent = t(state.accountAction === "register" ? "authRegister" : "authLogin");
+    $("#auth-switch").textContent = t(state.accountAction === "register" ? "switchToLogin" : "switchToRegister");
+    $("#auth-logout").textContent = t("logout");
     $(".game-settings h2").textContent = t("settings");
-    $("label[for='difficulty-select']").textContent = t("difficultyLabel");
-    const difficultyLabels = [t("mixed"), t("easy"), t("medium"), t("hard")];
-    [...$("#difficulty-select").options].forEach((option, index) => { option.textContent = difficultyLabels[index]; });
     $(".subject-picker legend").textContent = t("subjectsLabel");
     const subjectLabels = { matematica: t("math"), fisica: t("physics"), quimica: t("chemistry"), biologia: t("biology"), filosofia: t("philosophy"), historia: t("history"), geografia: t("geography"), "educacao-fisica": t("pe"), interdisciplinar: t("interdisciplinary") };
     [...document.querySelectorAll(".subject-picker label")].forEach((label) => { label.lastChild.textContent = ` ${subjectLabels[label.querySelector("input").value]}`; });
     $(".time-setting").childNodes[0].textContent = t("timeSetting");
     $("#answer-time-value").textContent = `${$("#answer-time").value} ${t("seconds")}`;
-    $("#local-login-note").setAttribute("aria-label", t("accessHelp"));
+    $("#local-login-note").setAttribute("aria-label", t("apiUnavailable"));
     $("#start-game").innerHTML = `${t("startButton")} <span aria-hidden="true">→</span>`;
     $(".start-footer .text-button").innerHTML = `${t("howLink")} <span aria-hidden="true">↗</span>`;
     $(".start-footer p").innerHTML = `<span class="status-dot"></span> ${t("ready")}`;
@@ -223,14 +280,15 @@ import { questionBank } from "./question-bank.js";
     $("#game-player").textContent = state.player || (es ? "atleta" : "atleta");
     $(".score-pill span").textContent = t("points");
     $(".streak-pill").innerHTML = `<span aria-hidden="true">✦</span> <strong id="streak-value">${state.streak}</strong> ${es ? "racha" : "sequência"}`;
-    $(".progress-meta span:first-child").textContent = t("progress");
+    $(".progress-meta span:first-child").textContent = t("phaseProgress");
     $("#progress-label").textContent = `${state.question + 1} ${t("of")} ${gameLength() || 10}`;
+    $("#round-total").textContent = gameLength() || 10;
     $("#progress-track").setAttribute("aria-valuemax", String(gameLength() || 10));
     $("#progress-track").setAttribute("aria-label", es ? "Progreso del desafío" : "Progresso do desafio");
     $(".progress-wrap").setAttribute("aria-label", t("progressLabel"));
     $("#options").setAttribute("aria-label", t("options"));
     $(".question-card").setAttribute("aria-label", es ? "Pregunta del juego" : "Pergunta do jogo");
-    $(".progress-meta span:first-child").textContent = t("progress");
+    $(".progress-meta span:first-child").textContent = t("phaseProgress");
     $("#physical-panel").setAttribute("aria-label", t("physical"));
     $(".side-label").innerHTML = `<span class="side-icon">↗</span> ${es ? "BONO DE MOVIMIENTO" : "BÔNUS DE MOVIMENTO"}`;
     $(".side-challenge h3").textContent = es ? "Tu cuerpo también responde." : "Seu corpo também responde.";
@@ -302,45 +360,116 @@ import { questionBank } from "./question-bank.js";
     return String(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().replace(/\s+/g, " ").toLocaleLowerCase();
   }
 
-  function readProfiles() {
-    try {
-      const profiles = JSON.parse(localStorage.getItem("desafio-perfis") || "[]");
-      return Array.isArray(profiles) ? profiles.filter((profile) => profile && typeof profile.id === "string" && typeof profile.name === "string") : [];
-    } catch { return []; }
-  }
-
   function choosePlayerMode(mode) {
     state.playerMode = mode;
     $("#login-mode").classList.toggle("is-active", mode === "profile");
     $("#guest-mode").classList.toggle("is-active", mode === "guest");
     $("#login-mode").setAttribute("aria-pressed", String(mode === "profile"));
     $("#guest-mode").setAttribute("aria-pressed", String(mode === "guest"));
+    $("#account-panel").hidden = mode === "guest";
+    $("#guest-name-row").hidden = mode !== "guest";
     $("#player-name").value = mode === "guest" ? "" : $("#player-name").value;
-    $("#player-name").placeholder = mode === "guest" ? t("guestName") : t("namePlaceholder");
-    $("#player-name").setAttribute("aria-label", mode === "guest" ? t("guestName") : t("nameLabel"));
-    $("#name-hint").textContent = mode === "guest" ? t("accessHelp") : t("nameHint");
+    $("#player-name").placeholder = t("namePlaceholder");
+    $("#player-name").setAttribute("aria-label", t("nameLabel"));
+    $("#name-hint").textContent = mode === "guest" ? t("guestName") : state.authUser ? t("accountReady") : t("loginPrompt");
     $("#local-login-note").hidden = mode === "guest";
+    $("#start-game").hidden = mode === "profile" && !state.authUser;
+    $("#start-game").disabled = mode === "profile" && !state.authUser;
+    $("#auth-submit").hidden = Boolean(state.authUser);
+    $("#auth-switch").hidden = Boolean(state.authUser);
+    $("#auth-logout").hidden = !state.authUser;
+    $("#account-register-fields").hidden = state.accountAction !== "register";
+    if (state.authUser && mode === "profile") {
+      state.player = state.authUser.displayName;
+      state.playerId = state.authUser.id;
+      $("#game-player").textContent = state.player;
+      setAccountStatus(`${t("accountReady")} ${state.authUser.email}`);
+    }
+  }
+
+  async function submitAccountForm() {
+    const email = $("#account-email").value.trim();
+    const password = $("#account-password").value;
+    const displayName = $("#account-display-name").value.trim();
+    setAccountStatus(t("authLogin"));
+    try {
+      const path = state.accountAction === "register" ? "/auth/register" : "/auth/login";
+      const payload = await apiRequest(path, {
+        method: "POST",
+        body: JSON.stringify({ email, password, displayName })
+      });
+      state.authUser = payload.user;
+      state.player = payload.user.displayName;
+      state.playerId = payload.user.id;
+      choosePlayerMode("profile");
+      $("#account-password").value = "";
+      setAccountStatus(`${t("accountReady")} ${payload.user.email}`);
+    } catch (error) {
+      setAccountStatus(error instanceof Error ? error.message : t("authFailed"), true);
+    }
+  }
+
+  async function restoreAccountSession() {
+    if (!apiBase) {
+      setAccountStatus(t("apiUnavailable"), true);
+      return;
+    }
+    try {
+      const payload = await apiRequest("/auth/me");
+      state.authUser = payload.user;
+      state.player = payload.user.displayName;
+      state.playerId = payload.user.id;
+      choosePlayerMode("profile");
+    } catch (error) {
+      if (error instanceof Error && error.message !== t("apiUnavailable")) {
+        setAccountStatus(t("loginPrompt"));
+        return;
+      }
+      setAccountStatus(t("apiUnavailable"), true);
+    }
+  }
+
+  async function logoutAccount() {
+    try {
+      await apiRequest("/auth/logout", { method: "POST" });
+    } catch (error) {
+      setAccountStatus(error instanceof Error ? error.message : t("authFailed"), true);
+    }
+    state.authUser = null;
+    state.player = "";
+    state.playerId = null;
+    choosePlayerMode("profile");
   }
 
   function buildGameQuestions() {
+    state.gameQuestions = [];
     const languageIndex = state.language === "es" ? 1 : 0;
     const availableSubjects = [...document.querySelectorAll("input[name='subject']:checked")].map((input) => input.value);
-    const difficulty = $("#difficulty-select").value;
-    const selected = questionPairs
-      .map((pair) => pair[languageIndex])
-      .filter((question) => availableSubjects.includes(question.subject) && (difficulty === "mixed" || question.difficulty === difficulty));
     const historyKey = state.playerId ? `desafio-vistos:${state.playerId}` : null;
     let seen = state.playerId ? [] : state.guestSeen;
     if (historyKey) {
       try { seen = JSON.parse(localStorage.getItem(historyKey) || "[]"); } catch { seen = []; }
     }
-    const unseen = selected.filter((question) => !seen.includes(question.id));
-    const candidates = unseen.length >= Math.min(10, selected.length)
-      ? shuffle(unseen)
-      : [...shuffle(unseen), ...shuffle(selected.filter((question) => seen.includes(question.id)))];
-    const deck = candidates.slice(0, Math.min(10, candidates.length));
+    const usedIds = new Set();
+    const deck = [];
+    const allQuestions = questionPairs.map((pair) => pair[languageIndex]);
+    for (let phaseIndex = 0; phaseIndex < phasePlan.length; phaseIndex += 1) {
+      const phase = phasePlan[phaseIndex];
+      const pool = allQuestions.filter((question) => availableSubjects.includes(question.subject) && question.difficulty === phase.difficulty);
+      const unseen = shuffle(pool.filter((question) => !seen.includes(question.id)));
+      const previouslySeen = shuffle(pool.filter((question) => seen.includes(question.id)));
+      const candidates = [...unseen, ...previouslySeen].filter((question) => !usedIds.has(question.id));
+      if (candidates.length < phase.count) {
+        state.questionPoolError = { difficulty: phase.difficulty, required: phase.count, available: candidates.length };
+        return [];
+      }
+      candidates.slice(0, phase.count).forEach((question) => {
+        usedIds.add(question.id);
+        deck.push({ ...question, phaseIndex });
+      });
+    }
     state.historyKey = historyKey;
-    state.historySeen = unseen.length ? seen : [];
+    state.historySeen = seen;
     state.gameQuestions = deck.map((question, index) => {
       const localized = { ...question };
       if (index === 1 || index === 5 || index === 8) {
@@ -349,7 +478,7 @@ import { questionBank } from "./question-bank.js";
       }
       return localized;
     });
-    const nextSeen = [...state.historySeen, ...deck.map((question) => question.id)];
+    const nextSeen = [...new Set([...state.historySeen, ...deck.map((question) => question.id)])];
     if (historyKey) {
       try { localStorage.setItem(historyKey, JSON.stringify(nextSeen)); } catch { /* Evitar repetição é uma melhoria local, não impede jogar. */ }
     } else state.guestSeen = nextSeen;
@@ -362,15 +491,6 @@ import { questionBank } from "./question-bank.js";
     return { points, time: Number($("#answer-time").value) || 20 };
   }
 
-  function questionPool() {
-    const languageIndex = state.language === "es" ? 1 : 0;
-    const subjects = [...document.querySelectorAll("input[name='subject']:checked")].map((input) => input.value);
-    const difficulty = $("#difficulty-select").value;
-    return questionPairs
-      .map((pair) => pair[languageIndex])
-      .filter((question) => subjects.includes(question.subject) && (difficulty === "mixed" || question.difficulty === difficulty));
-  }
-
   function questionPairById(id) {
     return questionPairs.find((pair) => pair[0].id === id);
   }
@@ -379,14 +499,23 @@ import { questionBank } from "./question-bank.js";
     const oldQuestion = state.gameQuestions[state.question];
     const pair = questionPairById(oldQuestion.id);
     if (!pair) return;
-    const localized = { ...pair[state.language === "es" ? 1 : 0] };
+    const localized = { ...pair[state.language === "es" ? 1 : 0], phaseIndex: oldQuestion.phaseIndex };
     const challengeIndex = state.question === 1 ? 0 : state.question === 5 ? 1 : state.question === 8 ? 2 : -1;
     if (challengeIndex >= 0) {
       localized.challenge = (state.language === "es" ? physicalChallengesEs : physicalChallenges)[challengeIndex];
     }
     state.gameQuestions[state.question] = localized;
+    const phase = phaseForQuestion(state.question);
     $("#question-category").textContent = localized.category;
     setQuestionSource(localized);
+    $("#round-number").textContent = String(state.question - phase.start + 1).padStart(2, "0");
+    $("#round-total").textContent = phase.count;
+    $("#phase-name").textContent = t(phase.label);
+    $("#question-index").textContent = `${t("question")} ${String(state.question - phase.start + 1).padStart(2, "0")} · ${{ facil: 100, medio: 150, dificil: 200 }[localized.difficulty]} ${t("points")}`;
+    $("#progress-label").textContent = `${state.question - phase.start + 1} ${t("of")} ${phase.count}`;
+    $("#progress-fill").style.width = `${((state.question - phase.start + 1) / phase.count) * 100}%`;
+    $("#progress-track").setAttribute("aria-valuemax", String(phase.count));
+    $("#progress-track").setAttribute("aria-valuenow", String(state.question - phase.start + 1));
     $("#question-text").textContent = localized.text;
     const options = $("#options");
     options.replaceChildren();
@@ -416,9 +545,7 @@ import { questionBank } from "./question-bank.js";
           ? `⏰ ${t("expired")} ${localized.options[localized.correct]}. ${localized.explanation}`
           : `❌ ${t("incorrect")} ${localized.options[localized.correct]}. ${localized.explanation}`;
     }
-            $("#phase-name").textContent = t(`difficulty_${state.gameQuestions[state.question].difficulty}`);
-            $("#question-index").textContent = `${t("question")} ${String(state.question + 1).padStart(2, "0")} · ${{ facil: 100, medio: 150, dificil: 200 }[state.gameQuestions[state.question].difficulty]} ${t("points")}`;
-            $("#next-question").innerHTML = state.question === gameLength() - 1 ? `${t("result")} <span aria-hidden="true">↗</span>` : `${t("next")} <span aria-hidden="true">→</span>`;
+            $("#next-question").innerHTML = `${nextQuestionLabel()} <span aria-hidden="true">${state.question === gameLength() - 1 ? "↗" : "→"}</span>`;
             $("#physical-toggle").innerHTML = state.physicalOpen ? `${t("physicalOpen")} −` : `${t("addPhysical")} <span aria-hidden="true">+</span>`;
             $("#complete-physical").innerHTML = `${t(state.bonus ? "completed" : "complete")} <span aria-hidden="true">✓</span>`;
   }
@@ -452,13 +579,8 @@ import { questionBank } from "./question-bank.js";
   function startGame() {
     const input = $("#player-name");
     const name = input.value.trim().replace(/\s+/g, " ").slice(0, 20);
-    if (state.playerMode === "profile" && !name) {
-      input.focus();
-      $("#name-hint").textContent = t("noName");
-      $("#name-hint").style.color = "var(--coral-dark)";
-      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        input.animate([{ transform: "translateX(-4px)" }, { transform: "translateX(4px)" }, { transform: "translateX(0)" }], { duration: 220 });
-      }
+    if (state.playerMode === "profile" && !state.authUser) {
+      showToast(t("loginRequired"));
       return;
     }
     const selectedSubjects = document.querySelectorAll("input[name='subject']:checked");
@@ -470,13 +592,8 @@ import { questionBank } from "./question-bank.js";
       state.player = name || t("guestName");
       state.playerId = null;
     } else {
-      const profiles = readProfiles();
-      const existing = profiles.find((profile) => normalizeName(profile.name) === normalizeName(name));
-      const profile = existing || { id: `profile-${normalizeName(name)}`, name };
-      if (!existing) profiles.push(profile);
-      try { localStorage.setItem("desafio-perfis", JSON.stringify(profiles)); } catch { /* O perfil pode ser usado nesta sessão mesmo sem armazenamento. */ }
-      state.player = profile.name;
-      state.playerId = profile.id;
+      state.player = state.authUser.displayName;
+      state.playerId = state.authUser.id;
     }
     state.question = 0;
     state.gameFinished = false;
@@ -487,7 +604,10 @@ import { questionBank } from "./question-bank.js";
     state.answerTimes = [];
     state.gameQuestions = buildGameQuestions();
     if (!state.gameQuestions.length) {
-      showToast(t("tooFewQuestions"));
+      const poolError = state.questionPoolError;
+      showToast(poolError
+        ? t("phasePoolError").replace("{available}", String(poolError.available)).replace("{required}", String(poolError.required)).replace("{difficulty}", t(`difficulty_${poolError.difficulty}`).toLowerCase())
+        : t("tooFewQuestions"));
       return;
     }
     $("#game-player").textContent = state.player;
@@ -509,24 +629,27 @@ import { questionBank } from "./question-bank.js";
     }
     state.gameQuestions[state.question] = localized;
     const question = localized;
-    const phase = currentPhase();
-    $("#round-number").textContent = String(state.question + 1).padStart(2, "0");
-    $("#phase-name").textContent = t(`difficulty_${question.difficulty}`);
+    const scoringPhase = currentPhase();
+    const phase = phaseForQuestion(state.question);
+    $("#round-number").textContent = String(state.question - phase.start + 1).padStart(2, "0");
+    $("#round-total").textContent = phase.count;
+    $("#phase-name").textContent = t(phase.label);
     $("#round-label").textContent = t("roundLabel");
-    $("#progress-label").textContent = `${state.question + 1} ${t("of")} ${gameLength()}`;
-    $("#progress-fill").style.width = `${((state.question + 1) / gameLength()) * 100}%`;
-    $("#progress-track").setAttribute("aria-valuemax", String(gameLength()));
-    $("#progress-track").setAttribute("aria-valuenow", String(state.question + 1));
+    $(".progress-meta span:first-child").textContent = t("phaseProgress");
+    $("#progress-label").textContent = `${state.question - phase.start + 1} ${t("of")} ${phase.count}`;
+    $("#progress-fill").style.width = `${((state.question - phase.start + 1) / phase.count) * 100}%`;
+    $("#progress-track").setAttribute("aria-valuemax", String(phase.count));
+    $("#progress-track").setAttribute("aria-valuenow", String(state.question - phase.start + 1));
     $("#question-category").textContent = question.category;
     setQuestionSource(question);
-    $("#question-index").textContent = `${t("question")} ${String(state.question + 1).padStart(2, "0")} · ${phase.points} ${t("points")}`;
+    $("#question-index").textContent = `${t("question")} ${String(state.question - phase.start + 1).padStart(2, "0")} · ${scoringPhase.points} ${t("points")}`;
     $("#question-text").textContent = question.text;
     $("#score-value").textContent = String(state.score).padStart(3, "0");
     $("#streak-value").textContent = state.streak;
     $("#answer-feedback").textContent = "";
     $("#answer-feedback").className = "answer-feedback";
     $("#next-question").disabled = true;
-    $("#next-question").innerHTML = state.question === gameLength() - 1 ? `${t("result")} <span aria-hidden="true">↗</span>` : `${t("next")} <span aria-hidden="true">→</span>`;
+    $("#next-question").innerHTML = `${nextQuestionLabel()} <span aria-hidden="true">${state.question === gameLength() - 1 ? "↗" : "→"}</span>`;
     $("#physical-toggle").disabled = true;
     $("#physical-toggle").innerHTML = `${t("addPhysical")} <span aria-hidden="true">+</span>`;
     $("#complete-physical").disabled = true;
@@ -632,8 +755,13 @@ import { questionBank } from "./question-bank.js";
   function nextQuestion() {
     if (!state.answered) return;
     if (state.question === gameLength() - 1) {
-      finishGame();
+      void finishGame();
       return;
+    }
+    const finishedPhase = phaseForQuestion(state.question);
+    if (state.question === finishedPhase.start + finishedPhase.count - 1) {
+      const nextPhase = phasePlan[finishedPhase.index + 1];
+      showToast(t("phaseComplete").replace("{number}", String(finishedPhase.index + 1)).replace("{label}", t(nextPhase.label)));
     }
     state.question += 1;
     renderQuestion();
@@ -668,11 +796,6 @@ import { questionBank } from "./question-bank.js";
     showToast(t("bonusToast"));
   }
 
-  function hasProfileScore(name, profileId) {
-    const key = normalizeName(name);
-    return getRanking().some((record) => normalizeName(record.name) === key && record.id !== profileId);
-  }
-
   let audioContext;
   function playTone(frequency, duration) {
     if (!state.sound) return;
@@ -697,19 +820,20 @@ import { questionBank } from "./question-bank.js";
   }
 
   function resultMessage() {
-    if (state.score >= 1500) return [t("newRecord"), state.language === "es" ? "RITMO<br />CAMPEÓN" : "RITMO<br />DE CAMPEÃO"];
-    if (state.score >= 1000) return [t("excellent"), state.language === "es" ? "GRAN<br />RESULTADO" : "DESEMPENHO<br />EXCELENTE"];
-    if (state.score >= 500) return [t("good"), state.language === "es" ? "BUEN<br />TRABAJO" : "BOM<br />TRABALHO"];
+    if (state.score >= 5500) return [t("newRecord"), state.language === "es" ? "RITMO<br />CAMPEÓN" : "RITMO<br />DE CAMPEÃO"];
+    if (state.score >= 4500) return [t("excellent"), state.language === "es" ? "GRAN<br />RESULTADO" : "DESEMPENHO<br />EXCELENTE"];
+    if (state.score >= 3000) return [t("good"), state.language === "es" ? "BUEN<br />TRABAJO" : "BOM<br />TRABALHO"];
     return [t("keepGoing"), state.language === "es" ? "SIGUE<br />APRENDIENDO" : "CONTINUE<br />EM MOVIMENTO"];
   }
 
-  function finishGame() {
+  async function finishGame() {
     state.gameFinished = true;
     const total = gameLength();
     const percentage = Math.round((state.correct / total) * 100);
-    const record = saveScore();
-    const ranking = getRanking();
-    const rankIndex = ranking.findIndex((item) => item.id === record.id);
+    const record = await saveScore();
+    let ranking = [];
+    try { ranking = await getRanking(); } catch { /* A pontuação local continua sendo apresentada se a rede falhar. */ }
+    const rankIndex = ranking.findIndex((item) => item.id === state.playerId);
     const rank = record.persisted && rankIndex >= 0 ? rankIndex + 1 : null;
     const [message, medal] = resultMessage();
     $("#final-player").textContent = state.player;
@@ -723,7 +847,7 @@ import { questionBank } from "./question-bank.js";
     $("#result-medal b").innerHTML = medal;
     showView("resultado");
     if (state.playerMode === "guest") showToast(t("guestResult"));
-    else if (!record.persisted) showToast(t("saveFailed"));
+    else if (!record.persisted) showToast(t("scoreSaveFailed"));
   }
 
   function readStoredRanking() {
@@ -746,11 +870,23 @@ import { questionBank } from "./question-bank.js";
     }
   }
 
-  function getRanking() {
+  function getLocalRanking() {
     return readStoredRanking().sort((a, b) => b.points - a.points || b.timestamp - a.timestamp).slice(0, 10);
   }
 
-  function saveScore() {
+  function getRanking() {
+    if (apiBase) {
+      return apiRequest("/ranking").then(({ ranking }) => ranking.map((item) => ({
+        ...item,
+        percentage: item.total ? Math.round((item.correct / item.total) * 100) : 0,
+        timestamp: new Date(item.updatedAt).getTime(),
+        persisted: true,
+      })));
+    }
+    return Promise.resolve(getLocalRanking());
+  }
+
+  async function saveScore() {
     const timestamp = Date.now();
     const record = {
       id: `${timestamp}-${Math.random().toString(36).slice(2)}`,
@@ -766,42 +902,37 @@ import { questionBank } from "./question-bank.js";
     };
     if (state.playerMode === "guest") return record;
     try {
-      const stored = readStoredRanking().map(({ persisted, ...savedRecord }) => savedRecord);
-      const profileKey = normalizeName(record.name);
-      const previous = stored.find((item) => normalizeName(item.name) === profileKey);
-      if (previous && previous.points >= record.points) {
-        record.id = previous.id;
-        record.points = previous.points;
-        record.correct = previous.correct;
-        record.total = previous.total || 10;
-        record.percentage = previous.percentage;
-        record.maxStreak = previous.maxStreak;
-        record.timestamp = previous.timestamp;
-      } else if (previous) {
-        stored.splice(stored.indexOf(previous), 1);
-      }
-      const savedRecord = { ...record };
-      delete savedRecord.persisted;
-      stored.push(savedRecord);
-      const sorted = stored.sort((a, b) => b.points - a.points || b.timestamp - a.timestamp).slice(0, 10);
-      localStorage.setItem("desafio-ranking", JSON.stringify(sorted));
+      const { score } = await apiRequest("/scores", {
+        method: "POST",
+        body: JSON.stringify({ points: record.points, correct: record.correct, total: record.total, maxStreak: record.maxStreak })
+      });
+      record.id = score.userId;
+      record.points = score.points;
+      record.correct = score.correct;
+      record.total = score.total;
+      record.maxStreak = score.maxStreak;
+      record.timestamp = new Date(score.updatedAt).getTime();
+      record.percentage = Math.round((score.correct / score.total) * 100);
       record.persisted = true;
-      try {
-        const best = Number(localStorage.getItem("desafio-melhor-pontuacao") || 0);
-        if (state.score > best) localStorage.setItem("desafio-melhor-pontuacao", String(state.score));
-      } catch {
-        // A melhor pontuação é complementar; não invalida a gravação do ranking.
-      }
     } catch {
       record.persisted = false;
     }
     return record;
   }
 
-  function renderRanking() {
+  async function renderRanking() {
     const leaderboard = $("#leaderboard");
     leaderboard.innerHTML = "";
-    const ranking = getRanking();
+    let ranking;
+    try {
+      ranking = await getRanking();
+    } catch {
+      const error = document.createElement("div");
+      error.className = "ranking-empty";
+      error.textContent = t("rankingLoadFailed");
+      leaderboard.replaceChildren(error);
+      return;
+    }
     if (!ranking.length) {
       leaderboard.replaceChildren();
       const empty = document.createElement("div");
@@ -859,6 +990,15 @@ import { questionBank } from "./question-bank.js";
   });
   $("#login-mode").addEventListener("click", () => choosePlayerMode("profile"));
   $("#guest-mode").addEventListener("click", () => choosePlayerMode("guest"));
+  $("#auth-submit").addEventListener("click", submitAccountForm);
+  $("#auth-switch").addEventListener("click", () => {
+    state.accountAction = state.accountAction === "login" ? "register" : "login";
+    $("#account-register-fields").hidden = state.accountAction !== "register";
+    $("#account-password").autocomplete = state.accountAction === "register" ? "new-password" : "current-password";
+    applyLanguage();
+  });
+  $("#auth-logout").addEventListener("click", logoutAccount);
+  $("#account-password").addEventListener("keydown", (event) => { if (event.key === "Enter") submitAccountForm(); });
   $("#answer-time").addEventListener("input", (event) => {
     $("#answer-time-value").textContent = `${event.currentTarget.value} ${t("seconds")}`;
   });
@@ -866,24 +1006,31 @@ import { questionBank } from "./question-bank.js";
   $("#enem-subject").addEventListener("change", renderEnemSources);
   $("#start-game").addEventListener("click", startGame);
   $("#player-name").addEventListener("keydown", (event) => { if (event.key === "Enter") startGame(); });
-  $("#player-name").addEventListener("input", () => {
-    $("#name-hint").textContent = state.playerMode === "guest" ? t("accessHelp") : t("nameHint");
-    $("#name-hint").style.color = "";
-  });
+  $("#player-name").addEventListener("input", () => { $("#name-hint").textContent = t("guestName"); });
   $("#next-question").addEventListener("click", nextQuestion);
   $("#physical-toggle").addEventListener("click", togglePhysical);
   $("#complete-physical").addEventListener("click", completePhysical);
   $("#play-again").addEventListener("click", () => { $("#player-name").value = state.player; showView("inicio"); startGame(); });
-  $("#clear-ranking").addEventListener("click", () => {
-    if (!getRanking().length) {
+  $("#clear-ranking").addEventListener("click", async () => {
+    if (apiBase && !state.authUser) {
+      showToast(t("loginRequired"));
+      return;
+    }
+    let ranking = [];
+    try { ranking = await getRanking(); } catch { showToast(t("rankingLoadFailed")); return; }
+    if (!ranking.length) {
       showToast(t("emptyRanking"));
       return;
     }
-    if (window.confirm(t("clearConfirm"))) {
+    const confirmation = apiBase && state.authUser ? t("clearOwnScore") : t("clearConfirm");
+    if (window.confirm(confirmation)) {
       try {
-        localStorage.removeItem("desafio-ranking");
-        localStorage.removeItem("desafio-melhor-pontuacao");
-        renderRanking();
+        if (apiBase && state.authUser) await apiRequest("/scores", { method: "DELETE" });
+        else {
+          localStorage.removeItem("desafio-ranking");
+          localStorage.removeItem("desafio-melhor-pontuacao");
+        }
+        await renderRanking();
         showToast(t("cleared"));
       } catch {
         showToast(t("clearFailed"));
@@ -903,5 +1050,6 @@ import { questionBank } from "./question-bank.js";
   applyLanguage();
   renderEnemSources();
   choosePlayerMode("profile");
-  renderRanking();
+  void restoreAccountSession();
+  void renderRanking();
 })();
