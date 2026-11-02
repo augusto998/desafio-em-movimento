@@ -75,6 +75,7 @@ import { questionBank } from "./question-bank.js";
       loginPrompt: "Entre com seu e-mail e senha ou crie uma conta para sincronizar o ranking.",
       phasePoolError: "A seleção tem {available} questões {difficulty}; são necessárias {required}. Marque mais matérias.",
       scoreSaveFailed: "Não foi possível salvar sua pontuação no servidor. Verifique a conexão e tente novamente.", rankingLoadFailed: "Não foi possível carregar o ranking remoto.", clearOwnScore: "Excluir apenas seu próprio resultado do ranking?",
+      confirmAdvance: "Você pretende avançar para {nextPhase}? Se escolher não, os pontos desta fase não serão somados.", advanceCancelled: "Avanço cancelado. Os pontos desta fase não foram somados.",
       accessHelp: "No modo perfil, cada apelido pode ter um único resultado no ranking deste navegador. O modo convidado não salva pontuação.",
       guestResult: "Partida de convidado: resultado não salvo no ranking.",
       mainNav: "Navegação principal", artLabel: "Ilustração abstrata de uma pista de movimento", roundLabel: "· PERGUNTA", progressLabel: "Progresso do desafio",
@@ -103,6 +104,7 @@ import { questionBank } from "./question-bank.js";
       loginPrompt: "Inicia sesión con tu correo y contraseña o crea una cuenta para sincronizar la clasificación.",
       phasePoolError: "La selección tiene {available} preguntas {difficulty}; se necesitan {required}. Selecciona más materias.",
       scoreSaveFailed: "No se pudo guardar tu puntuación en el servidor. Comprueba la conexión e inténtalo de nuevo.", rankingLoadFailed: "No se pudo cargar la clasificación remota.", clearOwnScore: "¿Eliminar solo tu propio resultado de la clasificación?",
+      confirmAdvance: "¿Quieres avanzar a {nextPhase}? Si eliges no, los puntos de esta fase no se sumarán.", advanceCancelled: "Avance cancelado. Los puntos de esta fase no se sumaron.",
       accessHelp: "En modo perfil, cada apodo tiene un único resultado en la clasificación de este navegador. El modo invitado no guarda puntuaciones.",
       guestResult: "Partida como invitado/a: el resultado no se guarda en la clasificación.",
       mainNav: "Navegación principal", artLabel: "Ilustración abstracta de una pista de movimiento", roundLabel: "· PREGUNTA", progressLabel: "Progreso del desafío",
@@ -157,7 +159,9 @@ import { questionBank } from "./question-bank.js";
     sound: true,
     answerTimes: [],
     gameQuestions: [],
-    selectedAnswer: null
+    selectedAnswer: null,
+    phaseScoreDelta: 0,
+    phaseCorrectDelta: 0
   };
 
   try {
@@ -577,6 +581,8 @@ import { questionBank } from "./question-bank.js";
   }
 
   function startGame() {
+    state.phaseScoreDelta = 0;
+    state.phaseCorrectDelta = 0;
     const input = $("#player-name");
     const name = input.value.trim().replace(/\s+/g, " ").slice(0, 20);
     if (state.playerMode === "profile" && !state.authUser) {
@@ -718,19 +724,25 @@ import { questionBank } from "./question-bank.js";
     });
 
     const feedback = $("#answer-feedback");
+    let earnedThisAnswer = 0;
     if (isCorrect) {
       state.correct += 1;
       state.streak += 1;
       state.maxStreak = Math.max(state.maxStreak, state.streak);
       state.score += phase.points;
+      earnedThisAnswer += phase.points;
       let comboMessage = "";
       if (state.streak === 3) {
         state.score += 50;
+        earnedThisAnswer += 50;
         comboMessage = ` ${t("combo")}`;
       } else if (state.streak === 5) {
         state.score += 100;
+        earnedThisAnswer += 100;
         comboMessage = ` ${t("super")}`;
       }
+      state.phaseScoreDelta += earnedThisAnswer;
+      state.phaseCorrectDelta += 1;
       feedback.textContent = `✅ ${t("correctAnswer")} +${phase.points} ${t("pointsUnit")}.${comboMessage} ${question.explanation}`;
       feedback.className = "answer-feedback correct";
         playTone(660, 0.11);
@@ -761,6 +773,25 @@ import { questionBank } from "./question-bank.js";
     const finishedPhase = phaseForQuestion(state.question);
     if (state.question === finishedPhase.start + finishedPhase.count - 1) {
       const nextPhase = phasePlan[finishedPhase.index + 1];
+      if (nextPhase) {
+        const shouldAdvance = window.confirm(
+          t("confirmAdvance").replace("{nextPhase}", t(nextPhase.label))
+        );
+        if (!shouldAdvance) {
+          const revertedScore = state.phaseScoreDelta;
+          const revertedCorrect = state.phaseCorrectDelta;
+          if (revertedScore > 0) {
+            state.score -= revertedScore;
+            state.correct -= revertedCorrect;
+            $("#score-value").textContent = String(state.score).padStart(3, "0");
+          }
+          state.phaseScoreDelta = 0;
+          state.phaseCorrectDelta = 0;
+          state.streak = 0;
+          showToast(t("advanceCancelled"));
+          return;
+        }
+      }
       showToast(t("phaseComplete").replace("{number}", String(finishedPhase.index + 1)).replace("{label}", t(nextPhase.label)));
     }
     state.question += 1;
