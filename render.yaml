@@ -5,7 +5,7 @@ services:
     plan: free
     region: oregon
     buildCommand: pnpm install --frozen-lockfile && PORT=10000 BASE_PATH=/ pnpm --filter @workspace/desafio-em-movimento build && pnpm --filter @workspace/api-server build
-    startCommand: pnpm --filter @workspace/db push && pnpm --filter @workspace/api-server start
+    startCommand: pnpm --filter @workspace/api-server start
     healthCheckPath: /api/healthz
     envVars:
       - key: NODE_ENV
