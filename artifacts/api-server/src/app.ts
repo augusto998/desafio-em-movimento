@@ -54,7 +54,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", router);
 
-const frontendDist = path.resolve(process.env.FRONTEND_DIST_DIR ?? "artifacts/desafio-em-movimento/dist/public");
+const frontendDist = path.resolve(process.env.FRONTEND_DIST_DIR ?? "../desafio-em-movimento/dist/public");
 if (existsSync(path.join(frontendDist, "index.html"))) {
   app.use(express.static(frontendDist, { index: false }));
   app.get(/.*/, (_request, response, next) => {
