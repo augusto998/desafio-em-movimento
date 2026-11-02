@@ -33,19 +33,27 @@ app.use(
     },
   }),
 );
-const allowedOrigins = (process.env.FRONTEND_ORIGINS ?? "http://localhost:5173,http://localhost:4173")
+const allowedOrigins = (process.env.FRONTEND_ORIGINS ?? "http://localhost:5173,http://localhost:4173,http://localhost:10000")
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
 if (process.env.RENDER_EXTERNAL_HOSTNAME) {
   allowedOrigins.push(`https://${process.env.RENDER_EXTERNAL_HOSTNAME}`);
+  allowedOrigins.push(`https://www.${process.env.RENDER_EXTERNAL_HOSTNAME}`);
 }
 
 app.use(cors({
   credentials: true,
   origin(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) callback(null, origin ?? false);
-    else callback(new Error("Origin is not allowed by CORS"));
+    if (!origin) {
+      callback(null, true);
+      return;
+    }
+    if (allowedOrigins.includes(origin)) {
+      callback(null, origin);
+      return;
+    }
+    callback(new Error("Origin is not allowed by CORS"));
   },
 }));
 app.use(cookieParser());
