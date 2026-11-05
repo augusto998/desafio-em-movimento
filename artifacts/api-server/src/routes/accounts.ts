@@ -62,7 +62,7 @@ async function issueSession(userId: string, response: Response): Promise<void> {
   response.cookie(sessionCookie, token, cookieOptions());
 }
 
-async function authenticatedUser(request: Request) {
+export async function authenticatedUser(request: Request) {
   const token = request.cookies?.[sessionCookie];
   if (typeof token !== "string" || token.length > 100) return null;
   const rows = await db.select({
@@ -80,7 +80,7 @@ function validPassword(value: unknown): value is string {
   return typeof value === "string" && value.length >= 10 && value.length <= 128;
 }
 
-function requireTrustedOrigin(request: Request, response: Response, next: NextFunction) {
+export function requireTrustedOrigin(request: Request, response: Response, next: NextFunction) {
   const origin = request.get("origin");
   if (!origin || !trustedOrigins.includes(origin)) {
     response.status(403).json({ error: "Origem não autorizada para esta operação." });

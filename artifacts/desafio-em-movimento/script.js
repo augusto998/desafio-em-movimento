@@ -1,4 +1,5 @@
 import { questionBank } from "./question-bank.js";
+import { additionalQuestions } from "./question-bank-extra.js";
 
 (() => {
   "use strict";
@@ -56,7 +57,8 @@ import { questionBank } from "./question-bank.js";
     });
   }
 
-  const questionPairs = questionBank.map((question) => [question, question]);
+  const allBankQuestions = [...questionBank, ...additionalQuestions];
+  const questionPairs = allBankQuestions.map((question) => [question, question]);
   const phasePlan = [
     { difficulty: "facil", count: 10, label: "phaseEasy" },
     { difficulty: "medio", count: 15, label: "phaseMedium" },
@@ -70,6 +72,7 @@ import { questionBank } from "./question-bank.js";
       game: "Partida", difficulty_facil: "FÁCIL", difficulty_medio: "MÉDIA", difficulty_dificil: "DIFÍCIL", phaseEasy: "FASE 1 · FÁCIL", phaseMedium: "FASE 2 · MÉDIA", phaseHard: "FASE 3 · DIFÍCIL", nextPhase: "Concluir fase e avançar", phaseComplete: "Fase {number} concluída! Próxima: {label}.",
       login: "Entrar / criar perfil", guest: "Convidado", settings: "Personalize a partida", subjectsLabel: "Matérias (escolha uma ou mais)", math: "Matemática", physics: "Física", chemistry: "Química", biology: "Biologia", philosophy: "Filosofia", history: "História", geography: "Geografia", pe: "Educação Física", interdisciplinary: "Interdisciplinar", timeSetting: "Tempo por pergunta:", seconds: "s", localOnly: "Perfil salvo somente neste dispositivo. Use um apelido, sem dados pessoais.", localNote: "A conta remota precisa estar publicada com banco de dados para sincronizar entre dispositivos.", guestName: "Convidado", chooseSubject: "Selecione pelo menos uma matéria.", tooFewQuestions: "As matérias selecionadas precisam ter ao menos 10 questões fáceis, 15 médias e 20 difíceis. Selecione mais matérias.",
       questionSourceAuthor: "Questão autoral · não aplicada no ENEM", questionSourceYear: "Questão autoral · referência de {year}",
+        authorReference: "AUTORAL · REF. ENEM {year}",
       emailLabel: "E-mail da conta", passwordLabel: "Senha (mínimo 10 caracteres)", displayNameLabel: "Nome para aparecer no ranking", authLogin: "Entrar", authRegister: "Criar conta", switchToRegister: "Ainda não tem conta? Criar", switchToLogin: "Já tem conta? Entrar", logout: "Sair da conta", accountReady: "Conta conectada. Seus resultados são sincronizados pelo servidor.", apiUnavailable: "Login remoto ainda não configurado. Publique a API e configure a URL antes de criar conta.", authFailed: "Não foi possível concluir o acesso.",
       loginRequired: "Entre em uma conta ou escolha Convidado para iniciar.",
       loginPrompt: "Entre com seu e-mail e senha ou crie uma conta para sincronizar o ranking.",
@@ -99,6 +102,7 @@ import { questionBank } from "./question-bank.js";
       game: "Partida", difficulty_facil: "FÁCIL", difficulty_medio: "MEDIA", difficulty_dificil: "DIFÍCIL", phaseEasy: "FASE 1 · FÁCIL", phaseMedium: "FASE 2 · MEDIA", phaseHard: "FASE 3 · DIFÍCIL", nextPhase: "Terminar fase y avanzar", phaseComplete: "¡Fase {number} terminada! Siguiente: {label}.",
       login: "Acceder / crear perfil", guest: "Invitado/a", settings: "Personaliza la partida", subjectsLabel: "Materias (elige una o más)", math: "Matemáticas", physics: "Física", chemistry: "Química", biology: "Biología", philosophy: "Filosofía", history: "Historia", geography: "Geografía", pe: "Educación Física", interdisciplinary: "Interdisciplinar", timeSetting: "Tiempo por pregunta:", seconds: "s", localOnly: "Perfil guardado solo en este dispositivo. Usa un apodo, sin datos personales.", localNote: "La cuenta remota necesita una API y una base de datos publicadas para sincronizar entre dispositivos.", guestName: "Invitado/a", chooseSubject: "Selecciona al menos una materia.", tooFewQuestions: "Las materias seleccionadas necesitan al menos 10 preguntas fáciles, 15 medias y 20 difíciles. Selecciona más materias.",
       questionSourceAuthor: "Pregunta original · no aplicada en el ENEM", questionSourceYear: "Pregunta original · referencia de {year}",
+        authorReference: "ORIGINAL · REF. ENEM {year}",
       emailLabel: "Correo electrónico", passwordLabel: "Contraseña (mínimo 10 caracteres)", displayNameLabel: "Nombre visible en la clasificación", authLogin: "Entrar", authRegister: "Crear cuenta", switchToRegister: "¿No tienes cuenta? Crear", switchToLogin: "¿Ya tienes cuenta? Entrar", logout: "Salir de la cuenta", accountReady: "Cuenta conectada. Tus resultados se sincronizan en el servidor.", apiUnavailable: "El acceso remoto aún no está configurado. Publica la API y configura su URL antes de crear una cuenta.", authFailed: "No se pudo completar el acceso.",
       loginRequired: "Inicia sesión o elige Invitado para comenzar.",
       loginPrompt: "Inicia sesión con tu correo y contraseña o crea una cuenta para sincronizar la clasificación.",
@@ -217,7 +221,7 @@ import { questionBank } from "./question-bank.js";
   function updatePhaseSummary() {
     const selected = new Set([...document.querySelectorAll("input[name='subject']:checked")].map((input) => input.value));
     const summary = phasePlan.map((phase) => {
-      const available = questionBank.filter((question) => selected.has(question.subject) && question.difficulty === phase.difficulty).length;
+      const available = allBankQuestions.filter((question) => selected.has(question.subject) && question.difficulty === phase.difficulty).length;
       return { ...phase, count: Math.min(phase.count, available) };
     }).filter((phase) => phase.count > 0);
     const total = summary.reduce((sum, phase) => sum + phase.count, 0);
@@ -241,6 +245,11 @@ import { questionBank } from "./question-bank.js";
     source.textContent = question.year
       ? t("questionSourceYear").replace("{year}", String(question.year))
       : t("questionSourceAuthor");
+    const reference = $("#question-year");
+    reference.hidden = !question.referenceYear;
+    reference.textContent = question.referenceYear
+      ? t("authorReference").replace("{year}", String(question.referenceYear))
+      : "";
   }
 
   function setText(selector, value) {
@@ -464,15 +473,24 @@ import { questionBank } from "./question-bank.js";
     choosePlayerMode("profile");
   }
 
-  function buildGameQuestions() {
+  async function buildGameQuestions() {
     state.gameQuestions = [];
     state.gamePhasePlan = [];
+    state.questionPoolError = null;
     const languageIndex = state.language === "es" ? 1 : 0;
     const availableSubjects = [...document.querySelectorAll("input[name='subject']:checked")].map((input) => input.value);
-    const historyKey = state.playerId ? `desafio-vistos:${state.playerId}` : null;
-    let seen = state.playerId ? [] : state.guestSeen;
-    if (historyKey) {
-      try { seen = JSON.parse(localStorage.getItem(historyKey) || "[]"); } catch { seen = []; }
+    const playerHistoryId = state.playerId || normalizeName(state.player) || "convidado";
+    const historyKey = `desafio-vistos:${playerHistoryId}`;
+    let seen = [];
+    try { seen = JSON.parse(localStorage.getItem(historyKey) || "[]"); } catch { seen = []; }
+    if (!Array.isArray(seen)) seen = [];
+    if (state.playerId && apiBase) {
+      try {
+        const { questionIds } = await apiRequest("/question-history");
+        if (Array.isArray(questionIds)) seen = [...new Set([...seen, ...questionIds])];
+      } catch {
+        // O histórico local continua disponível caso a API esteja temporariamente indisponível.
+      }
     }
     const usedIds = new Set();
     const deck = [];
@@ -507,9 +525,18 @@ import { questionBank } from "./question-bank.js";
       return localized;
     });
     const nextSeen = [...new Set([...state.historySeen, ...deck.map((question) => question.id)])];
-    if (historyKey) {
-      try { localStorage.setItem(historyKey, JSON.stringify(nextSeen)); } catch { /* Evitar repetição é uma melhoria local, não impede jogar. */ }
-    } else state.guestSeen = nextSeen;
+    try { localStorage.setItem(historyKey, JSON.stringify(nextSeen)); } catch { /* O histórico remoto permanece disponível para contas autenticadas. */ }
+    if (state.playerId && apiBase) {
+      try {
+        await apiRequest("/question-history", {
+          method: "POST",
+          body: JSON.stringify({ questionIds: deck.map((question) => question.id) })
+        });
+      } catch {
+        // A partida pode continuar usando o histórico local.
+      }
+    }
+    if (!state.playerId) state.guestSeen = nextSeen;
     return state.gameQuestions;
   }
 
@@ -604,7 +631,7 @@ import { questionBank } from "./question-bank.js";
     window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
   }
 
-  function startGame() {
+  async function startGame() {
     state.phaseScoreDelta = 0;
     state.phaseCorrectDelta = 0;
     const input = $("#player-name");
@@ -633,7 +660,7 @@ import { questionBank } from "./question-bank.js";
     state.maxStreak = 0;
     state.correct = 0;
     state.answerTimes = [];
-    state.gameQuestions = buildGameQuestions();
+    state.gameQuestions = await buildGameQuestions();
     if (!state.gameQuestions.length) {
       const poolError = state.questionPoolError;
       showToast(poolError

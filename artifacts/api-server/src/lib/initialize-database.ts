@@ -29,5 +29,14 @@ export async function initializeDatabase(): Promise<void> {
       max_streak integer NOT NULL,
       updated_at timestamptz NOT NULL DEFAULT now()
     );
+
+    CREATE TABLE IF NOT EXISTS question_history (
+      user_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      question_id varchar(120) NOT NULL,
+      last_seen_at timestamptz NOT NULL DEFAULT now(),
+      PRIMARY KEY (user_id, question_id)
+    );
+    CREATE INDEX IF NOT EXISTS question_history_user_seen_idx
+      ON question_history (user_id, last_seen_at DESC);
   `);
 }
