@@ -72,7 +72,7 @@
                 <button class="primary-button" id="start-game" type="button" hidden disabled>Começar <span aria-hidden="true">→</span></button>
                 <div class="game-settings" aria-labelledby="settings-title">
                   <h2 id="settings-title">Personalize a partida</h2>
-                  <p class="phase-plan">A partida tem 3 fases: 20 questões fáceis, 15 médias e 10 difíceis.</p>
+                  <p class="phase-plan">A partida tem até 45 questões: 10 fáceis, 15 médias e 20 difíceis, conforme as matérias selecionadas.</p>
                   <fieldset class="subject-picker">
                     <legend class="field-label">Matérias (escolha uma ou mais)</legend>
                     <label><input type="checkbox" name="subject" value="matematica" checked /> Matemática</label>
@@ -89,7 +89,7 @@
                   <input id="answer-time" type="range" min="10" max="35" value="20" />
                   <section class="enem-library" aria-labelledby="enem-library-title">
                     <h3 id="enem-library-title">Fontes oficiais do ENEM</h3>
-                    <p>Consulte os cadernos e gabaritos oficiais enviados, organizados por ano e área geral da prova.</p>
+                    <p>As questões do jogo são autorais e contextualizadas com habilidades cobradas no ENEM. Consulte aqui os cadernos e gabaritos oficiais completos.</p>
                     <label class="field-label" for="enem-year">Ano</label>
                     <select id="enem-year">
                       <option value="todos">Todos os anos</option>
@@ -110,13 +110,13 @@
                       <option value="biologia">Biologia · cadernos do 2º dia</option>
                       <option value="interdisciplinar">Interdisciplinar · todos os dias</option>
                     </select>
-                    <p class="enem-note">O ENEM não publica esses cadernos separados por matéria nem por dificuldade. Os links abaixo são fontes oficiais; número, gabarito e nível de cada questão precisam ser conferidos no caderno correspondente.</p>
+                    <p class="enem-note">Os cadernos oficiais são disponibilizados por dia e cor; não reproduzimos seus enunciados. Use os links do INEP para consultar as questões originais e seus gabaritos.</p>
                     <div class="enem-source-list" id="enem-source-list" aria-live="polite"></div>
                   </section>
                 </div>
               </div>
               <div class="hero-proof" aria-label="Dados do desafio">
-                <div><strong>45</strong><span>perguntas por partida</span></div>
+                <div><strong>45</strong><span>perguntas no máximo</span></div>
                 <div><strong>10–35s</strong><span>por pergunta</span></div>
                 <div><strong>+100</strong><span>super combo</span></div>
               </div>

@@ -88,7 +88,7 @@ import { questionBank } from "./question-bank.js";
       physical: "Desafio físico opcional", physicalOpen: "Desafio aberto", addPhysical: "Ver desafio opcional", complete: "Marcar como feito", completed: "Desafio concluído", movementPrompt: "O desafio aparece depois da sua resposta.", movementIntro: "O desafio é opcional: faça apenas se for confortável e seguro para você. Também vale descansar ou adaptar o movimento.",
       end: "FIM DE JOGO", player: "ATLETA", youLeftMark: "Você deixou<br /><span>sua marca.</span>", resultSub: "Boa leitura de jogo. Cada resposta foi um passo a mais.", playAgain: "Jogar de novo", seeRanking: "Ver ranking", yourScore: "SUA PONTUAÇÃO", pointsUnit: "pontos", correct: "acertos", errors: "erros", accuracy: "aproveitamento", bestCombo: "maior combo", position: "posição", participation: "PARTICIPAÇÃO<br />ATIVA", resultNoteTitle: "O que vale é continuar em movimento.", resultNote: "Compare sua estratégia com a turma e tente bater sua marca na próxima.",
       board: "PLACAR DA TURMA", leaderboardTitle: "Quem está<br /><span>no ritmo?</span>", live: "AO VIVO", bestMarks: "melhores marcas", clear: "Limpar ranking", emptyTitle: "A pista ainda está livre.", emptyText: "Jogue uma partida para registrar a primeira marca neste navegador.", rankingInfo: "A pontuação combina acertos, agilidade e participação no desafio opcional.", enter: "Entrar na disputa", you: "você", first: "1º LUGAR", second: "2º LUGAR", third: "3º LUGAR", pts: "pts",
-      manual: "MANUAL DE BORDO", howTitle: "Jogar é simples.<br /><span>Ficar parado, não.</span>", howDescription: "Três fases progressivas: 10 questões fáceis, 15 médias e 20 difíceis, com movimento opcional.", read: "Leia a jogada", readText: "As perguntas são organizadas por matéria e avançam por três níveis de dificuldade.", answerInTime: "Responda no tempo", answerText: "A partida tem 10 questões fáceis, 15 médias e 20 difíceis. O tempo por questão é configurável.", move: "Entre em movimento", moveText: "O bônus é opcional. Adapte ou ignore qualquer movimento e respeite seus limites.", readyTitle: "Pronto para a largada?", readyText: "Chame sua equipe e veja quem chega mais longe.", letsGo: "Vamos nessa", footer: "APRENDER NO RITMO",
+      manual: "MANUAL DE BORDO", howTitle: "Jogar é simples.<br /><span>Ficar parado, não.</span>", howDescription: "Até 45 questões em três níveis progressivos, com quantidade ajustada às matérias selecionadas e movimento opcional.", read: "Leia a jogada", readText: "As perguntas são organizadas por matéria e avançam por três níveis de dificuldade.", answerInTime: "Responda no tempo", answerText: "A partida tem até 45 questões: 10 fáceis, 15 médias e 20 difíceis quando há questões suficientes nas matérias escolhidas. O tempo por questão é configurável.", move: "Entre em movimento", moveText: "O bônus é opcional. Adapte ou ignore qualquer movimento e respeite seus limites.", readyTitle: "Pronto para a largada?", readyText: "Chame sua equipe e veja quem chega mais longe.", letsGo: "Vamos nessa", footer: "APRENDER NO RITMO",
       noName: "Digite um nome ou apelido para começar.", expired: "TEMPO ESGOTADO! A resposta correta era", incorrect: "INCORRETO! A resposta correta era", correctAnswer: "CORRETO!", combo: "🔥 COMBO! +50 pontos.", super: "🔥🔥 SUPER COMBO! +100 pontos.",
       newRecord: "Você é um campeão!", excellent: "Excelente desempenho!", good: "Bom trabalho!", keepGoing: "Continue aprendendo!",
       emptyRanking: "O ranking já está vazio.", clearConfirm: "Tem certeza de que deseja limpar o ranking salvo neste navegador?", cleared: "Ranking limpo.", clearFailed: "Não foi possível limpar os dados deste navegador.", saveFailed: "Não foi possível salvar neste navegador. O resultado será exibido sem ser registrado no ranking.", bonusToast: "Bônus opcional: +25 pontos!", rankSuffix: "º lugar", errorsStorage: "O armazenamento local não está disponível neste navegador. O jogo continua, mas o ranking não poderá ser salvo."
@@ -117,7 +117,7 @@ import { questionBank } from "./question-bank.js";
       physical: "Desafío físico opcional", physicalOpen: "Desafío abierto", addPhysical: "Ver desafío opcional", complete: "Marcar como realizado", completed: "Desafío completado", movementPrompt: "El desafío aparece después de tu respuesta.", movementIntro: "El desafío es opcional: hazlo solo si te resulta cómodo y seguro. También puedes descansar o adaptar el movimiento.",
       end: "FIN DEL JUEGO", player: "JUGADOR/A", youLeftMark: "Dejaste<br /><span>tu marca.</span>", resultSub: "Buena estrategia. Cada respuesta fue un paso más.", playAgain: "Jugar de nuevo", seeRanking: "Ver clasificación", yourScore: "TU PUNTUACIÓN", pointsUnit: "pontos", correct: "aciertos", errors: "errores", accuracy: "precisión", bestCombo: "mejor racha", position: "posición", participation: "PARTICIPACIÓN<br />ACTIVA", resultNoteTitle: "Lo importante es seguir en movimiento.", resultNote: "Compara tu estrategia con el grupo e intenta superar tu marca la próxima vez.",
       board: "CLASIFICACIÓN DEL GRUPO", leaderboardTitle: "¿Quién lleva<br /><span>el ritmo?</span>", live: "ACTUALIZADO", bestMarks: "mejores marcas", clear: "Borrar clasificación", emptyTitle: "La pista aún está libre.", emptyText: "Juega una partida para registrar la primera marca en este navegador.", rankingInfo: "La puntuación combina aciertos, rapidez y participación en el desafío opcional.", enter: "Participar", you: "tú", first: "1.º LUGAR", second: "2.º LUGAR", third: "3.º LUGAR", pts: "pts",
-      manual: "GUÍA DEL JUEGO", howTitle: "Jugar es sencillo.<br /><span>¡Y puedes moverte!</span>", howDescription: "Tres fases progresivas: 10 preguntas fáciles, 15 medias y 20 difíciles, con movimiento opcional.", read: "Lee la jugada", readText: "Las preguntas se organizan por materia y avanzan en tres niveles de dificultad.", answerInTime: "Responde a tiempo", answerText: "La partida tiene 10 preguntas fáciles, 15 medias y 20 difíciles. El tiempo por pregunta es configurable.", move: "Ponte en movimiento", moveText: "El bono es opcional. Adapta o ignora cualquier movimiento y respeta tus límites.", readyTitle: "¿Listo para empezar?", readyText: "Invita a tu equipo y descubre quién llega más lejos.", letsGo: "¡Vamos!", footer: "APRENDER EN MOVIMIENTO",
+      manual: "GUÍA DEL JUEGO", howTitle: "Jugar es sencillo.<br /><span>¡Y puedes moverte!</span>", howDescription: "Hasta 45 preguntas en tres niveles progresivos; la cantidad se ajusta a las materias seleccionadas y el movimiento es opcional.", read: "Lee la jugada", readText: "Las preguntas se organizan por materia y avanzan en tres niveles de dificultad.", answerInTime: "Responde a tiempo", answerText: "La partida tiene hasta 45 preguntas: 10 fáciles, 15 medias y 20 difíciles cuando hay suficientes preguntas en las materias elegidas. El tiempo por pregunta se puede configurar.", move: "Ponte en movimiento", moveText: "El bono es opcional. Adapta o ignora cualquier movimiento y respeta tus límites.", readyTitle: "¿Listo para empezar?", readyText: "Invita a tu equipo y descubre quién llega más lejos.", letsGo: "¡Vamos!", footer: "APRENDER EN MOVIMIENTO",
       noName: "Escribe un nombre o apodo para empezar.", expired: "¡SE ACABÓ EL TIEMPO! La respuesta correcta era", incorrect: "¡INCORRECTO! La respuesta correcta era", correctAnswer: "¡CORRECTO!", combo: "🔥 ¡RACHA! +50 puntos.", super: "🔥🔥 ¡SÚPER RACHA! +100 puntos.",
       newRecord: "¡Eres un/a campeón/a!", excellent: "¡Excelente resultado!", good: "¡Buen trabajo!", keepGoing: "¡Sigue aprendiendo!",
       emptyRanking: "La clasificación ya está vacía.", clearConfirm: "¿Seguro que quieres borrar la clasificación guardada en este navegador?", cleared: "Clasificación borrada.", clearFailed: "No se pudieron borrar los datos de este navegador.", saveFailed: "No se pudo guardar en este navegador. El resultado se mostrará sin registrarse en la clasificación.", bonusToast: "Bono opcional: ¡+25 puntos!", rankSuffix: ".º lugar", errorsStorage: "El almacenamiento local no está disponible en este navegador. Puedes jugar, pero no se guardará la clasificación."
@@ -159,6 +159,7 @@ import { questionBank } from "./question-bank.js";
     sound: true,
     answerTimes: [],
     gameQuestions: [],
+    gamePhasePlan: [],
     selectedAnswer: null,
     phaseScoreDelta: 0,
     phaseCorrectDelta: 0
@@ -203,13 +204,30 @@ import { questionBank } from "./question-bank.js";
 
   function phaseForQuestion(questionIndex) {
     let start = 0;
-    for (let index = 0; index < phasePlan.length; index += 1) {
-      const phase = phasePlan[index];
+    const activePlan = state.gamePhasePlan.length ? state.gamePhasePlan : phasePlan;
+    for (let index = 0; index < activePlan.length; index += 1) {
+      const phase = activePlan[index];
       if (questionIndex < start + phase.count) return { ...phase, index, start };
       start += phase.count;
     }
-    const last = phasePlan.at(-1);
-    return { ...last, index: phasePlan.length - 1, start: gameLength() - last.count };
+    const last = activePlan.at(-1) || phasePlan.at(-1);
+    return { ...last, index: activePlan.length - 1, start: gameLength() - last.count };
+  }
+
+  function updatePhaseSummary() {
+    const selected = new Set([...document.querySelectorAll("input[name='subject']:checked")].map((input) => input.value));
+    const summary = phasePlan.map((phase) => {
+      const available = questionBank.filter((question) => selected.has(question.subject) && question.difficulty === phase.difficulty).length;
+      return { ...phase, count: Math.min(phase.count, available) };
+    }).filter((phase) => phase.count > 0);
+    const total = summary.reduce((sum, phase) => sum + phase.count, 0);
+    const copy = state.language === "es"
+      ? `Tu partida tendrá ${total} preguntas como máximo: ${summary.map((phase) => `${phase.count} ${phase.label === "phaseEasy" ? "fáciles" : phase.label === "phaseMedium" ? "medias" : "difíciles"}`).join(", ")}.`
+      : `Sua partida terá ${total} perguntas: ${summary.map((phase) => `${phase.count} ${phase.label === "phaseEasy" ? "fáceis" : phase.label === "phaseMedium" ? "médias" : "difíceis"}`).join(", ")}. Limite máximo: 45.`;
+    const phasePlanCopy = document.querySelector(".phase-plan");
+    if (phasePlanCopy) phasePlanCopy.textContent = copy;
+    const questionCount = document.querySelector(".hero-proof div:nth-child(1) strong");
+    if (questionCount) questionCount.textContent = String(total);
   }
 
   function nextQuestionLabel() {
@@ -341,6 +359,7 @@ import { questionBank } from "./question-bank.js";
     $(".site-footer span:first-child").textContent = es ? "DESAFÍO EN MOVIMIENTO" : "DESAFIO EM MOVIMENTO";
     $(".site-footer span:nth-child(2)").textContent = es ? "2.º AÑO · INTEGRADO" : "2º ANO · INTEGRADO";
     $(".round-tag").innerHTML = `<i aria-hidden="true"></i> ${es ? "2.º AÑO" : "2º EM"}`;
+    updatePhaseSummary();
     if (state.gameQuestions.length && state.view === "jogo") refreshCurrentQuestionLanguage();
     if (state.view === "ranking") renderRanking();
   }
@@ -447,6 +466,7 @@ import { questionBank } from "./question-bank.js";
 
   function buildGameQuestions() {
     state.gameQuestions = [];
+    state.gamePhasePlan = [];
     const languageIndex = state.language === "es" ? 1 : 0;
     const availableSubjects = [...document.querySelectorAll("input[name='subject']:checked")].map((input) => input.value);
     const historyKey = state.playerId ? `desafio-vistos:${state.playerId}` : null;
@@ -458,18 +478,22 @@ import { questionBank } from "./question-bank.js";
     const deck = [];
     const allQuestions = questionPairs.map((pair) => pair[languageIndex]);
     for (let phaseIndex = 0; phaseIndex < phasePlan.length; phaseIndex += 1) {
-      const phase = phasePlan[phaseIndex];
-      const pool = allQuestions.filter((question) => availableSubjects.includes(question.subject) && question.difficulty === phase.difficulty);
+      const requestedPhase = phasePlan[phaseIndex];
+      const pool = allQuestions.filter((question) => availableSubjects.includes(question.subject) && question.difficulty === requestedPhase.difficulty);
+      const count = Math.min(requestedPhase.count, pool.length);
+      if (!count) continue;
       const unseen = shuffle(pool.filter((question) => !seen.includes(question.id)));
       const previouslySeen = shuffle(pool.filter((question) => seen.includes(question.id)));
       const candidates = [...unseen, ...previouslySeen].filter((question) => !usedIds.has(question.id));
-      if (candidates.length < phase.count) {
-        state.questionPoolError = { difficulty: phase.difficulty, required: phase.count, available: candidates.length };
+      if (candidates.length < count) {
+        state.questionPoolError = { difficulty: requestedPhase.difficulty, required: count, available: candidates.length };
         return [];
       }
-      candidates.slice(0, phase.count).forEach((question) => {
+      const phase = { ...requestedPhase, count, start: deck.length };
+      state.gamePhasePlan.push(phase);
+      candidates.slice(0, count).forEach((question) => {
         usedIds.add(question.id);
-        deck.push({ ...question, phaseIndex });
+        deck.push({ ...question, phaseIndex: state.gamePhasePlan.length - 1 });
       });
     }
     state.historyKey = historyKey;
@@ -602,6 +626,7 @@ import { questionBank } from "./question-bank.js";
       state.playerId = state.authUser.id;
     }
     state.question = 0;
+    state.gamePhasePlan = [];
     state.gameFinished = false;
     state.score = 0;
     state.streak = 0;
@@ -1024,6 +1049,7 @@ import { questionBank } from "./question-bank.js";
   $("#answer-time").addEventListener("input", (event) => {
     $("#answer-time-value").textContent = `${event.currentTarget.value} ${t("seconds")}`;
   });
+  document.querySelectorAll("input[name='subject']").forEach((input) => input.addEventListener("change", updatePhaseSummary));
   $("#enem-year").addEventListener("change", renderEnemSources);
   $("#enem-subject").addEventListener("change", renderEnemSources);
   $("#start-game").addEventListener("click", startGame);
@@ -1070,6 +1096,7 @@ import { questionBank } from "./question-bank.js";
     if (event.key === "desafio-ranking") renderRanking();
   });
   applyLanguage();
+  updatePhaseSummary();
   renderEnemSources();
   choosePlayerMode("profile");
   void restoreAccountSession();

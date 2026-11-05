@@ -262,3 +262,76 @@ h2 { font-size: clamp(42px, 6vw, 76px); line-height: .92; margin: 18px 0 0; }
   .language-toggle { font-size: 9px; }
   .game-settings { padding: 14px; }
 }
+
+/* Centralized, balanced page composition */
+.view { width: min(1120px, calc(100% - 40px)); }
+.view-start { width: min(1040px, calc(100% - 40px)); }
+.start-grid { grid-template-columns: minmax(0, 780px); justify-content: center; gap: 34px; min-height: 0; }
+.hero-copy { width: 100%; text-align: center; }
+.hero-copy > .eyebrow { justify-content: center; }
+.hero-copy h1 { font-size: clamp(62px, 9vw, 112px); }
+.hero-lede { margin-inline: auto; }
+.hero-actions { max-width: 680px; margin-inline: auto; text-align: left; }
+.player-mode { justify-content: center; }
+.input-hint, .local-login-note { text-align: center; }
+#start-game { display: flex; margin: 16px auto 0; }
+.game-settings { text-align: center; border-radius: 12px; padding: clamp(18px, 3vw, 28px); box-shadow: 0 12px 34px rgba(59, 50, 30, .07); }
+.subject-picker { justify-content: center; }
+.subject-picker legend { width: 100%; text-align: center; }
+.time-setting { max-width: 520px; width: 100%; margin-inline: auto; }
+.game-settings > #answer-time { max-width: 520px; width: 100%; margin-inline: auto; }
+.enem-library { text-align: center; }
+.enem-library > select, .enem-library > label { max-width: 520px; width: 100%; margin-inline: auto; text-align: left; }
+.enem-note { text-align: left; }
+.enem-source { text-align: left; }
+.hero-proof { justify-content: center; }
+.hero-art { width: min(100%, 680px); height: 280px; min-height: 280px; margin-inline: auto; }
+.start-footer { justify-content: center; flex-wrap: wrap; gap: 16px 35px; }
+.view-game { width: min(1080px, calc(100% - 40px)); }
+.game-header { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+.game-header > div:first-child .eyebrow { justify-content: center; flex-wrap: wrap; }
+.game-header h2 { font-size: clamp(38px, 6vw, 66px); }
+.score-cluster { justify-content: center; }
+.streak-pill { margin-left: 0; }
+.progress-wrap { width: min(100%, 900px); margin-inline: auto; }
+.game-layout { width: min(100%, 900px); grid-template-columns: minmax(0, 1fr); margin-inline: auto; }
+.question-card { text-align: center; border-radius: 14px; }
+.question-topline { text-align: left; }
+.question-index, .question-source { text-align: center; }
+.question-card h3 { max-width: 820px; margin-inline: auto; font-size: clamp(23px, 2.4vw, 32px); line-height: 1.32; letter-spacing: -.025em; }
+.options { width: min(100%, 820px); margin-inline: auto; text-align: left; }
+.question-actions { justify-content: center; flex-wrap: wrap; }
+.next-button { margin-left: 0; }
+.side-challenge { align-items: center; text-align: center; border-radius: 12px; }
+.side-challenge h3, .side-challenge > p { max-width: 420px; }
+.side-challenge h3 { margin-top: 28px; }
+.movement-figure { max-width: 360px; }
+.result-layout { width: min(100%, 960px); margin-inline: auto; text-align: center; }
+.result-message .eyebrow { justify-content: center; }
+.result-message > p { margin-inline: auto; }
+.result-actions { justify-content: center; }
+.result-score-card { align-items: center; border-radius: 14px; }
+.result-stats, .result-medal { justify-content: center; }
+.result-note { justify-content: center; text-align: center; }
+.section-heading { flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+.section-heading .eyebrow { justify-content: center; }
+.ranking-layout { width: min(100%, 960px); grid-template-columns: minmax(0, 1fr); margin-inline: auto; }
+.ranking-aside { align-items: center; text-align: center; border-radius: 12px; }
+.ranking-aside p { max-width: 430px; }
+.how-heading { align-items: center; text-align: center; }
+.how-heading .eyebrow { justify-content: center; }
+.how-heading > p { max-width: 600px; margin-inline: auto; }
+.how-steps { width: min(100%, 960px); margin-inline: auto; text-align: center; }
+.step-card { border-radius: 10px; }
+.step-card p { margin-inline: auto; }
+.how-footer { justify-content: center; flex-wrap: wrap; gap: 16px 40px; text-align: center; }
+.site-footer { justify-content: center; flex-wrap: wrap; gap: 14px 28px; text-align: center; }
+
+@media (max-width: 800px) {
+  .view, .view-start, .view-game { width: min(100% - 32px, 680px); }
+  .start-grid { gap: 28px; }
+  .hero-art { height: 230px; min-height: 230px; }
+  .game-header { align-items: center; }
+  .game-header > div:first-child .eyebrow { justify-content: center; }
+  .section-heading { align-items: center; }
+}
